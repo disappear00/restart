@@ -1,0 +1,71 @@
+{
+  "cover": {
+    "product": "ChatGPT (Codex)",
+    "subtitle": "AI 驱动的内容创作助手，一键生成网页、PPT、Word、Excel",
+    "tagline": "文档生成 · 智能高效 · 即说即得",
+    "badges": ["AI 驱动", "网页生成", "PPT 生成", "Word 生成", "Excel 生成"]
+  },
+  "features": {
+    "title": "核心特点",
+    "desc": "围绕四大办公场景，AI 帮你快速产出内容",
+    "items": [
+      { "title": "网页生成", "desc": "输入需求描述，AI 自动生成完整的 HTML/CSS/JS 网页，支持响应式与交互效果。" },
+      { "title": "PPT 生成", "desc": "根据大纲或主题，自动生成结构清晰的幻灯片，支持多页布局与视觉美化。" },
+      { "title": "Word 文档生成", "desc": "从提纲到全文，快速生成排版规范的 Word 文档，支持报告、方案、纪要等。" },
+      { "title": "Excel 表格生成", "desc": "描述数据结构与计算逻辑，AI 自动创建带公式与格式的 Excel 表格。" }
+    ]
+  },
+  "practices": {
+    "title": "实际测试体验",
+    "desc": "四个方向的实测效果展示",
+    "items": [
+      { "label": "测试一", "title": "网页生成", "desc": "任务：构建一个高保真交互式个人作品集网站。", "code": "static/codex-web.png" },
+      { "label": "测试二", "title": "PPT 生成", "desc": "请帮我生成一份关于'如何避免FOMO（错失恐惧症）'的PPT。", "code": "static/codex-pptx.png" },
+      { "label": "测试三", "title": "Word 文档生成", "desc": "请帮我生成一份关于'西红柿炒鸡蛋的最佳做法的Word文档（.docx格式）'。", "code": "static/codex-docx.png" },
+      { "label": "测试四", "title": "Excel 表格生成", "desc": "你是一位专业的学习规划师。请为我设计一份动态学习计划电子表格。", "code": "static/codex-excel.png" }
+    ]
+  },
+  "impressions": {
+    "title": "我的体验如何",
+    "desc": "来自真实用户的实际使用反馈",
+    "items": [
+      { "quote": "以前写一个带交互的网页至少要半天，现在跟 ChatGPT 说几句话就出来了，还能直接运行。", "author": "小张 · 产品经理" },
+      { "quote": "做周报 PPT 一直是噩梦，现在 AI 帮我生成大纲和排版，我只需要微调内容就行。", "author": "小李 · 运营专员" },
+      { "quote": "写项目方案的时候用它生成 Word 初稿，框架和措辞都很到位，节省了大把时间。", "author": "王工 · 项目经理" },
+      { "quote": "Excel 公式总是记不住，现在直接告诉它要算什么，表格和公式自动生成，太方便了。", "author": "小陈 · 数据分析师" }
+    ]
+  },
+  "scores": {
+    "title": "综合评分",
+    "desc": "基于多个维度的使用体验评估",
+    "items": [
+      { "label": "网页生成", "value": 93 },
+      { "label": "PPT 生成", "value": 86 },
+      { "label": "Word 生成", "value": 90 },
+      { "label": "Excel 生成", "value": 82 },
+      { "label": "易用性", "value": 91 }
+    ]
+  },
+  "usecases": {
+    "title": "应用场景",
+    "desc": "覆盖多种办公场景，提升内容产出效率",
+    "items": [
+      { "icon": "🌐", "title": "营销落地页", "desc": "快速生成品牌宣传、活动推广等营销网页，支持自定义样式与动效。", "tag": "网页" },
+      { "icon": "📊", "title": "商务演示", "desc": "自动生成产品介绍、季度汇报、方案演讲等各类 PPT 演示文稿。", "tag": "PPT" },
+      { "icon": "📄", "title": "办公文档", "desc": "撰写合同、报告、会议纪要、方案书等标准 Word 文档。", "tag": "Word" },
+      { "icon": "📋", "title": "数据表格", "desc": "创建销售统计、财务报表、项目排期等 Excel 数据表。", "tag": "Excel" },
+      { "icon": "🎨", "title": "创意设计", "desc": "生成海报、简历、名片等创意页面的 HTML 代码，快速落地设计稿。", "tag": "网页" },
+      { "icon": "📚", "title": "教育培训", "desc": "制作课件 PPT、讲义文档、成绩统计表等教学相关材料。", "tag": "多格式" }
+    ]
+  },
+  "cta": {
+    "title": "准备好体验Codex了吗",
+    "subtitle": "让 ChatGPT (Codex) 成为你的内容创作搭档，从网页到表格一应俱全",
+    "btnText": "立即免费体验",
+    "features": [
+      { "num": "10x", "lbl": "效率提升" },
+      { "num": "4+", "lbl": "文档格式" },
+      { "num": "99%", "lbl": "满意度" }
+    ]
+  }
+}

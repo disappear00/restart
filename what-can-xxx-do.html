@@ -234,6 +234,16 @@
     display:flex; align-items:center; justify-content:center;
     font-size:13px; color:#d6d3d1; margin-top:14px
   }
+  .prac-card .code-img {
+    margin-top:14px;
+    border:2px solid #e7e5e4;
+    background:#fafaf9;
+    overflow:hidden
+  }
+  .prac-card .code-img img {
+    display:block; width:100%; height:auto;
+    max-height:280px; object-fit:contain
+  }
 
   /* ─── Slide 4: Impressions ─── */
   .impr-wrap { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; width:100%; max-width:1400px; position:relative; z-index:1 }
@@ -340,7 +350,7 @@
   }
 
   /* ─── Slide 7: CTA / Conclusion ─── */
-  .cta { position:relative; overflow:hidden }
+  .cta { overflow:hidden }
   .cta::before {
     content:''; position:absolute;
     top:-280px; right:-200px; width:650px; height:650px;
@@ -594,85 +604,66 @@
 </div>
 
 <script>
-const DATA = {
+let DATA = {}
 
-  cover: {
-    product: 'Codex',
-    subtitle: '一款强大的 AI 编码助手，帮你更聪明地写代码',
-    tagline: '全新智能体验 · 效率提升利器',
-    badges: ['AI 驱动', '多语言支持', '实时响应', '智能分析'],
-  },
+const STORAGE_KEY = 'what-can-xxx-do-data-v2'
 
-  features: {
-    title: '核心特点',
-    desc: '6 项能力，让编码变得更高效',
-    items: [
-      { title: '智能代码补全', desc: '基于上下文实时预测并补全代码，支持多种编程语言。' },
-      { title: '自然语言转代码', desc: '用自然语言描述需求，自动生成对应的代码实现。' },
-      { title: '代码解释与重构', desc: '解释复杂代码逻辑，提供重构建议以提升代码质量。' },
-      { title: '调试辅助', desc: '分析代码错误并给出修复建议，加速调试过程。' },
-      { title: '多文件重构', desc: '跨文件理解和重构代码，保持项目一致性。' },
-      { title: '测试生成', desc: '自动生成单元测试和集成测试，提高代码覆盖率。' },
-    ],
-  },
+function loadSavedData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) {
+      const saved = JSON.parse(raw)
+      deepMerge(DATA, saved)
+    }
+  } catch (_) {}
+}
 
-  practices: {
-    title: '实际测试体验',
-    desc: '以下是几个典型场景的实测效果',
-    items: [
-      { label: '场景一', title: '从注释生成函数', desc: '输入注释描述，Codex 自动生成完整的 TypeScript 函数。', code: '// 计算两个日期之间的工作日天数\nfunction getWorkdays(start: Date, end: Date): number { ... }' },
-      { label: '场景二', title: '代码错误分析', desc: '粘贴报错信息，Codex 定位问题根因并提供修复方案。', code: "TypeError: Cannot read property 'map' of undefined\n→ 检查 API 返回数据结构是否匹配预期类型" },
-      { label: '场景三', title: 'SQL 查询优化', desc: '将低效查询重写为索引友好且可读性更高的版本。', code: "SELECT * FROM orders WHERE user_id IN (SELECT id FROM users WHERE status = 'active')" },
-      { label: '场景四', title: 'API 接口文档生成', desc: '从代码自动提取并生成 OpenAPI/Swagger 接口文档。', code: '' },
-    ],
-  },
+function deepMerge(target, source) {
+  Object.keys(source).forEach(k => {
+    if (Array.isArray(source[k])) {
+      target[k] = source[k]
+    } else if (typeof source[k] === 'object' && source[k] !== null && typeof target[k] === 'object') {
+      deepMerge(target[k], source[k])
+    } else {
+      target[k] = source[k]
+    }
+  })
+}
 
-  impressions: {
-    title: '大家怎么说',
-    desc: '来自真实用户的使用反馈',
-    items: [
-      { quote: '用了 Codex 之后，我的编码速度提升了至少一倍。以前需要查文档半天的 API 调用，现在一句话就能生成。', author: '张工 · 全栈开发者' },
-      { quote: '最惊喜的是它对上下文的理解能力，不是简单的代码补全，而是真正知道我想要实现什么。', author: '小李 · 前端工程师' },
-      { quote: '作为一个刚入行的新手，Codex 就像身边随时有一位资深工程师在指导我写代码。', author: '小王 · 初级开发者' },
-      { quote: '代码审查时用它解释复杂逻辑，团队沟通效率提升了很多，不再需要逐行讲解。', author: '陈姐 · 技术经理' },
-    ],
-  },
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA))
+}
 
-  scores: {
-    title: '综合评分',
-    desc: '基于多个维度的使用体验评估',
-    items: [
-      { label: '代码质量', value: 92 },
-      { label: '响应速度', value: 85 },
-      { label: '易用性', value: 90 },
-      { label: '准确性', value: 78 },
-      { label: '功能丰富度', value: 88 },
-    ],
-  },
+fetch('data.json')
+  .then(r => r.json())
+  .then(json => {
+    DATA = json
+    loadSavedData()
+    migrateOldStorage()
+    init()
+  })
+  .catch(() => {
+    init()
+  })
 
-  usecases: {
-    title: '应用场景',
-    desc: '覆盖多个领域，提升团队研发效能',
-    items: [
-      { icon: '🏗️', title: 'Web 开发', desc: '快速搭建页面组件、API 路由与数据库模型，加速全栈开发流程。', tag: '前端 / 后端' },
-      { icon: '📊', title: '数据分析', desc: '编写数据清洗脚本、生成可视化代码，辅助数据驱动决策。', tag: '数据科学' },
-      { icon: '🤖', title: '自动化脚本', desc: '自动化日常重复任务，如文件处理、部署脚本、测试流程。', tag: 'DevOps' },
-      { icon: '📱', title: '移动端开发', desc: '生成跨平台移动应用代码，从界面布局到业务逻辑全覆盖。', tag: 'iOS / Android' },
-      { icon: '🧠', title: 'AI/ML 集成', desc: '快速编写模型调用、数据处理管线，加速 AI 功能落地。', tag: '人工智能' },
-      { icon: '📝', title: '技术文档', desc: '根据代码自动生成 API 文档、README 与技术方案说明。', tag: '文档协作' },
-    ],
-  },
-
-  cta: {
-    title: '准备好提升编码效率了吗？',
-    subtitle: '立即体验 XXX，让 AI 成为你的编程搭档',
-    btnText: '开始免费使用',
-    features: [
-      { num: '10x', lbl: '效率提升' },
-      { num: '50+', lbl: '支持语言' },
-      { num: '99%', lbl: '满意度' },
-    ],
-  },
+function migrateOldStorage() {
+  try {
+    const oldRaw = localStorage.getItem('what-can-xxx-do-data')
+    if (oldRaw) {
+      const old = JSON.parse(oldRaw)
+      if (old.features && Array.isArray(old.features) && !localStorage.getItem(STORAGE_KEY)) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          cover: old.cover || DATA.cover,
+          features: { title: DATA.features?.title, desc: DATA.features?.desc, items: old.features },
+          practices: { title: DATA.practices?.title, desc: DATA.practices?.desc, items: old.practices },
+          impressions: { title: DATA.impressions?.title, desc: DATA.impressions?.desc, items: old.impressions },
+          scores: { title: DATA.scores?.title, desc: DATA.scores?.desc, items: old.scores },
+          usecases: DATA.usecases,
+          cta: DATA.cta,
+        }))
+      }
+    }
+  } catch (_) {}
 }
 
 function renderSlides() {
@@ -728,7 +719,7 @@ function renderSlides() {
             <span class="label">${esc(p.label)}</span>
             <h3>${esc(p.title)}</h3>
             <p>${esc(p.desc)}</p>
-            ${p.code ? `<div class="code">${esc(p.code)}</div>` : '<div class="img-placeholder">[ 截图待添加 ]</div>'}
+            ${p.code ? (isImagePath(p.code) ? `<div class="code-img"><img src="${esc(p.code)}" alt="${esc(p.title)}"></div>` : `<div class="code">${esc(p.code)}</div>`) : '<div class="img-placeholder">[ 截图待添加 ]</div>'}
           </div>
         `).join('')
       }</div>
@@ -813,6 +804,9 @@ function esc(s) {
   const d = document.createElement('div')
   d.textContent = s
   return d.innerHTML
+}
+function isImagePath(s) {
+  return /\.(png|jpg|jpeg|gif|webp|svg|bmp)(\?.*)?$/i.test(s)
 }
 
 function renderSettings() {
@@ -1041,131 +1035,91 @@ function resetData() {
 }
 
 function rebuild() {
-  const s = renderSlides()
-  stage.innerHTML = s.join('')
-  const total = s.length
-
-  navDots.innerHTML = Array.from({ length: total }, (_, i) =>
-    `<button class="nav-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`
-  ).join('')
-
-  if (current >= total) current = total - 1
-  document.querySelectorAll('.slide').forEach((el, i) => {
-    el.classList.toggle('active', i === current)
-  })
-  document.querySelectorAll('.nav-dot').forEach((el, i) => {
-    el.classList.toggle('active', i === current)
-  })
-  counter.textContent = `${current + 1} / ${total}`
-  window._totalSlides = total
+  if (window._rebuild) window._rebuild()
 }
 
 function closeSettings() {
   document.getElementById('settingsOverlay').classList.remove('open')
 }
 
-const STORAGE_KEY = 'what-can-xxx-do-data-v2'
-function loadData() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) {
-      const saved = JSON.parse(raw)
-      deepMerge(DATA, saved)
-    }
-  } catch (_) {}
-}
+function init() {
+  let current = 0
 
-function deepMerge(target, source) {
-  Object.keys(source).forEach(k => {
-    if (Array.isArray(source[k])) {
-      target[k] = source[k]
-    } else if (typeof source[k] === 'object' && source[k] !== null && typeof target[k] === 'object') {
-      deepMerge(target[k], source[k])
-    } else {
-      target[k] = source[k]
-    }
-  })
-}
+  function rebuild() {
+    const s = renderSlides()
+    stage.innerHTML = s.join('')
+    const total = s.length
 
-function saveData() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA))
-}
+    navDots.innerHTML = Array.from({ length: total }, (_, i) =>
+      `<button class="nav-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`
+    ).join('')
 
-// Migrate old storage key
-try {
-  const oldRaw = localStorage.getItem('what-can-xxx-do-data')
-  if (oldRaw) {
-    const old = JSON.parse(oldRaw)
-    if (old.features && Array.isArray(old.features) && !localStorage.getItem(STORAGE_KEY)) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        cover: old.cover || DATA.cover,
-        features: { title: DATA.features.title, desc: DATA.features.desc, items: old.features },
-        practices: { title: DATA.practices.title, desc: DATA.practices.desc, items: old.practices },
-        impressions: { title: DATA.impressions.title, desc: DATA.impressions.desc, items: old.impressions },
-        scores: { title: DATA.scores.title, desc: DATA.scores.desc, items: old.scores },
-        usecases: DATA.usecases,
-        cta: DATA.cta,
-      }))
-    }
+    if (current >= total) current = total - 1
+    document.querySelectorAll('.slide').forEach((el, i) => {
+      el.classList.toggle('active', i === current)
+    })
+    document.querySelectorAll('.nav-dot').forEach((el, i) => {
+      el.classList.toggle('active', i === current)
+    })
+    counter.textContent = `${current + 1} / ${total}`
+    window._totalSlides = total
   }
-} catch (_) {}
 
-loadData()
+  rebuild()
+
+  function goTo(index) {
+    const total = window._totalSlides || document.querySelectorAll('.slide').length
+    if (index < 0 || index >= total) return
+    document.querySelectorAll('.slide').forEach((el, i) => {
+      el.classList.toggle('active', i === index)
+    })
+    document.querySelectorAll('.nav-dot').forEach((el, i) => {
+      el.classList.toggle('active', i === index)
+    })
+    current = index
+    counter.textContent = `${current + 1} / ${total}`
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1))
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1))
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1)
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1)
+  })
+  navDots.addEventListener('click', e => {
+    const dot = e.target.closest('.nav-dot')
+    if (dot) goTo(parseInt(dot.dataset.index))
+  })
+
+  document.getElementById('settingsBtn').addEventListener('click', () => {
+    renderSettings()
+    document.getElementById('settingsOverlay').classList.add('open')
+  })
+  document.getElementById('settingsReset').addEventListener('click', resetData)
+  document.getElementById('settingsCancel').addEventListener('click', closeSettings)
+  document.getElementById('settingsApply').addEventListener('click', applySettings)
+  document.getElementById('settingsOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeSettings()
+  })
+
+  window._rebuild = rebuild
+
+  function scale() {
+    const sw = 1920, sh = 1080
+    const sx = window.innerWidth / sw, sy = window.innerHeight / sh
+    const s = Math.min(sx, sy)
+    stage.style.transform = `scale(${s})`
+    stage.style.transformOrigin = '0 0'
+    const top = (window.innerHeight - sh * s) / 2
+    stage.style.marginTop = top > 0 ? `${top}px` : '0'
+  }
+  window.addEventListener('resize', scale)
+  scale()
+}
 
 const stage = document.getElementById('stage')
-let current = 0
-
 const navDots = document.getElementById('navDots')
 const counter = document.getElementById('navCounter')
-
-rebuild()
-
-function goTo(index) {
-  const total = window._totalSlides || document.querySelectorAll('.slide').length
-  if (index < 0 || index >= total) return
-  document.querySelectorAll('.slide').forEach((el, i) => {
-    el.classList.toggle('active', i === index)
-  })
-  document.querySelectorAll('.nav-dot').forEach((el, i) => {
-    el.classList.toggle('active', i === index)
-  })
-  current = index
-  counter.textContent = `${current + 1} / ${total}`
-}
-
-document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1))
-document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1))
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1)
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1)
-})
-navDots.addEventListener('click', e => {
-  const dot = e.target.closest('.nav-dot')
-  if (dot) goTo(parseInt(dot.dataset.index))
-})
-
-document.getElementById('settingsBtn').addEventListener('click', () => {
-  renderSettings()
-  document.getElementById('settingsOverlay').classList.add('open')
-})
-document.getElementById('settingsReset').addEventListener('click', resetData)
-document.getElementById('settingsCancel').addEventListener('click', closeSettings)
-document.getElementById('settingsApply').addEventListener('click', applySettings)
-document.getElementById('settingsOverlay').addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeSettings()
-})
-
-function scale() {
-  const sw = 1920, sh = 1080
-  const sx = window.innerWidth / sw, sy = window.innerHeight / sh
-  const s = Math.min(sx, sy)
-  stage.style.transform = `scale(${s})`
-  stage.style.transformOrigin = '0 0'
-  const top = (window.innerHeight - sh * s) / 2
-  stage.style.marginTop = top > 0 ? `${top}px` : '0'
-}
-window.addEventListener('resize', scale)
-scale()
 </script>
 </body>
 </html>
