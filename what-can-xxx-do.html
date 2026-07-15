@@ -613,6 +613,65 @@
   }
   .preset-btn span { border-radius:0; flex-shrink:0 }
   .preset-name { margin-left:2px }
+
+  /* ─── Cartoon Text ─── */
+  .cartoon-text {
+    position:fixed; bottom:100px; left:24px;
+    z-index:998;
+    font-size:44px; font-weight:900;
+    font-family:'Comic Sans MS','Chalkboard SE','Segoe Print','PingFang SC','Microsoft YaHei',cursive;
+    color:#e11d48;
+    text-shadow:3px 3px 0 #fecaca, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+    cursor:default; user-select:none;
+    line-height:1.2; pointer-events:none;
+    letter-spacing:2px;
+    display:inline-block;
+    white-space:pre
+  }
+  .ct-char {
+    display:inline-block;
+    transform-origin:center bottom
+  }
+  .ct-char.anim-bounce  { animation:bounce 1.6s ease-in-out infinite }
+  .ct-char.anim-wiggle  { animation:animWiggle .7s ease-in-out infinite }
+  .ct-char.anim-spin    { animation:animSpin 2.2s linear infinite }
+  .ct-char.anim-pulse   { animation:animPulse 1.3s ease-in-out infinite }
+  .ct-char.anim-shake   { animation:animShake .6s ease-in-out infinite }
+  .ct-char.anim-float   { animation:animFloat 3.2s ease-in-out infinite }
+
+  @keyframes bounce {
+    0%,100% { transform:translateY(0) scale(1,1) }
+    20% { transform:translateY(-22px) scale(1.06,.94) }
+    40% { transform:translateY(0) scale(.96,1.04) }
+    55% { transform:translateY(-10px) scale(1.02,.98) }
+    70% { transform:translateY(0) scale(.99,1.01) }
+  }
+  @keyframes animWiggle {
+    0%,100% { transform:rotate(0deg) }
+    25% { transform:rotate(-8deg) }
+    75% { transform:rotate(8deg) }
+  }
+  @keyframes animSpin {
+    0% { transform:rotate(0deg) scale(1) }
+    50% { transform:rotate(180deg) scale(1.08) }
+    100% { transform:rotate(360deg) scale(1) }
+  }
+  @keyframes animPulse {
+    0%,100% { transform:scale(1) }
+    50% { transform:scale(1.18) }
+  }
+  @keyframes animShake {
+    0%,100% { transform:translateX(0) }
+    20% { transform:translateX(-8px) rotate(-3deg) }
+    40% { transform:translateX(8px) rotate(3deg) }
+    60% { transform:translateX(-5px) rotate(-2deg) }
+    80% { transform:translateX(5px) rotate(2deg) }
+  }
+  @keyframes animFloat {
+    0%,100% { transform:translateY(0) rotate(-1deg) }
+    33% { transform:translateY(-14px) rotate(2deg) }
+    66% { transform:translateY(-5px) rotate(-1deg) }
+  }
 </style>
 </head>
 <body>
@@ -640,6 +699,8 @@
   <span class="nav-counter" id="navCounter">1 / 7</span>
   <button class="nav-btn" id="nextBtn">▶</button>
 </div>
+
+<div class="cartoon-text" id="cartoonText">加油！</div>
 
 <script>
 let DATA = {}
@@ -852,6 +913,63 @@ function esc(s) {
 }
 function isImagePath(s) {
   return /\.(png|jpg|jpeg|gif|webp|svg|bmp)(\?.*)?$/i.test(s)
+}
+function getCartoonText() {
+  if (!DATA.cartoonText) DATA.cartoonText = { text: '加油！', anims: ['bounce','wiggle','pulse'] }
+  if (!DATA.cartoonText.anims) DATA.cartoonText.anims = []
+  while (DATA.cartoonText.anims.length < DATA.cartoonText.text.length) DATA.cartoonText.anims.push('bounce')
+  while (DATA.cartoonText.anims.length > DATA.cartoonText.text.length) DATA.cartoonText.anims.pop()
+  return DATA.cartoonText
+}
+function updateCartoonText() {
+  const el = document.getElementById('cartoonText')
+  if (!el) return
+  const cfg = getCartoonText()
+  const text = cfg.text || ''
+  const anims = cfg.anims || []
+  el.innerHTML = ''
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i]
+    const span = document.createElement('span')
+    span.textContent = ch === ' ' ? '\u00A0' : ch
+    const anim = anims[i] || 'bounce'
+    span.className = 'ct-char anim-' + anim
+    el.appendChild(span)
+  }
+}
+function renderCartoonCharAnims() {
+  const container = document.getElementById('ct-char-anims')
+  if (!container) return
+  const input = document.getElementById('ct-text-input')
+  if (!input) return
+  const text = input.value
+  const cfg = getCartoonText()
+  while (cfg.anims.length < text.length) cfg.anims.push('bounce')
+  while (cfg.anims.length > text.length) cfg.anims.pop()
+  container.innerHTML = ''
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i]
+    const anim = cfg.anims[i] || 'bounce'
+    const box = document.createElement('div')
+    box.style.cssText = 'text-align:center;border:2px solid #e7e5e4;padding:6px 8px;background:#fff;min-width:56px'
+    box.innerHTML =
+      '<div style="font-size:22px;font-weight:900;margin-bottom:2px;line-height:1.2">' + esc(ch) + '</div>' +
+      '<select class="ct-anim-sel" style="width:100%;padding:3px;border:2px solid #e7e5e4;font-size:11px;font-family:inherit;background:#fff;color:#292524;outline:none">' +
+        '<option value="bounce"'  + (anim==='bounce'?' selected':'') + '>弹跳</option>' +
+        '<option value="wiggle"'  + (anim==='wiggle'?' selected':'') + '>摆动</option>' +
+        '<option value="spin"'    + (anim==='spin'?' selected':'') + '>旋转</option>' +
+        '<option value="pulse"'   + (anim==='pulse'?' selected':'') + '>脉动</option>' +
+        '<option value="shake"'   + (anim==='shake'?' selected':'') + '>抖动</option>' +
+        '<option value="float"'   + (anim==='float'?' selected':'') + '>漂浮</option>' +
+      '</select>'
+    container.appendChild(box)
+  }
+}
+function collectCartoonAnims() {
+  const selects = document.querySelectorAll('.ct-anim-sel')
+  const cfg = getCartoonText()
+  cfg.anims = []
+  selects.forEach(sel => cfg.anims.push(sel.value))
 }
 
 const PRESETS = [
@@ -1103,6 +1221,17 @@ function renderSettings() {
     <button class="s-add" onclick="addCtaFeature()">＋ 添加指标</button>
   </div>`
 
+  // ── Cartoon Text ──
+  const ctCfg = getCartoonText()
+  html += `<div class="settings-section">
+    <h3>左下角卡通字</h3>
+    <div class="s-field"><label>文字内容</label><input id="ct-text-input" data-path="cartoonText.text" value="${esc(ctCfg.text)}" oninput="renderCartoonCharAnims()"></div>
+    <div class="s-field" style="margin-top:10px"><label>每个字的动作</label></div>
+    <div id="ct-char-anims" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px"></div>
+  </div>`
+  // Delay rendering per-char anims so element exists in DOM
+  setTimeout(renderCartoonCharAnims, 0)
+
   document.getElementById('settingsBody').innerHTML = html
   window._codeToEdit = -1
 }
@@ -1181,6 +1310,7 @@ function collectSettings() {
 function applySettings() {
   try {
     collectSettings()
+    collectCartoonAnims()
     saveData()
     rebuild()
     closeSettings()
@@ -1226,6 +1356,7 @@ function init() {
     })
     counter.textContent = `${current + 1} / ${total}`
     window._totalSlides = total
+    updateCartoonText()
   }
 
   rebuild()
