@@ -38,6 +38,25 @@
 
   h1 { font-size:74px; font-weight:700; color:#1c1917; letter-spacing:-2px; line-height:1.12 }
   h2 { font-size:42px; font-weight:600; color:#1c1917; letter-spacing:-.5px; line-height:1.2 }
+  .slide[style*="color"] h1,
+  .slide[style*="color"] h2,
+  .slide[style*="color"] .pg-desc,
+  .slide[style*="color"] .cover-sub,
+  .slide[style*="color"] .feat-card h3,
+  .slide[style*="color"] .feat-card p,
+  .slide[style*="color"] .prac-card h3,
+  .slide[style*="color"] .prac-card p,
+  .slide[style*="color"] .score-label,
+  .slide[style*="color"] .score-val,
+  .slide[style*="color"] .usecase-card h3,
+  .slide[style*="color"] .usecase-card p,
+  .slide[style*="color"] .cta-title,
+  .slide[style*="color"] .cta-sub,
+  .slide[style*="color"] .impr-quote,
+  .slide[style*="color"] .impr-author strong,
+  .slide[style*="color"] .cta-feature .lbl,
+  .slide[style*="color"] .cover-badge,
+  .slide[style*="color"] .usecase-tag { color:inherit }
 
   .accent { color:#e11d48 }
   .page-tag {
@@ -575,6 +594,25 @@
 
   .s-field.s-sm { flex:0 0 100px }
   .s-field.s-num input { text-align:center }
+  .s-field input[type="color"] {
+    width:44px; height:36px; padding:2px;
+    cursor:pointer; border:2px solid #e7e5e4
+  }
+  .preset-wrap { display:flex; flex-wrap:wrap; gap:8px }
+  .preset-btn {
+    display:flex; align-items:center; gap:4px;
+    padding:6px 10px; border:2px solid #e7e5e4;
+    background:#fff; cursor:pointer;
+    transition:all .2s ease; font-family:inherit;
+    font-size:11px; color:#57534e; font-weight:500
+  }
+  .preset-btn:hover {
+    border-color:#e11d48;
+    box-shadow:2px 2px 0 rgba(225,29,72,.12);
+    transform:translate(-1px,-1px)
+  }
+  .preset-btn span { border-radius:0; flex-shrink:0 }
+  .preset-name { margin-left:2px }
 </style>
 </head>
 <body>
@@ -673,9 +711,16 @@ function renderSlides() {
     ? (scores.items.reduce((s, x) => s + x.value, 0) / scores.items.length).toFixed(1)
     : '0.0'
 
+  function sc(section, cls) {
+    let s = ''
+    if (section.bg) s += `background:${esc(section.bg)};`
+    if (section.fg) s += `color:${esc(section.fg)};`
+    return s ? `style="${s}"` : `class="${cls}"`
+  }
+
   return [
     // ── 1. Cover ──
-    `<div class="slide cover bg-white active">
+    `<div class="slide cover active" ${sc(cover, 'bg-white')}>
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
@@ -689,7 +734,7 @@ function renderSlides() {
     </div>`,
 
     // ── 2. Features ──
-    `<div class="slide bg-grad-1">
+    `<div class="slide" ${sc(features, 'bg-rose')}>
       <div class="deco deco-3"></div>
       <div class="page-tag">特点</div>
       <h2 class="pg-title">${esc(cover.product)} 的<span class="accent"> ${esc(features.title)}</span></h2>
@@ -708,7 +753,7 @@ function renderSlides() {
     </div>`,
 
     // ── 3. Practice ──
-    `<div class="slide bg-white">
+    `<div class="slide" ${sc(practices, 'bg-white')}>
       <div class="deco deco-4"></div>
       <div class="page-tag">测试实践</div>
       <h2 class="pg-title">${esc(practices.title)}</h2>
@@ -726,7 +771,7 @@ function renderSlides() {
     </div>`,
 
     // ── 4. Impressions ──
-    `<div class="slide bg-pink">
+    `<div class="slide" ${sc(impressions, 'bg-pink')}>
       <div class="deco deco-5"></div>
       <div class="deco deco-6"></div>
       <div class="page-tag">使用感想</div>
@@ -743,7 +788,7 @@ function renderSlides() {
     </div>`,
 
     // ── 5. Scoring ──
-    `<div class="slide bg-grad-2">
+    `<div class="slide" ${sc(scores, 'bg-coral')}>
       <div class="deco deco-7"></div>
       <div class="page-tag">综合评分</div>
       <h2 class="pg-title">为 ${esc(cover.product)} <span class="accent">${esc(scores.title)}</span></h2>
@@ -764,7 +809,7 @@ function renderSlides() {
     </div>`,
 
     // ── 6. Use Cases ──
-    `<div class="slide bg-white">
+    `<div class="slide" ${sc(usecases, 'bg-white')}>
       <div class="page-tag">场景</div>
       <h2 class="pg-title">${esc(usecases.title)}</h2>
       <p class="pg-desc">${esc(usecases.desc)}</p>
@@ -781,7 +826,7 @@ function renderSlides() {
     </div>`,
 
     // ── 7. CTA / Conclusion ──
-    `<div class="slide cta bg-warm">
+    `<div class="slide cta" ${sc(cta, 'bg-warm')}>
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
@@ -809,13 +854,104 @@ function isImagePath(s) {
   return /\.(png|jpg|jpeg|gif|webp|svg|bmp)(\?.*)?$/i.test(s)
 }
 
+const PRESETS = [
+  {
+    name: '经典粉白',
+    bgs: ['#fcfbfa','#fdf2f4','#fcfbfa','#fdf2f4','#fcfbfa','#fcfbfa','#faf6f0'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '清新薄荷',
+    bgs: ['#f0fdf4','#ecfdf5','#f0fdf4','#ecfdf5','#f0fdf4','#f0fdf4','#f0fdf4'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '天空蓝调',
+    bgs: ['#eff6ff','#f0f4ff','#eff6ff','#f0f4ff','#eff6ff','#eff6ff','#eff6ff'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '暖阳橙调',
+    bgs: ['#fff7ed','#fefce8','#fff7ed','#fefce8','#fff7ed','#fff7ed','#fff7ed'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '薰衣草紫',
+    bgs: ['#f5f3ff','#faf5ff','#f5f3ff','#faf5ff','#f5f3ff','#f5f3ff','#f5f3ff'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '奶油黄',
+    bgs: ['#fefce8','#fffbeb','#fefce8','#fffbeb','#fefce8','#fefce8','#fefce8'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '静谧雾灰',
+    bgs: ['#fafaf9','#f5f5f4','#fafaf9','#f5f5f4','#fafaf9','#fafaf9','#fafaf9'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '珊瑚粉橘',
+    bgs: ['#fff1f2','#fef2f2','#fff1f2','#fef2f2','#fff1f2','#fff1f2','#fff1f2'],
+    fgs: ['','','','','','','']
+  },
+  {
+    name: '暗夜高级',
+    bgs: ['#1c1917','#292524','#1c1917','#292524','#1c1917','#1c1917','#1c1917'],
+    fgs: ['#fafaf9','#fafaf9','#fafaf9','#fafaf9','#fafaf9','#fafaf9','#fafaf9']
+  },
+  {
+    name: '纯净白',
+    bgs: ['#ffffff','#fcfbfa','#ffffff','#fcfbfa','#ffffff','#ffffff','#ffffff'],
+    fgs: ['','','','','','','']
+  }
+]
+
+const PRESET_KEYS = ['cover.bg','features.bg','practices.bg','impressions.bg','scores.bg','usecases.bg','cta.bg',
+                     'cover.fg','features.fg','practices.fg','impressions.fg','scores.fg','usecases.fg','cta.fg']
+
+function applyPreset(idx) {
+  const p = PRESETS[idx]
+  if (!p) return
+  const allColors = [...p.bgs, ...p.fgs]
+  allColors.forEach((c, i) => {
+    const parts = PRESET_KEYS[i].split('.')
+    let obj = DATA
+    for (let j = 0; j < parts.length - 1; j++) obj = obj[parts[j]]
+    obj[parts[parts.length - 1]] = c
+    const input = document.querySelector(`#settingsBody [data-path="${PRESET_KEYS[i]}"]`)
+    if (input) {
+      const isFg = parts[parts.length - 1] === 'fg'
+      input.value = c || (isFg ? '#1c1917' : '#ffffff')
+    }
+  })
+}
+
 function renderSettings() {
   const D = DATA
   let html = ''
 
+  html += `<div class="settings-section">
+    <h3>推荐配色</h3>
+    <div class="preset-wrap">`
+  PRESETS.forEach((p, i) => {
+    html += `<button class="preset-btn" onclick="applyPreset(${i})" title="${p.name}">
+      ${p.bgs.map((c, j) => {
+        const dot = `<span style="background:${c};display:inline-block;width:14px;height:14px"></span>`
+        return p.fgs[j] ? `${dot}<span style="color:${p.fgs[j]};font-size:8px;display:inline-block;width:8px;margin-left:-3px">●</span>` : dot
+      }).join('')}
+      <span class="preset-name">${p.name}</span>
+    </button>`
+  })
+  html += `</div></div>`
+
   // ── Cover ──
   html += `<div class="settings-section">
     <h3>标题页</h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="cover.bg" value="${D.cover.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="cover.fg" value="${D.cover.fg || '#1c1917'}"></div>
+    </div>
     <div class="s-field"><label>产品名称</label><input data-path="cover.product" value="${esc(D.cover.product)}"></div>
     <div class="s-field"><label>副标题</label><input data-path="cover.subtitle" value="${esc(D.cover.subtitle)}"></div>
     <div class="s-field"><label>标语</label><input data-path="cover.tagline" value="${esc(D.cover.tagline)}"></div>
@@ -833,6 +969,13 @@ function renderSettings() {
   // ── Features ──
   html += `<div class="settings-section">
     <h3>特点 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（每条自动编号，可增减）</span></h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="features.bg" value="${D.features.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="features.fg" value="${D.features.fg || '#1c1917'}"></div>
+    </div>
+    <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="features.title" value="${esc(D.features.title)}"></div>
+    <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="features.desc" value="${esc(D.features.desc)}"></div>
+    </div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="features.title" value="${esc(D.features.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="features.desc" value="${esc(D.features.desc)}"></div>
     <div id="s-feat-list">`
@@ -851,6 +994,10 @@ function renderSettings() {
   // ── Practices ──
   html += `<div class="settings-section">
     <h3>测试实践 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（可增减）</span></h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="practices.bg" value="${D.practices.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="practices.fg" value="${D.practices.fg || '#1c1917'}"></div>
+    </div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="practices.title" value="${esc(D.practices.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="practices.desc" value="${esc(D.practices.desc)}"></div>
     <div id="s-prac-list">`
@@ -871,7 +1018,11 @@ function renderSettings() {
 
   // ── Impressions ──
   html += `<div class="settings-section">
-    <h3>使用感想 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（可增减）</span></h3>
+    <h3>印象与感想 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（可增减）</span></h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="impressions.bg" value="${D.impressions.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="impressions.fg" value="${D.impressions.fg || '#1c1917'}"></div>
+    </div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="impressions.title" value="${esc(D.impressions.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="impressions.desc" value="${esc(D.impressions.desc)}"></div>
     <div id="s-impr-list">`
@@ -889,6 +1040,10 @@ function renderSettings() {
   // ── Scores ──
   html += `<div class="settings-section">
     <h3>打分 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（1-100，可增减）</span></h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="scores.bg" value="${D.scores.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="scores.fg" value="${D.scores.fg || '#1c1917'}"></div>
+    </div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="scores.title" value="${esc(D.scores.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="scores.desc" value="${esc(D.scores.desc)}"></div>
     <div id="s-score-list">`
@@ -906,6 +1061,10 @@ function renderSettings() {
   // ── Use Cases ──
   html += `<div class="settings-section">
     <h3>应用场景 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（可增减）</span></h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="usecases.bg" value="${D.usecases.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="usecases.fg" value="${D.usecases.fg || '#1c1917'}"></div>
+    </div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="usecases.title" value="${esc(D.usecases.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="usecases.desc" value="${esc(D.usecases.desc)}"></div>
     <div id="s-usecase-list">`
@@ -925,6 +1084,10 @@ function renderSettings() {
   // ── CTA ──
   html += `<div class="settings-section">
     <h3>结尾页</h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="cta.bg" value="${D.cta.bg || '#fcfbfa'}"></div>
+      <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="cta.fg" value="${D.cta.fg || '#1c1917'}"></div>
+    </div>
     <div class="s-field"><label>标题</label><input data-path="cta.title" value="${esc(D.cta.title)}"></div>
     <div class="s-field"><label>副标题</label><input data-path="cta.subtitle" value="${esc(D.cta.subtitle)}"></div>
     <div class="s-field"><label>按钮文字</label><input data-path="cta.btnText" value="${esc(D.cta.btnText)}"></div>

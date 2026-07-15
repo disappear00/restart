@@ -1,11 +1,15 @@
 {
   "cover": {
+    "bg": "",
+    "fg": "",
     "product": "ChatGPT (Codex)",
     "subtitle": "AI 驱动的内容创作助手，一键生成网页、PPT、Word、Excel",
     "tagline": "文档生成 · 智能高效 · 即说即得",
     "badges": ["AI 驱动", "网页生成", "PPT 生成", "Word 生成", "Excel 生成"]
   },
   "features": {
+    "bg": "",
+    "fg": "",
     "title": "核心特点",
     "desc": "围绕四大办公场景，AI 帮你快速产出内容",
     "items": [
@@ -16,6 +20,8 @@
     ]
   },
   "practices": {
+    "bg": "",
+    "fg": "",
     "title": "实际测试体验",
     "desc": "四个方向的实测效果展示",
     "items": [
@@ -26,6 +32,8 @@
     ]
   },
   "impressions": {
+    "bg": "",
+    "fg": "",
     "title": "我的体验如何",
     "desc": "来自真实用户的实际使用反馈",
     "items": [
@@ -36,6 +44,8 @@
     ]
   },
   "scores": {
+    "bg": "",
+    "fg": "",
     "title": "综合评分",
     "desc": "基于多个维度的使用体验评估",
     "items": [
@@ -47,6 +57,8 @@
     ]
   },
   "usecases": {
+    "bg": "",
+    "fg": "",
     "title": "应用场景",
     "desc": "覆盖多种办公场景，提升内容产出效率",
     "items": [
@@ -59,6 +71,8 @@
     ]
   },
   "cta": {
+    "bg": "",
+    "fg": "",
     "title": "准备好体验Codex了吗",
     "subtitle": "让 ChatGPT (Codex) 成为你的内容创作搭档，从网页到表格一应俱全",
     "btnText": "立即免费体验",
