@@ -1,0 +1,18 @@
+{
+  "name": "Lin Portfolio Lab",
+  "short_name": "PortfolioLab",
+  "description": "A high-fidelity interactive personal portfolio built with vanilla JavaScript.",
+  "start_url": "./index.html#/home",
+  "display": "standalone",
+  "background_color": "#f5efe4",
+  "theme_color": "#f5efe4",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

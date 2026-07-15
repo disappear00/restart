@@ -1,0 +1,22 @@
+{
+  "source_style": "deterministic reference-grounded monochrome operator mascot",
+  "appearance_cues": [
+    "asymmetric black bob haircut covering one eye",
+    "deadpan visible eye with faint cool highlight",
+    "white collared shirt and black shorts silhouette",
+    "black choker and monochrome manga mood"
+  ],
+  "persona_cues": [
+    "quiet",
+    "technical",
+    "observant",
+    "approval-oriented",
+    "persistent"
+  ],
+  "inference_cues": [
+    "manga-inspired taste",
+    "builder or operator energy",
+    "prefers understated over flashy"
+  ],
+  "reference_image": "D:/System/Desktop/AGI/restart/codex/output/pets/inkrei/references/reference-01.png"
+}

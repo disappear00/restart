@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Lin Portfolio Lab",
+    "home": "首页",
+    "about": "关于我",
+    "projects": "项目集",
+    "contact": "联系"
+  },
+  "nav": {
+    "menu": "菜单",
+    "theme": "切换主题",
+    "locale": "切换语言"
+  },
+  "footer": {
+    "note": "用原生 JavaScript 打造的交互式作品集实验室。"
+  }
+}

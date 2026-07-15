@@ -1,0 +1,17 @@
+{
+  "source_style": "deterministic reference-grounded office mascot",
+  "appearance_cues": [
+    "burgundy bob haircut",
+    "red hair clip",
+    "dark office suit silhouette",
+    "oversized white cuffs",
+    "tired focused expression"
+  ],
+  "persona_cues": [
+    "direct",
+    "technical",
+    "persistent",
+    "late-night builder energy"
+  ],
+  "reference_image": "C:/Users/HP/AppData/Local/Temp/codex-clipboard-08b36dda-f767-4a63-8bcf-3e4eae3067a3.png"
+}

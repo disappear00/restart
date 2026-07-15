@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XXX 可以做什么？</title>
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
+  html, body { width:100%; height:100%; overflow:hidden; background:#1a1a1a; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif }
+
+  .stage { position:relative; width:1920px; height:1080px; transform-origin:0 0; overflow:hidden; background:#fff; margin:0 auto }
+
+  .slide { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:80px 120px; opacity:0; pointer-events:none; transition:opacity .5s ease }
+  .slide.active { opacity:1; pointer-events:auto }
+
+  .bg-white  { background:#fff }
+  .bg-pink   { background:#FFF1F1 }
+  .bg-gray   { background:#F7F7F7 }
+
+  h1 { font-size:72px; font-weight:700; color:#2D2D2D; letter-spacing:-1px }
+  h2 { font-size:44px; font-weight:700; color:#2D2D2D; letter-spacing:-.5px }
+  h3 { font-size:28px; font-weight:600; color:#2D2D2D }
+
+  .accent     { color:#F28482 }
+  .page-tag   { display:inline-block; background:#F28482; color:#fff; font-size:13px; font-weight:600; padding:5px 14px; border-radius:20px; letter-spacing:1px; margin-bottom:20px }
+  .pg-title   { margin-bottom:12px }
+  .pg-desc    { font-size:18px; color:#888; margin-bottom:40px }
+
+  .divider { width:50px; height:3px; background:#F28482; border-radius:2px; margin:24px auto }
+
+  /* ─── Cover ─── */
+  .cover { position:relative; overflow:hidden }
+  .cover::before { content:''; position:absolute; top:-200px; right:-200px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(242,132,130,.12) 0%, transparent 70%) }
+  .cover::after  { content:''; position:absolute; bottom:-150px; left:-150px; width:400px; height:400px; border-radius:50%; background:radial-gradient(circle, rgba(242,132,130,.08) 0%, transparent 70%) }
+  .cover-sub { font-size:24px; color:#888; margin-top:16px }
+  .product-name { color:#F28482 }
+
+  /* ─── Features ─── */
+  .feat-wrap { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; width:100%; max-width:1500px }
+  .feat-card { background:#fff; border-radius:16px; padding:32px 36px; border:1px solid #eee; box-shadow:0 2px 12px rgba(0,0,0,.04); flex:0 0 calc(50% - 12px); max-width:680px; display:flex; align-items:flex-start; gap:20px }
+  .feat-num  { flex-shrink:0; width:44px; height:44px; border-radius:12px; background:#FFF1F1; color:#F28482; font-size:20px; font-weight:700; display:flex; align-items:center; justify-content:center }
+  .feat-card h3 { font-size:24px; margin-bottom:6px }
+  .feat-card p  { font-size:17px; color:#666; line-height:1.6 }
+
+  /* ─── Practice ─── */
+  .prac-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; width:100%; max-width:1400px }
+  .prac-card { background:#fff; border-radius:16px; padding:36px; border:1px solid #eee; box-shadow:0 2px 12px rgba(0,0,0,.04) }
+  .prac-card .label { display:inline-block; font-size:12px; font-weight:600; color:#F28482; background:#FFF1F1; padding:3px 12px; border-radius:12px; margin-bottom:14px; letter-spacing:.5px }
+  .prac-card h3    { font-size:22px; margin-bottom:8px }
+  .prac-card p     { font-size:16px; color:#666; line-height:1.7 }
+  .prac-card .code { font-family:'SF Mono','Fira Code','Consolas',monospace; font-size:15px; background:#f5f5f5; border-radius:8px; padding:16px; margin-top:14px; color:#444; line-height:1.5; white-space:pre-wrap }
+  .prac-card .img-placeholder { width:100%; height:140px; background:#F7F7F7; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:14px; color:#bbb; margin-top:14px }
+
+  /* ─── Impressions ─── */
+  .impr-wrap { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; width:100%; max-width:1400px }
+  .impr-card { background:#fff; border-radius:16px; padding:36px; border:1px solid #eee; box-shadow:0 2px 12px rgba(0,0,0,.04); flex:0 0 calc(50% - 12px); max-width:650px }
+  .impr-quote { font-size:20px; line-height:1.7; color:#444; font-style:italic; margin-bottom:20px }
+  .impr-quote::before { content:'"'; color:#F28482; font-size:32px; font-weight:700; margin-right:4px }
+  .impr-author { font-size:15px; color:#999; font-style:normal }
+  .impr-author strong { color:#555 }
+
+  /* ─── Scoring ─── */
+  .score-wrap { display:flex; flex-direction:column; gap:28px; width:100%; max-width:1100px }
+  .score-row  { display:flex; align-items:center; gap:24px }
+  .score-label { width:120px; font-size:20px; font-weight:600; color:#333; flex-shrink:0; text-align:right }
+  .score-bar-bg { flex:1; height:20px; background:#f0f0f0; border-radius:12px; overflow:hidden }
+  .score-bar-fill { height:100%; border-radius:12px; background:#F28482; transition:width 1s ease }
+  .score-val { width:40px; font-size:20px; font-weight:700; color:#F28482; flex-shrink:0 }
+  .score-total { margin-top:36px; text-align:center }
+  .score-total .big { font-size:56px; font-weight:700; color:#F28482 }
+  .score-total .lbl { font-size:18px; color:#888; margin-top:4px }
+
+  /* ─── Navigation ─── */
+  .nav-bar { position:fixed; bottom:40px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:16px; background:rgba(255,255,255,.95); backdrop-filter:blur(12px); border:1px solid #eee; border-radius:50px; padding:10px 20px; z-index:1000; box-shadow:0 4px 16px rgba(0,0,0,.08) }
+  .nav-btn { width:40px; height:40px; border-radius:50%; border:none; background:transparent; color:#555; font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s }
+  .nav-btn:hover { background:#f0f0f0 }
+  .nav-dots { display:flex; gap:6px }
+  .nav-dot { width:8px; height:8px; border-radius:50%; background:#ddd; border:none; cursor:pointer; padding:0; transition:background .2s, transform .2s }
+  .nav-dot.active { background:#F28482; transform:scale(1.3) }
+  .nav-counter { font-size:13px; color:#999; font-weight:500; min-width:36px; text-align:center }
+
+  /* ─── Settings Button ─── */
+  .settings-btn { position:fixed; right:20px; top:20px; width:36px; height:36px; border-radius:50%; border:1px solid rgba(0,0,0,.08); background:rgba(255,255,255,.5); backdrop-filter:blur(6px); color:#bbb; font-size:16px; cursor:pointer; z-index:2000; display:flex; align-items:center; justify-content:center; transition:all .25s; opacity:.35; user-select:none }
+  .settings-btn:hover { opacity:.9; background:rgba(255,255,255,.9); color:#888; border-color:#ddd }
+
+  /* ─── Settings Panel ─── */
+  .settings-overlay { position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:3000; display:none; align-items:center; justify-content:center; backdrop-filter:blur(2px) }
+  .settings-overlay.open { display:flex }
+  .settings-panel { background:#fff; border-radius:20px; width:900px; max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,.2); padding:40px 48px; animation:panelIn .3s ease }
+  @keyframes panelIn { from{opacity:0;transform:translateY(20px)scale(.97)} to{opacity:1;transform:translateY(0)scale(1)} }
+  .settings-panel::-webkit-scrollbar { width:6px }
+  .settings-panel::-webkit-scrollbar-thumb { background:#ddd; border-radius:3px }
+  .settings-panel::-webkit-scrollbar-track { background:transparent }
+
+  .settings-panel h2 { font-size:28px; margin-bottom:8px; letter-spacing:0 }
+  .settings-panel .hint { font-size:14px; color:#999; margin-bottom:28px }
+  .settings-section { margin-bottom:32px; padding-bottom:28px; border-bottom:1px solid #f0f0f0 }
+  .settings-section:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0 }
+  .settings-section h3 { font-size:18px; color:#555; margin-bottom:16px; display:flex; align-items:center; gap:8px }
+  .settings-section h3::before { content:''; display:inline-block; width:3px; height:18px; background:#F28482; border-radius:2px }
+
+  .s-field { margin-bottom:14px }
+  .s-field label { display:block; font-size:13px; font-weight:600; color:#888; margin-bottom:4px }
+  .s-field input,.s-field textarea { width:100%; padding:10px 14px; border:1px solid #e0e0e0; border-radius:10px; font-size:15px; font-family:inherit; color:#333; outline:none; transition:border .2s }
+  .s-field input:focus,.s-field textarea:focus { border-color:#F28482; box-shadow:0 0 0 3px rgba(242,132,130,.12) }
+  .s-field textarea { resize:vertical; min-height:60px; line-height:1.5 }
+
+  .s-row { display:flex; gap:12px; align-items:flex-end; margin-bottom:12px; padding:12px 14px; background:#FAFAFA; border-radius:10px; border:1px solid #f0f0f0 }
+  .s-row .s-field { margin-bottom:0; flex:1 }
+  .s-row .s-field input,.s-row .s-field textarea { background:#fff }
+  .s-del { width:32px; height:32px; border-radius:8px; border:none; background:#fee; color:#e66; font-size:16px; cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:background .2s; line-height:1 }
+  .s-del:hover { background:#fdd }
+  .s-add { margin-top:6px; padding:8px 18px; border:1px dashed #d0d0d0; border-radius:10px; background:transparent; color:#999; font-size:14px; cursor:pointer; transition:all .2s; font-family:inherit }
+  .s-add:hover { border-color:#F28482; color:#F28482; background:rgba(242,132,130,.04) }
+
+  .s-actions { display:flex; gap:12px; justify-content:flex-end; margin-top:8px; padding-top:20px; border-top:1px solid #f0f0f0 }
+  .s-btn { padding:12px 32px; border-radius:12px; border:none; font-size:16px; font-weight:600; cursor:pointer; transition:all .2s; font-family:inherit }
+  .s-btn-primary { background:#F28482; color:#fff }
+  .s-btn-primary:hover { background:#e07371; transform:translateY(-1px) }
+  .s-btn-cancel { background:#f0f0f0; color:#888 }
+  .s-btn-cancel:hover { background:#e8e8e8 }
+
+  .s-field.s-sm { flex:0 0 100px }
+  .s-field.s-num input { text-align:center }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage"></div>
+
+<button class="settings-btn" id="settingsBtn" title="编辑内容">⚙</button>
+
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-panel" id="settingsPanel">
+    <h2>编辑内容</h2>
+    <p class="hint">修改后点击「应用」即时更新幻灯片</p>
+    <div id="settingsBody"></div>
+    <div class="s-actions">
+      <button class="s-btn" style="background:transparent;color:#e66;font-size:13px;margin-right:auto" id="settingsReset">恢复默认</button>
+      <button class="s-btn s-btn-cancel" id="settingsCancel">取消</button>
+      <button class="s-btn s-btn-primary" id="settingsApply">应用</button>
+    </div>
+  </div>
+</div>
+
+<div class="nav-bar" id="navBar">
+  <button class="nav-btn" id="prevBtn">◀</button>
+  <div class="nav-dots" id="navDots"></div>
+  <span class="nav-counter" id="navCounter">1 / 5</span>
+  <button class="nav-btn" id="nextBtn">▶</button>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  DATA — 所有文本内容集中在这里，修改后会自动反映到幻灯片
+// ═══════════════════════════════════════════════════════════════
+const DATA = {
+
+  cover: {
+    product: 'Codex',
+    subtitle: '一款强大的 AI 编码助手，帮你更聪明地写代码',
+    tagline: '全新智能体验 · 效率提升利器',
+  },
+
+  features: [
+    { title: '智能代码补全', desc: '基于上下文实时预测并补全代码，支持多种编程语言。' },
+    { title: '自然语言转代码', desc: '用自然语言描述需求，自动生成对应的代码实现。' },
+    { title: '代码解释与重构', desc: '解释复杂代码逻辑，提供重构建议以提升代码质量。' },
+    { title: '调试辅助', desc: '分析代码错误并给出修复建议，加速调试过程。' },
+    { title: '多文件重构', desc: '跨文件理解和重构代码，保持项目一致性。' },
+    { title: '测试生成', desc: '自动生成单元测试和集成测试，提高代码覆盖率。' },
+  ],
+
+  practices: [
+    { label: '场景一', title: '从注释生成函数', desc: '输入注释描述，Codex 自动生成完整的 TypeScript 函数。', code: '// 计算两个日期之间的工作日天数\nfunction getWorkdays(start: Date, end: Date): number { ... }' },
+    { label: '场景二', title: '代码错误分析', desc: '粘贴报错信息，Codex 定位问题根因并提供修复方案。', code: "TypeError: Cannot read property 'map' of undefined\n→ 检查 API 返回数据结构是否匹配预期类型" },
+    { label: '场景三', title: 'SQL 查询优化', desc: '将低效查询重写为索引友好且可读性更高的版本。', code: "SELECT * FROM orders WHERE user_id IN (SELECT id FROM users WHERE status = 'active')" },
+    { label: '场景四', title: 'API 接口文档生成', desc: '从代码自动提取并生成 OpenAPI/Swagger 接口文档。', code: '' },
+  ],
+
+  impressions: [
+    { quote: '用了 Codex 之后，我的编码速度提升了至少一倍。以前需要查文档半天的 API 调用，现在一句话就能生成。', author: '张工 · 全栈开发者' },
+    { quote: '最惊喜的是它对上下文的理解能力，不是简单的代码补全，而是真正知道我想要实现什么。', author: '小李 · 前端工程师' },
+    { quote: '作为一个刚入行的新手，Codex 就像身边随时有一位资深工程师在指导我写代码。', author: '小王 · 初级开发者' },
+    { quote: '代码审查时用它解释复杂逻辑，团队沟通效率提升了很多，不再需要逐行讲解。', author: '陈姐 · 技术经理' },
+  ],
+
+  scores: [
+    { label: '代码质量', value: 92 },
+    { label: '响应速度', value: 85 },
+    { label: '易用性', value: 90 },
+    { label: '准确性', value: 78 },
+    { label: '功能丰富度', value: 88 },
+  ],
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  RENDER — 根据 DATA 生成全部幻灯片 HTML
+// ═══════════════════════════════════════════════════════════════
+
+function renderSlides() {
+  const { cover, features, practices, impressions, scores } = DATA
+  const avg = scores.length ? (scores.reduce((s, x) => s + x.value, 0) / scores.length).toFixed(1) : '0.0'
+
+  return [
+    // ── 1. Cover ──
+    `<div class="slide cover bg-white active">
+      <h1><span class="product-name">${esc(cover.product)}</span> 可以做什么？</h1>
+      <div class="divider"></div>
+      <p class="cover-sub">${esc(cover.subtitle)}</p>
+      <p style="margin-top:40px;font-size:16px;color:#ccc;letter-spacing:3px">——— ${esc(cover.tagline)} ———</p>
+    </div>`,
+
+    // ── 2. Features ──
+    `<div class="slide bg-pink">
+      <div class="page-tag">特点</div>
+      <h2 class="pg-title">${esc(cover.product)} 的<span class="accent">核心特点</span></h2>
+      <p class="pg-desc">${features.length} 项能力，让编码变得更高效</p>
+      <div class="feat-wrap">${
+        features.map((f, i) => `
+          <div class="feat-card">
+            <div class="feat-num">${i + 1}</div>
+            <div>
+              <h3>${esc(f.title)}</h3>
+              <p>${esc(f.desc)}</p>
+            </div>
+          </div>
+        `).join('')
+      }</div>
+    </div>`,
+
+    // ── 3. Practice ──
+    `<div class="slide bg-white">
+      <div class="page-tag">测试实践</div>
+      <h2 class="pg-title">实际<span class="accent">上手体验</span></h2>
+      <p class="pg-desc">以下是几个典型场景的实测效果</p>
+      <div class="prac-grid">${
+        practices.map(p => `
+          <div class="prac-card">
+            <span class="label">${esc(p.label)}</span>
+            <h3>${esc(p.title)}</h3>
+            <p>${esc(p.desc)}</p>
+            ${p.code ? `<div class="code">${esc(p.code)}</div>` : '<div class="img-placeholder">[ 截图待添加 ]</div>'}
+          </div>
+        `).join('')
+      }</div>
+    </div>`,
+
+    // ── 4. Impressions ──
+    `<div class="slide bg-pink">
+      <div class="page-tag">使用感想</div>
+      <h2 class="pg-title">大家<span class="accent">怎么说</span></h2>
+      <p class="pg-desc">来自真实用户的使用反馈</p>
+      <div class="impr-wrap">${
+        impressions.map(im => `
+          <div class="impr-card">
+            <div class="impr-quote">${esc(im.quote)}</div>
+            <div class="impr-author">—— <strong>${esc(im.author)}</strong></div>
+          </div>
+        `).join('')
+      }</div>
+    </div>`,
+
+    // ── 5. Scoring ──
+    `<div class="slide bg-white">
+      <div class="page-tag">综合评分</div>
+      <h2 class="pg-title">为 ${esc(cover.product)} <span class="accent">打分</span></h2>
+      <p class="pg-desc">基于多个维度的使用体验评估</p>
+      <div class="score-wrap">${
+        scores.map(s => `
+          <div class="score-row">
+            <span class="score-label">${esc(s.label)}</span>
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:${Math.max(0, Math.min(100, s.value))}%"></div></div>
+            <span class="score-val">${s.value}</span>
+          </div>
+        `).join('')
+      }</div>
+      <div class="score-total">
+        <div class="big">${avg}</div>
+        <div class="lbl">综合评分（满分 100）</div>
+      </div>
+    </div>`,
+  ]
+}
+
+function esc(s) {
+  const d = document.createElement('div')
+  d.textContent = s
+  return d.innerHTML
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  SETTINGS PANEL — 生成编辑表单
+// ═══════════════════════════════════════════════════════════════
+
+function renderSettings() {
+  const D = DATA
+  let html = ''
+
+  // ── Cover ──
+  html += `<div class="settings-section">
+    <h3>标题页</h3>
+    <div class="s-field"><label>产品名称</label><input data-path="cover.product" value="${esc(D.cover.product)}"></div>
+    <div class="s-field"><label>副标题</label><input data-path="cover.subtitle" value="${esc(D.cover.subtitle)}"></div>
+    <div class="s-field"><label>标语</label><input data-path="cover.tagline" value="${esc(D.cover.tagline)}"></div>
+  </div>`
+
+  // ── Features ──
+  html += `<div class="settings-section">
+    <h3>特点 <span style="font-weight:400;font-size:13px;color:#999">（每条自动编号，可增减）</span></h3>
+    <div id="s-feat-list">`
+  D.features.forEach((f, i) => {
+    html += `<div class="s-row" data-idx="${i}">
+      <div class="s-field" style="flex:0 0 36px"><label>#</label><input class="s-display" value="${i + 1}" disabled style="text-align:center;background:#f5f5f5"></div>
+      <div class="s-field"><label>标题</label><input data-path="features.${i}.title" value="${esc(f.title)}"></div>
+      <div class="s-field"><label>描述</label><input data-path="features.${i}.desc" value="${esc(f.desc)}"></div>
+      <button class="s-del" onclick="deleteItem('features',${i})" title="删除">✕</button>
+    </div>`
+  })
+  html += `</div>
+    <button class="s-add" onclick="addFeature()">＋ 添加特点</button>
+  </div>`
+
+  // ── Practices ──
+  html += `<div class="settings-section">
+    <h3>测试实践 <span style="font-weight:400;font-size:13px;color:#999">（可增减）</span></h3>
+    <div id="s-prac-list">`
+  D.practices.forEach((p, i) => {
+    html += `<div class="s-row" data-idx="${i}">
+      <div class="s-field" style="flex:0 0 80px"><label>标签</label><input data-path="practices.${i}.label" value="${esc(p.label)}"></div>
+      <div class="s-field"><label>标题</label><input data-path="practices.${i}.title" value="${esc(p.title)}"></div>
+      <div class="s-field"><label>描述</label><input data-path="practices.${i}.desc" value="${esc(p.desc)}"></div>
+      <div class="s-field" style="flex:0 0 36px"><label>代码</label>
+        <button style="padding:6px 10px;border:1px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;font-size:12px;color:#888" onclick="editCode(${i})">✎</button>
+      </div>
+      <button class="s-del" onclick="deleteItem('practices',${i})" title="删除">✕</button>
+    </div>`
+  })
+  html += `</div>
+    <button class="s-add" onclick="addPractice()">＋ 添加实践</button>
+  </div>`
+
+  // ── Impressions ──
+  html += `<div class="settings-section">
+    <h3>使用感想 <span style="font-weight:400;font-size:13px;color:#999">（可增减）</span></h3>
+    <div id="s-impr-list">`
+  D.impressions.forEach((im, i) => {
+    html += `<div class="s-row" data-idx="${i}">
+      <div class="s-field"><label>引语</label><textarea data-path="impressions.${i}.quote" rows="2">${esc(im.quote)}</textarea></div>
+      <div class="s-field"><label>作者</label><input data-path="impressions.${i}.author" value="${esc(im.author)}"></div>
+      <button class="s-del" onclick="deleteItem('impressions',${i})" title="删除">✕</button>
+    </div>`
+  })
+  html += `</div>
+    <button class="s-add" onclick="addImpression()">＋ 添加感想</button>
+  </div>`
+
+  // ── Scores ──
+  html += `<div class="settings-section">
+    <h3>打分 <span style="font-weight:400;font-size:13px;color:#999">（1-100，可增减）</span></h3>
+    <div id="s-score-list">`
+  D.scores.forEach((s, i) => {
+    html += `<div class="s-row" data-idx="${i}">
+      <div class="s-field"><label>维度</label><input data-path="scores.${i}.label" value="${esc(s.label)}"></div>
+      <div class="s-field s-sm s-num"><label>分数</label><input data-path="scores.${i}.value" type="number" min="0" max="100" value="${s.value}"></div>
+      <button class="s-del" onclick="deleteItem('scores',${i})" title="删除">✕</button>
+    </div>`
+  })
+  html += `</div>
+    <button class="s-add" onclick="addScore()">＋ 添加评分维度</button>
+  </div>`
+
+  document.getElementById('settingsBody').innerHTML = html
+
+  // 为代码编辑保存引用
+  window._codeToEdit = -1
+}
+
+function addFeature() {
+  DATA.features.push({ title: '新特点', desc: '请输入描述' })
+  renderSettings()
+}
+function addPractice() {
+  DATA.practices.push({ label: '新场景', title: '场景标题', desc: '请输入描述', code: '' })
+  renderSettings()
+}
+function addImpression() {
+  DATA.impressions.push({ quote: '请输入感想内容', author: '姓名 · 身份' })
+  renderSettings()
+}
+function addScore() {
+  DATA.scores.push({ label: '新维度', value: 80 })
+  renderSettings()
+}
+
+function deleteItem(arr, idx) {
+  DATA[arr].splice(idx, 1)
+  renderSettings()
+}
+
+function editCode(idx) {
+  window._codeToEdit = idx
+  const v = DATA.practices[idx].code
+  const ta = prompt('编辑代码内容（支持换行）：', v)
+  if (ta !== null) {
+    DATA.practices[idx].code = ta
+    applySettings()
+  }
+}
+
+function collectSettings() {
+  document.querySelectorAll('#settingsBody [data-path]').forEach(el => {
+    const path = el.dataset.path.split('.')
+    let obj = DATA
+    for (let i = 0; i < path.length - 1; i++) {
+      if (obj == null) return
+      obj = obj[path[i]]
+    }
+    if (obj == null) return
+    let val = el.type === 'number' ? parseFloat(el.value) || 0 : el.value
+    obj[path[path.length - 1]] = val
+  })
+}
+
+function applySettings() {
+  try {
+    collectSettings()
+    saveData()
+    rebuild()
+    closeSettings()
+  } catch (e) {
+    alert('应用失败：' + e.message)
+    console.error(e)
+  }
+}
+
+function resetData() {
+  if (confirm('确定恢复默认内容？当前修改将丢失。')) {
+    localStorage.removeItem(STORAGE_KEY)
+    location.reload()
+  }
+}
+
+function rebuild() {
+  const s = renderSlides()
+  stage.innerHTML = s.join('')
+  const total = s.length
+
+  navDots.innerHTML = Array.from({ length: total }, (_, i) =>
+    `<button class="nav-dot${i === 0 ? ' active' : ''}" data-index="${i}"></button>`
+  ).join('')
+
+  if (current >= total) current = total - 1
+  document.querySelectorAll('.slide').forEach((el, i) => {
+    el.classList.toggle('active', i === current)
+  })
+  document.querySelectorAll('.nav-dot').forEach((el, i) => {
+    el.classList.toggle('active', i === current)
+  })
+  counter.textContent = `${current + 1} / ${total}`
+  window._totalSlides = total
+}
+
+function closeSettings() {
+  document.getElementById('settingsOverlay').classList.remove('open')
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  PERSISTENCE — localStorage 持久化
+// ═══════════════════════════════════════════════════════════════
+
+const STORAGE_KEY = 'what-can-xxx-do-data'
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) {
+      const saved = JSON.parse(raw)
+      Object.keys(saved).forEach(k => {
+        if (Array.isArray(saved[k])) {
+          DATA[k] = saved[k]
+        } else if (typeof saved[k] === 'object' && saved[k] !== null) {
+          Object.assign(DATA[k], saved[k])
+        }
+      })
+    }
+  } catch (_) {}
+}
+function saveData() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(DATA))
+}
+loadData()
+
+// ═══════════════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════════════
+
+const stage = document.getElementById('stage')
+let current = 0
+
+const navDots = document.getElementById('navDots')
+const counter = document.getElementById('navCounter')
+
+rebuild()
+
+function goTo(index) {
+  const total = window._totalSlides || document.querySelectorAll('.slide').length
+  if (index < 0 || index >= total) return
+  document.querySelectorAll('.slide').forEach((el, i) => {
+    el.classList.toggle('active', i === index)
+  })
+  document.querySelectorAll('.nav-dot').forEach((el, i) => {
+    el.classList.toggle('active', i === index)
+  })
+  current = index
+  counter.textContent = `${current + 1} / ${total}`
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1))
+document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1))
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1)
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1)
+})
+navDots.addEventListener('click', e => {
+  const dot = e.target.closest('.nav-dot')
+  if (dot) goTo(parseInt(dot.dataset.index))
+})
+
+document.getElementById('settingsBtn').addEventListener('click', () => {
+  renderSettings()
+  document.getElementById('settingsOverlay').classList.add('open')
+})
+document.getElementById('settingsReset').addEventListener('click', resetData)
+document.getElementById('settingsCancel').addEventListener('click', closeSettings)
+document.getElementById('settingsApply').addEventListener('click', applySettings)
+document.getElementById('settingsOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeSettings()
+})
+
+function scale() {
+  const sw = 1920, sh = 1080
+  const sx = window.innerWidth / sw, sy = window.innerHeight / sh
+  const s = Math.min(sx, sy)
+  stage.style.transform = `scale(${s})`
+  stage.style.transformOrigin = '0 0'
+  const top = (window.innerHeight - sh * s) / 2
+  stage.style.marginTop = top > 0 ? `${top}px` : '0'
+}
+window.addEventListener('resize', scale)
+scale()
+</script>
+</body>
+</html>

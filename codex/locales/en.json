@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Lin Portfolio Lab",
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "nav": {
+    "menu": "Menu",
+    "theme": "Toggle theme",
+    "locale": "Switch language"
+  },
+  "footer": {
+    "note": "An interactive portfolio laboratory built with vanilla JavaScript."
+  }
+}
