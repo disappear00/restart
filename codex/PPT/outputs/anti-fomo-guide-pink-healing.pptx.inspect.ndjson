@@ -1,0 +1,269 @@
+{"kind":"deck","id":"pr/db7qz2","name":"Deck"}
+{"kind":"layout","layoutId":"aeff00f7-2c4c-4fd0-b169-b2608d17036a","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"6aba942d-9822-41d3-ba44-3e95c4c0768b","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/3o5086","slide":1,"title":"MENTAL WELLBEING SHARE","textShapes":6}
+{"kind":"shape","id":"sh/10j29gby","slide":1,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/exs3y1cn","slide":1,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/fy1k76t8","slide":1,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/svqlwruh","slide":1,"name":"eyebrow-1","text":"MENTAL WELLBEING SHARE","textPreview":"MENTAL WELLBEING SHARE","textChars":22,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/twz25wb2","slide":1,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/6983uhcb","slide":1,"name":"page-1","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"shape","id":"sh/ruhk3mtw","slide":1,"bbox":[760,108,320,320]}
+{"kind":"shape","id":"sh/crul8val","slide":1,"bbox":[818,176,220,180]}
+{"kind":"textbox","id":"sh/ds3mh0b6","slide":1,"name":"cover-panel-title","text":"慢一点\n少一点\n深一点\n稳一点","textPreview":"慢一点 | 少一点 | 深一点 | 稳一点","textChars":15,"textLines":4,"bbox":[858,208,150,118]}
+{"kind":"textbox","id":"sh/lozypoje","slide":1,"name":"cover-title","text":"告别焦虑，拥抱当下\n如何避免 FOMO","textPreview":"告别焦虑，拥抱当下 | 如何避免 FOMO","textChars":19,"textLines":2,"bbox":[84,180,600,150]}
+{"kind":"textbox","id":"sh/knqhwjit","slide":1,"name":"cover-subtitle","text":"从“害怕错过”到“享受当下”的心理指南","textPreview":"从“害怕错过”到“享受当下”的心理指南","textChars":19,"textLines":1,"bbox":[84,350,520,40]}
+{"kind":"shape","id":"sh/zmhgne18","slide":1,"bbox":[84,440,400,92]}
+{"kind":"textbox","id":"sh/yl8zu90n","slide":1,"name":"cover-note","text":"不是错过太多让你焦虑，\n而是把别人的高光误当成自己的落后。","textPreview":"不是错过太多让你焦虑， | 而是把别人的高光误当成自己的落后。","textChars":29,"textLines":2,"bbox":[112,464,344,52]}
+{"kind":"notes","id":"nt/3o5086","slide":1,"text":""}
+{"kind":"slide","id":"sl/ckjvt9","slide":2,"title":"ANTI FOMO GUIDE","textShapes":12}
+{"kind":"shape","id":"sh/pcfmp03m","slide":2,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/2943elkb","slide":2,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/3ax4nqlw","slide":2,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/cz6lkv2d","slide":2,"name":"eyebrow-2","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/d0fmt03y","slide":2,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/qxo3ilk7","slide":2,"name":"page-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/byx4rqls","slide":2,"name":"title-什么是 FOMO？","text":"什么是 FOMO？","textPreview":"什么是 FOMO？","textChars":9,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/s3ml8b2t","slide":2,"name":"subtitle-什么是 FOMO？","text":"FOMO 指因害怕错过他人正在经历的美好体验，而产生的焦虑与不安。","textPreview":"FOMO 指因害怕错过他人正在经历的美好体验，而产生的焦虑与不安。","textChars":33,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/t4vmhw3e","slide":2,"bbox":[84,186,500,250]}
+{"kind":"textbox","id":"sh/dcja94by","slide":2,"name":"def-quote","text":"它不只是“想参与”，而是当你看见别人的动态、消息、机会时，心里立刻冒出“我是不是落下了”的紧张感。","textPreview":"它不只是“想参与”，而是当你看见别人的动态、消息、机会时，心里立刻冒出“我是不是落下了”的紧张感。","textChars":49,"textLines":1,"bbox":[118,224,432,132]}
+{"kind":"textbox","id":"sh/sba90zud","slide":2,"text":"核心定义","textPreview":"核心定义","textChars":4,"textLines":1,"bbox":[118,382,102,40]}
+{"kind":"shape","id":"sh/ra1s7uts","slide":2,"bbox":[710,156,300,400]}
+{"kind":"shape","id":"sh/q98rypc7","slide":2,"bbox":[820,176,78,12]}
+{"kind":"shape","id":"sh/10jad4bu","slide":2,"bbox":[740,220,240,72]}
+{"kind":"textbox","id":"sh/0za94ju9","slide":2,"name":"cue-title-0","text":"不断刷社交媒体","textPreview":"不断刷社交媒体","textChars":7,"textLines":1,"bbox":[760,238,200,22]}
+{"kind":"textbox","id":"sh/fe1sbeto","slide":2,"name":"cue-body-0","text":"担心别人正在经历更精彩的事","textPreview":"担心别人正在经历更精彩的事","textChars":13,"textLines":1,"bbox":[760,265,200,18]}
+{"kind":"shape","id":"sh/edsr29cj","slide":2,"bbox":[740,316,240,72]}
+{"kind":"textbox","id":"sh/p43ahob6","slide":2,"name":"cue-title-1","text":"害怕被排除在外","textPreview":"害怕被排除在外","textChars":7,"textLines":1,"bbox":[760,334,200,22]}
+{"kind":"textbox","id":"sh/o3u98jul","slide":2,"name":"cue-body-1","text":"不想错过群体中的任何话题","textPreview":"不想错过群体中的任何话题","textChars":12,"textLines":1,"bbox":[760,361,200,18]}
+{"kind":"shape","id":"sh/8jml0rmt","slide":2,"bbox":[740,412,240,72]}
+{"kind":"textbox","id":"sh/9kv2twne","slide":2,"name":"cue-title-2","text":"过度比较与冲动跟进","textPreview":"过度比较与冲动跟进","textChars":9,"textLines":1,"bbox":[760,430,200,22]}
+{"kind":"textbox","id":"sh/mhk3yh4n","slide":2,"name":"cue-body-2","text":"看到别人在做就立刻想参与","textPreview":"看到别人在做就立刻想参与","textChars":12,"textLines":1,"bbox":[760,457,200,18]}
+{"kind":"notes","id":"nt/ckjvt9","slide":2,"text":""}
+{"kind":"slide","id":"sl/ophqr3","slide":3,"title":"ANTI FOMO GUIDE","textShapes":15}
+{"kind":"shape","id":"sh/fy1c7a58","slide":3,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/0zadgfmt","slide":3,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/10je9kne","slide":3,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/q98va54r","slide":3,"name":"eyebrow-3","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/ru1c3a5c","slide":3,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/svadcfmx","slide":3,"name":"page-3","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/dwju50ni","slide":3,"name":"title-FOMO 会在比较、奖励和偏差里自我强化","text":"FOMO 会在比较、奖励和偏差里自我强化","textPreview":"FOMO 会在比较、奖励和偏差里自我强化","textChars":20,"textLines":1,"bbox":[84,68,760,52]}
+{"kind":"textbox","id":"sh/a5cvmp4v","slide":3,"name":"subtitle-FOMO 会在比较、奖励和偏差里自我强化","text":"当注意力被高光时刻、即时反馈和想象中的“别人更好”同时牵引时，焦虑就会滚雪球。","textPreview":"当注意力被高光时刻、即时反馈和想象中的“别人更好”同时牵引时，焦虑就会滚雪球。","textChars":39,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/bqlwfu5g","slide":3,"bbox":[84,222,320,250]}
+{"kind":"textbox","id":"sh/b2dkz69w","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[112,246,54,30]}
+{"kind":"textbox","id":"sh/a14361sb","slide":3,"name":"mech-title-0","text":"社会比较","textPreview":"社会比较","textChars":4,"textLines":1,"bbox":[112,296,220,28]}
+{"kind":"textbox","id":"sh/xofm1grm","slide":3,"name":"mech-body-0","text":"人会本能地把自己的日常，拿去和他人精修后的高光片段对比。","textPreview":"人会本能地把自己的日常，拿去和他人精修后的高光片段对比。","textChars":28,"textLines":1,"bbox":[112,336,260,88]}
+{"kind":"shape","id":"sh/c36l8bah","slide":3,"bbox":[440,222,320,250]}
+{"kind":"textbox","id":"sh/zqx4369s","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[468,246,54,30]}
+{"kind":"textbox","id":"sh/ypo3als7","slide":3,"name":"mech-title-1","text":"多巴胺陷阱","textPreview":"多巴胺陷阱","textChars":5,"textLines":1,"bbox":[468,296,220,28]}
+{"kind":"textbox","id":"sh/lsfm5gry","slide":3,"name":"mech-body-1","text":"点赞、提醒、刷新后的新内容，会把大脑拉进“再看一条”的奖励回路。","textPreview":"点赞、提醒、刷新后的新内容，会把大脑拉进“再看一条”的奖励回路。","textChars":32,"textLines":1,"bbox":[468,336,260,88]}
+{"kind":"shape","id":"sh/kr6lcbad","slide":3,"bbox":[796,222,320,250]}
+{"kind":"textbox","id":"sh/7ux47q94","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[824,246,54,30]}
+{"kind":"textbox","id":"sh/mto3elsj","slide":3,"name":"mech-title-2","text":"认知偏差","textPreview":"认知偏差","textChars":4,"textLines":1,"bbox":[824,296,220,28]}
+{"kind":"textbox","id":"sh/i1cfmtg3","slide":3,"name":"mech-body-2","text":"我们常高估别人生活的精彩程度，也低估自己当下的真实价值。","textPreview":"我们常高估别人生活的精彩程度，也低估自己当下的真实价值。","textChars":28,"textLines":1,"bbox":[824,336,260,88]}
+{"kind":"textbox","id":"sh/32lgvex8","slide":3,"name":"arrow-0","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[426,330,30,30]}
+{"kind":"textbox","id":"sh/43uxojyt","slide":3,"name":"arrow-1","text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[782,330,30,30]}
+{"kind":"notes","id":"nt/ophqr3","slide":3,"text":""}
+{"kind":"slide","id":"sl/8yzj5z","slide":4,"title":"ANTI FOMO GUIDE","textShapes":10}
+{"kind":"shape","id":"sh/ep0j2h8j","slide":4,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/1sbidc7u","slide":4,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/gr214rq9","slide":4,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/3et0fmp0","slide":4,"name":"eyebrow-4","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/2tkj6h8f","slide":4,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/pgbihw76","slide":4,"name":"page-4","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/of218rql","slide":4,"name":"title-FOMO 偷走了什么？","text":"FOMO 偷走了什么？","textPreview":"FOMO 偷走了什么？","textChars":11,"textLines":1,"bbox":[84,68,500,52]}
+{"kind":"textbox","id":"sh/jyp032pw","slide":4,"name":"subtitle-FOMO 偷走了什么？","text":"它的代价不只是一阵不安，而是会在情绪、行为和生活选择上持续泄漏能量","textPreview":"它的代价不只是一阵不安，而是会在情绪、行为和生活选择上持续泄漏能量","textChars":33,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/ixgzux8b","slide":4,"bbox":[84,216,320,316]}
+{"kind":"textbox","id":"sh/ozy9onud","slide":4,"name":"impact-title-0","text":"情绪层面","textPreview":"情绪层面","textChars":4,"textLines":1,"bbox":[110,246,220,28]}
+{"kind":"textbox","id":"sh/p07qhsby","slide":4,"name":"impact-bullets-0","text":"焦虑与紧绷：总担心自己落后于人\n低自尊：别人越亮眼，越觉得自己不够好\n孤独感：明明在看很多动态，却更像旁观者","textPreview":"焦虑与紧绷：总担心自己落后于人 | 低自尊：别人越亮眼，越觉得自己不够好 | 孤独感：明明在看很多动态，却更像旁观者","textChars":54,"textLines":3,"bbox":[106,292,276,210]}
+{"kind":"shape","id":"sh/2xw7mxcn","slide":4,"bbox":[440,216,320,316]}
+{"kind":"textbox","id":"sh/3yp8f2t8","slide":4,"name":"impact-title-1","text":"行为层面","textPreview":"行为层面","textChars":4,"textLines":1,"bbox":[466,246,220,28]}
+{"kind":"textbox","id":"sh/c3y9s7ap","slide":4,"name":"impact-bullets-1","text":"冲动消费或投资：为了“跟上”而仓促决定\n睡眠与注意力受损：停不下来的深夜刷新\n社交回避：害怕比较后反而更不想见人","textPreview":"冲动消费或投资：为了“跟上”而仓促决定 | 睡眠与注意力受损：停不下来的深夜刷新 | 社交回避：害怕比较后反而更不想见人","textChars":56,"textLines":3,"bbox":[462,292,276,210]}
+{"kind":"shape","id":"sh/d47qlcba","slide":4,"bbox":[796,216,320,316]}
+{"kind":"textbox","id":"sh/q1grqxsj","slide":4,"name":"impact-title-2","text":"生活层面","textPreview":"生活层面","textChars":4,"textLines":1,"bbox":[822,246,220,28]}
+{"kind":"textbox","id":"sh/b2p8j2t4","slide":4,"name":"impact-bullets-2","text":"忽视当下美好：眼前的人和事不断被打断\n偏离长期目标：把时间花在追热点而非积累\n关系表面化：互动变多了，连接却变浅了","textPreview":"忽视当下美好：眼前的人和事不断被打断 | 偏离长期目标：把时间花在追热点而非积累 | 关系表面化：互动变多了，连接却变浅了","textChars":57,"textLines":3,"bbox":[818,292,276,210]}
+{"kind":"notes","id":"nt/8yzj5z","slide":4,"text":""}
+{"kind":"slide","id":"sl/xwqa99","slide":5,"title":"ANTI FOMO GUIDE","textShapes":14}
+{"kind":"shape","id":"sh/9k7m5k7u","slide":5,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/mhgnupo3","slide":5,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/nip43apo","slide":5,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/0fy5sf6d","slide":5,"name":"eyebrow-5","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/lg7m1k7i","slide":5,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/ydwnq5o7","slide":5,"name":"page-5","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/ze54zaps","slide":5,"name":"title-策略一：先改念头，再做选择","text":"策略一：先改念头，再做选择","textPreview":"策略一：先改念头，再做选择","textChars":13,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/cre5ov61","slide":5,"name":"subtitle-策略一：先改念头，再做选择","text":"认知重构的目标不是压抑欲望，而是看清它是否真的值得你投入时间、金钱和情绪。","textPreview":"认知重构的目标不是压抑欲望，而是看清它是否真的值得你投入时间、金钱和情绪。","textChars":37,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/dcnmx07m","slide":5,"bbox":[84,202,370,316]}
+{"kind":"textbox","id":"sh/9sradgfa","slide":5,"name":"s1-quote","text":"不是每个机会都值得追。\n错过，本来就是生活的常态。","textPreview":"不是每个机会都值得追。 | 错过，本来就是生活的常态。","textChars":25,"textLines":2,"bbox":[118,264,300,116]}
+{"kind":"shape","id":"sh/ori94vyp","slide":5,"bbox":[490,202,624,88]}
+{"kind":"textbox","id":"sh/nq9sbqxk","slide":5,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[520,230,34,34]}
+{"kind":"textbox","id":"sh/mpgr2lgz","slide":5,"name":"s1-title-0","text":"接受“错过是常态”","textPreview":"接受“错过是常态”","textChars":9,"textLines":1,"bbox":[576,220,250,24]}
+{"kind":"textbox","id":"sh/147q9gfe","slide":5,"name":"s1-body-0","text":"市场永远有新机会，生活也永远有新体验。你不需要拥有全部。","textPreview":"市场永远有新机会，生活也永远有新体验。你不需要拥有全部。","textChars":28,"textLines":1,"bbox":[576,246,506,28]}
+{"kind":"shape","id":"sh/03y90byt","slide":5,"bbox":[490,306,624,88]}
+{"kind":"textbox","id":"sh/z2p876x8","slide":5,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[520,334,34,34]}
+{"kind":"textbox","id":"sh/e1gry1gn","slide":5,"name":"s1-title-1","text":"问一个关键问题","textPreview":"问一个关键问题","textChars":7,"textLines":1,"bbox":[576,324,250,24]}
+{"kind":"textbox","id":"sh/d07q5wf2","slide":5,"name":"s1-body-1","text":"错过这件事，会影响我的核心目标、价值排序或真正重要的人吗？","textPreview":"错过这件事，会影响我的核心目标、价值排序或真正重要的人吗？","textChars":29,"textLines":1,"bbox":[576,350,506,28]}
+{"kind":"shape","id":"sh/czy9wbyx","slide":5,"bbox":[490,410,624,88]}
+{"kind":"textbox","id":"sh/4ji9cb6d","slide":5,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[520,438,34,34]}
+{"kind":"textbox","id":"sh/54balgny","slide":5,"name":"s1-title-2","text":"记录触发场景","textPreview":"记录触发场景","textChars":6,"textLines":1,"bbox":[576,428,250,24]}
+{"kind":"textbox","id":"sh/ih0ra1on","slide":5,"name":"s1-body-2","text":"把 FOMO 出现的时刻写下来，辨认它是事实、情绪，还是比较带来的幻觉。","textPreview":"把 FOMO 出现的时刻写下来，辨认它是事实、情绪，还是比较带来的幻觉。","textChars":36,"textLines":1,"bbox":[576,454,506,28]}
+{"kind":"notes","id":"nt/xwqa99","slide":5,"text":""}
+{"kind":"slide","id":"sl/cmkxlc","slide":6,"title":"ANTI FOMO GUIDE","textShapes":11}
+{"kind":"shape","id":"sh/sbm9kvit","slide":6,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/rad8bq1o","slide":6,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/69kril03","slide":6,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/1gvqh0zq","slide":6,"name":"eyebrow-6","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/gfm9ovi5","slide":6,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/fed8fq1k","slide":6,"name":"page-6","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/ed4rm50z","slide":6,"name":"title-策略二：把错过变成享受","text":"策略二：把错过变成享受","textPreview":"策略二：把错过变成享受","textChars":11,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/xkbq5gj6","slide":6,"name":"subtitle-策略二：把错过变成享受","text":"JOMO 不是躲避世界，而是把注意力从“别人有什么”转回“我想过什么样的生活”","textPreview":"JOMO 不是躲避世界，而是把注意力从“别人有什么”转回“我想过什么样的生活”","textChars":39,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/wj2pcbi1","slide":6,"bbox":[84,194,1030,154]}
+{"kind":"textbox","id":"sh/254batw7","slide":6,"name":"s2-quote","text":"当你允许自己不去追每一场热闹，\n当下的咖啡、书页、阳光和独处，才会重新变得有重量。","textPreview":"当你允许自己不去追每一场热闹， | 当下的咖啡、书页、阳光和独处，才会重新变得有重量。","textChars":41,"textLines":2,"bbox":[132,236,930,70]}
+{"kind":"shape","id":"sh/36xc3yxs","slide":6,"bbox":[84,386,314,140]}
+{"kind":"textbox","id":"sh/476tc3ed","slide":6,"name":"s2-title-0","text":"关掉不必要的通知","textPreview":"关掉不必要的通知","textChars":8,"textLines":1,"bbox":[110,420,240,26]}
+{"kind":"textbox","id":"sh/p8fu58fy","slide":6,"name":"s2-body-0","text":"减少被外部节奏牵着走的频率。","textPreview":"减少被外部节奏牵着走的频率。","textChars":14,"textLines":1,"bbox":[112,456,258,36]}
+{"kind":"shape","id":"sh/q9obedwj","slide":6,"bbox":[434,386,314,140]}
+{"kind":"textbox","id":"sh/raxc7ixo","slide":6,"name":"s2-title-1","text":"享受眼前的小确幸","textPreview":"享受眼前的小确幸","textChars":8,"textLines":1,"bbox":[460,420,240,26]}
+{"kind":"textbox","id":"sh/cv6tgne9","slide":6,"name":"s2-body-1","text":"把注意力放回此刻可触摸、可感受的事物。","textPreview":"把注意力放回此刻可触摸、可感受的事物。","textChars":19,"textLines":1,"bbox":[462,456,258,36]}
+{"kind":"shape","id":"sh/dwfu9sfu","slide":6,"bbox":[784,386,314,140]}
+{"kind":"textbox","id":"sh/ex8bidwf","slide":6,"name":"s2-title-2","text":"珍惜独处时光","textPreview":"珍惜独处时光","textChars":6,"textLines":1,"bbox":[810,420,240,26]}
+{"kind":"textbox","id":"sh/zyhcbix0","slide":6,"name":"s2-body-2","text":"独处不是空白，而是恢复内在秩序的时间。","textPreview":"独处不是空白，而是恢复内在秩序的时间。","textChars":19,"textLines":1,"bbox":[812,456,258,36]}
+{"kind":"notes","id":"nt/cmkxlc","slide":6,"text":""}
+{"kind":"slide","id":"sl/19pu13","slide":7,"title":"ANTI FOMO GUIDE","textShapes":14}
+{"kind":"shape","id":"sh/tc7ulszy","slide":7,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/69gbqxg7","slide":7,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/7apcj2hs","slide":7,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/gfitw7yp","slide":7,"name":"eyebrow-7","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/1grupczu","slide":7,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/udgbuxgj","slide":7,"name":"page-7","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/fe9cn2h4","slide":7,"name":"title-策略三：给注意力做减法","text":"策略三：给注意力做减法","textPreview":"策略三：给注意力做减法","textChars":11,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/wjetkny5","slide":7,"name":"subtitle-策略三：给注意力做减法","text":"给屏幕设置边界，你的大脑才有机会从“随时待命”回到稳定节律。","textPreview":"给屏幕设置边界，你的大脑才有机会从“随时待命”回到稳定节律。","textChars":30,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/xknud8zq","slide":7,"bbox":[84,202,320,330]}
+{"kind":"textbox","id":"sh/hgn21o7y","slide":7,"name":"s3-left-title","text":"建议的无手机时间","textPreview":"建议的无手机时间","textChars":8,"textLines":1,"bbox":[114,232,220,26]}
+{"kind":"shape","id":"sh/wfel8j6d","slide":7,"bbox":[112,280,262,54]}
+{"kind":"textbox","id":"sh/vulkzeps","slide":7,"name":"s3-time-0","text":"用餐时","textPreview":"用餐时","textChars":3,"textLines":1,"bbox":[134,297,180,20]}
+{"kind":"shape","id":"sh/utc369o7","slide":7,"bbox":[112,356,262,54]}
+{"kind":"textbox","id":"sh/5knm5o7u","slide":7,"name":"s3-time-1","text":"睡前 1 小时","textPreview":"睡前 1 小时","textChars":7,"textLines":1,"bbox":[134,373,180,20]}
+{"kind":"shape","id":"sh/4jelcj69","slide":7,"bbox":[112,432,262,54]}
+{"kind":"textbox","id":"sh/ji543ep4","slide":7,"name":"s3-time-2","text":"周末上午","textPreview":"周末上午","textChars":4,"textLines":1,"bbox":[134,449,180,20]}
+{"kind":"shape","id":"sh/ihw3a9oj","slide":7,"bbox":[450,204,664,90]}
+{"kind":"textbox","id":"sh/to7m9876","slide":7,"name":"s3-title-0","text":"限制社交媒体时长","textPreview":"限制社交媒体时长","textChars":8,"textLines":1,"bbox":[482,226,280,22]}
+{"kind":"textbox","id":"sh/snyl036l","slide":7,"name":"s3-body-0","text":"每天不超过 30 分钟，并打开屏幕时间追踪工具。","textPreview":"每天不超过 30 分钟，并打开屏幕时间追踪工具。","textChars":24,"textLines":1,"bbox":[482,256,592,30]}
+{"kind":"shape","id":"sh/c36xsrit","slide":7,"bbox":[450,314,664,90]}
+{"kind":"textbox","id":"sh/d4zelwje","slide":7,"name":"s3-title-1","text":"清理信息源","textPreview":"清理信息源","textChars":5,"textLines":1,"bbox":[482,336,280,22]}
+{"kind":"textbox","id":"sh/q1ofq103","slide":7,"name":"s3-body-1","text":"取关容易引发焦虑的账号，保留真正有价值、能滋养你的内容。","textPreview":"取关容易引发焦虑的账号，保留真正有价值、能滋养你的内容。","textChars":28,"textLines":1,"bbox":[482,366,592,30]}
+{"kind":"shape","id":"sh/b2xwj618","slide":7,"bbox":[450,424,664,90]}
+{"kind":"textbox","id":"sh/k7qxwbi5","slide":7,"name":"s3-title-2","text":"关闭非必要通知","textPreview":"关闭非必要通知","textChars":7,"textLines":1,"bbox":[482,446,280,22]}
+{"kind":"textbox","id":"sh/l8zepgjq","slide":7,"name":"s3-body-2","text":"只保留家人、工作与安全相关的必要提醒。","textPreview":"只保留家人、工作与安全相关的必要提醒。","textChars":19,"textLines":1,"bbox":[482,476,592,30]}
+{"kind":"notes","id":"nt/19pu13","slide":7,"text":""}
+{"kind":"slide","id":"sl/4ctx8s","slide":8,"title":"ANTI FOMO GUIDE","textShapes":11}
+{"kind":"shape","id":"sh/i9srqxon","slide":8,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/5cjq1sne","slide":8,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/4ba9s76t","slide":8,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/re18325k","slide":8,"name":"eyebrow-8","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/6dsruxoz","slide":8,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/tg3q5cna","slide":8,"name":"page-8","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/sfu9w765","slide":8,"name":"title-策略四：把自己带回当下","text":"策略四：把自己带回当下","textPreview":"策略四：把自己带回当下","textChars":11,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/7ih8ri50","slide":8,"name":"subtitle-策略四：把自己带回当下","text":"关键不是把情绪赶走，而是学会观察它、放慢它，然后不跟着它跑。","textPreview":"关键不是把情绪赶走，而是学会观察它、放慢它，然后不跟着它跑。","textChars":30,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/mh87idof","slide":8,"bbox":[104,220,280,280]}
+{"kind":"shape","id":"sh/wju94fah","slide":8,"bbox":[156,272,176,176]}
+{"kind":"textbox","id":"sh/xk3qxkb2","slide":8,"name":"s4-breath","text":"停一下\n呼吸\n感受","textPreview":"停一下 | 呼吸 | 感受","textChars":9,"textLines":3,"bbox":[176,320,136,90]}
+{"kind":"shape","id":"sh/ahcr25sb","slide":8,"bbox":[430,208,684,88]}
+{"kind":"textbox","id":"sh/bil8vatw","slide":8,"name":"s4-title-0","text":"正念冥想 5-10 分钟","textPreview":"正念冥想 5-10 分钟","textChars":12,"textLines":1,"bbox":[462,228,280,22]}
+{"kind":"textbox","id":"sh/k7e98fad","slide":8,"name":"s4-body-0","text":"专注呼吸，允许念头经过，不急着评判或处理。","textPreview":"专注呼吸，允许念头经过，不急着评判或处理。","textChars":21,"textLines":1,"bbox":[462,258,610,28]}
+{"kind":"shape","id":"sh/l8nq1kby","slide":8,"bbox":[430,316,684,88]}
+{"kind":"textbox","id":"sh/ylcr6ps7","slide":8,"name":"s4-title-1","text":"做感官沉浸练习","textPreview":"做感官沉浸练习","textChars":7,"textLines":1,"bbox":[462,336,280,22]}
+{"kind":"textbox","id":"sh/jm58zats","slide":8,"name":"s4-body-1","text":"吃饭时认真品味，散步时感受光线、风和脚步。","textPreview":"吃饭时认真品味，散步时感受光线、风和脚步。","textChars":21,"textLines":1,"bbox":[462,366,610,28]}
+{"kind":"shape","id":"sh/0bapwva9","slide":8,"bbox":[430,424,684,88]}
+{"kind":"textbox","id":"sh/1cjqp0bu","slide":8,"name":"s4-title-2","text":"建立 24 小时冷却期","textPreview":"建立 24 小时冷却期","textChars":11,"textLines":1,"bbox":[462,444,280,22]}
+{"kind":"textbox","id":"sh/18b6tc3i","slide":8,"name":"s4-body-2","text":"冲动消费、投资或跟风前，先给自己一天时间。","textPreview":"冲动消费、投资或跟风前，先给自己一天时间。","textChars":21,"textLines":1,"bbox":[462,474,610,28]}
+{"kind":"notes","id":"nt/4ctx8s","slide":8,"text":""}
+{"kind":"slide","id":"sl/yzu016","slide":9,"title":"ANTI FOMO GUIDE","textShapes":14}
+{"kind":"shape","id":"sh/1g3idgzm","slide":9,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/edsz21gb","slide":9,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/fel0b6hw","slide":9,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/srah0by5","slide":9,"name":"eyebrow-9","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/tsji9gzq","slide":9,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/6pszy1gz","slide":9,"name":"page-9","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/rq1076hk","slide":9,"name":"title-策略五：修复“我还不够”","text":"策略五：修复“我还不够”","textPreview":"策略五：修复“我还不够”","textChars":12,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/4nahwryt","slide":9,"name":"subtitle-策略五：修复“我还不够”","text":"当注意力不再只盯着“别人有什么”，你更容易看见自己已经拥有和正在成长的部分。","textPreview":"当注意力不再只盯着“别人有什么”，你更容易看见自己已经拥有和正在成长的部分。","textChars":38,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/5oji5wze","slide":9,"bbox":[84,214,492,296]}
+{"kind":"textbox","id":"sh/lw7atofq","slide":9,"name":"s5-journal-title","text":"今晚可以写下的 3 件小事","textPreview":"今晚可以写下的 3 件小事","textChars":13,"textLines":1,"bbox":[118,246,260,24]}
+{"kind":"shape","id":"sh/kvy9kjel","slide":9,"bbox":[118,294,424,1]}
+{"kind":"textbox","id":"sh/zupsrex0","slide":9,"name":"s5-note-0","text":"今天有人认真听我说话","textPreview":"今天有人认真听我说话","textChars":10,"textLines":1,"bbox":[120,306,390,22]}
+{"kind":"shape","id":"sh/ytgrytwf","slide":9,"bbox":[118,352,424,1]}
+{"kind":"textbox","id":"sh/xs7apofu","slide":9,"name":"s5-note-1","text":"我完成了一件原本拖延的事","textPreview":"我完成了一件原本拖延的事","textChars":12,"textLines":1,"bbox":[120,364,390,22]}
+{"kind":"shape","id":"sh/cre9wjy9","slide":9,"bbox":[118,410,424,1]}
+{"kind":"textbox","id":"sh/b65snexo","slide":9,"name":"s5-note-2","text":"我给自己留出了休息时间","textPreview":"我给自己留出了休息时间","textChars":11,"textLines":1,"bbox":[120,422,390,22]}
+{"kind":"shape","id":"sh/q5wru9g3","slide":9,"bbox":[620,212,494,84]}
+{"kind":"textbox","id":"sh/p4nal4fy","slide":9,"name":"s5-title-0","text":"感恩日记","textPreview":"感恩日记","textChars":4,"textLines":1,"bbox":[650,232,200,22]}
+{"kind":"textbox","id":"sh/o3e9szyd","slide":9,"name":"s5-body-0","text":"每天写下 3 件值得感恩的事，帮助注意力从匮乏转向拥有。","textPreview":"每天写下 3 件值得感恩的事，帮助注意力从匮乏转向拥有。","textChars":28,"textLines":1,"bbox":[650,260,420,34]}
+{"kind":"shape","id":"sh/g7i98j69","slide":9,"bbox":[620,314,494,84]}
+{"kind":"textbox","id":"sh/h8ra14ne","slide":9,"name":"s5-title-1","text":"积极自我对话","textPreview":"积极自我对话","textChars":6,"textLines":1,"bbox":[650,334,200,22]}
+{"kind":"textbox","id":"sh/ul0r69o3","slide":9,"name":"s5-body-1","text":"用“我已经拥有足够多”替代“我是不是又错过了什么”","textPreview":"用“我已经拥有足够多”替代“我是不是又错过了什么”","textChars":25,"textLines":1,"bbox":[650,362,420,34]}
+{"kind":"shape","id":"sh/fm9sze5o","slide":9,"bbox":[620,416,494,84]}
+{"kind":"textbox","id":"sh/sjy94z6x","slide":9,"name":"s5-title-2","text":"盘点个人优势","textPreview":"盘点个人优势","textChars":6,"textLines":1,"bbox":[650,436,200,22]}
+{"kind":"textbox","id":"sh/tk7ax4ni","slide":9,"name":"s5-body-2","text":"回看自己的成就、技能，以及别人真诚给过你的赞美。","textPreview":"回看自己的成就、技能，以及别人真诚给过你的赞美。","textChars":24,"textLines":1,"bbox":[650,464,420,34]}
+{"kind":"notes","id":"nt/yzu016","slide":9,"text":""}
+{"kind":"slide","id":"sl/fy0is4","slide":10,"title":"ANTI FOMO GUIDE","textShapes":14}
+{"kind":"shape","id":"sh/po7q14z2","slide":10,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/21wr6p0b","slide":10,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/32p8zuhw","slide":10,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/gze94fi5","slide":10,"name":"eyebrow-10","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/10nqxkzq","slide":10,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/exwr2p0f","slide":10,"name":"page-10","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/fy58vahk","slide":10,"name":"title-策略六：回到真实连接","text":"策略六：回到真实连接","textPreview":"策略六：回到真实连接","textChars":10,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/svep0fi9","slide":10,"name":"subtitle-策略六：回到真实连接","text":"真正稳定归属感的，不是更多点赞，而是更深的陪伴、回应和共同经历。","textPreview":"真正稳定归属感的，不是更多点赞，而是更深的陪伴、回应和共同经历。","textChars":32,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/twnqtkzu","slide":10,"bbox":[84,240,320,222]}
+{"kind":"shape","id":"sh/h4zqhgby","slide":10,"bbox":[204,266,80,80]}
+{"kind":"textbox","id":"sh/w3qpobad","slide":10,"name":"s6-icon-0","text":"见","textPreview":"见","textChars":1,"textLines":1,"bbox":[220,291,48,32]}
+{"kind":"textbox","id":"sh/v2h8f6ts","slide":10,"name":"s6-title-0","text":"线下见面","textPreview":"线下见面","textChars":4,"textLines":1,"bbox":[124,366,240,24]}
+{"kind":"textbox","id":"sh/uh87m1s7","slide":10,"name":"s6-body-0","text":"定期和朋友、家人面对面吃饭、散步或聊天。","textPreview":"定期和朋友、家人面对面吃饭、散步或聊天。","textChars":20,"textLines":1,"bbox":[118,404,252,40]}
+{"kind":"shape","id":"sh/9gzqdwb2","slide":10,"bbox":[440,240,320,222]}
+{"kind":"shape","id":"sh/8f6pkrah","slide":10,"bbox":[560,266,80,80]}
+{"kind":"textbox","id":"sh/7exob6tw","slide":10,"name":"s6-icon-1","text":"聊","textPreview":"聊","textChars":1,"textLines":1,"bbox":[576,291,48,32]}
+{"kind":"textbox","id":"sh/mdo7i1sb","slide":10,"name":"s6-title-1","text":"深度对话","textPreview":"深度对话","textChars":4,"textLines":1,"bbox":[480,366,240,24]}
+{"kind":"textbox","id":"sh/lcf69wbq","slide":10,"name":"s6-body-1","text":"把“点赞评论”升级成电话、语音或一次认真交流。","textPreview":"把“点赞评论”升级成电话、语音或一次认真交流。","textChars":23,"textLines":1,"bbox":[474,404,252,40]}
+{"kind":"shape","id":"sh/kb6pgra5","slide":10,"bbox":[796,240,320,222]}
+{"kind":"shape","id":"sh/cvapwri1","slide":10,"bbox":[916,266,80,80]}
+{"kind":"textbox","id":"sh/dwjq5wjm","slide":10,"name":"s6-icon-2","text":"连","textPreview":"连","textChars":1,"textLines":1,"bbox":[932,291,48,32]}
+{"kind":"textbox","id":"sh/qts7uh0v","slide":10,"name":"s6-title-2","text":"志愿服务","textPreview":"志愿服务","textChars":4,"textLines":1,"bbox":[836,366,240,24]}
+{"kind":"textbox","id":"sh/ru183m1g","slide":10,"name":"s6-body-2","text":"在帮助别人和参与群体中，重新建立意义感和归属感。","textPreview":"在帮助别人和参与群体中，重新建立意义感和归属感。","textChars":24,"textLines":1,"bbox":[830,404,252,40]}
+{"kind":"textbox","id":"sh/4rqpsri5","slide":10,"text":"连接感来自被真实看见，而不是持续在线。","textPreview":"连接感来自被真实看见，而不是持续在线。","textChars":19,"textLines":1,"bbox":[84,614,460,60]}
+{"kind":"notes","id":"nt/fy0is4","slide":10,"text":""}
+{"kind":"slide","id":"sl/dcnjo8","slide":11,"title":"ANTI FOMO GUIDE","textShapes":14}
+{"kind":"shape","id":"sh/svips3ml","slide":11,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/ru98jy50","slide":11,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/qt07qt4f","slide":11,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/10bqp832","slide":11,"name":"eyebrow-11","text":"ANTI FOMO GUIDE","textPreview":"ANTI FOMO GUIDE","textChars":15,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/0z29w3mh","slide":11,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/fyt8ni5c","slide":11,"name":"page-11","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"textbox","id":"sh/ex07ud4r","slide":11,"name":"title-搭建你的反 FOMO 系统","text":"搭建你的反 FOMO 系统","textPreview":"搭建你的反 FOMO 系统","textChars":13,"textLines":1,"bbox":[84,68,620,52]}
+{"kind":"textbox","id":"sh/h47qdony","slide":11,"name":"subtitle-搭建你的反 FOMO 系统","text":"当你有一套固定流程，情绪来临时就不必每次都靠意志力硬扛。","textPreview":"当你有一套固定流程，情绪来临时就不必每次都靠意志力硬扛。","textChars":28,"textLines":1,"bbox":[84,126,760,54]}
+{"kind":"shape","id":"sh/g3ypkjmd","slide":11,"bbox":[84,230,320,222]}
+{"kind":"textbox","id":"sh/m14fa1ob","slide":11,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[112,254,38,38]}
+{"kind":"textbox","id":"sh/nmdwj6pw","slide":11,"name":"sys-title-0","text":"决策清单","textPreview":"决策清单","textChars":4,"textLines":1,"bbox":[166,260,180,24]}
+{"kind":"textbox","id":"sh/onmxcr6h","slide":11,"name":"sys-body-0","text":"冲动来时先问：这是基于理性还是情绪？它符合我的长期目标吗？","textPreview":"冲动来时先问：这是基于理性还是情绪？它符合我的长期目标吗？","textChars":29,"textLines":1,"bbox":[112,314,264,72]}
+{"kind":"shape","id":"sh/9ovelw72","slide":11,"bbox":[440,230,320,222]}
+{"kind":"textbox","id":"sh/ap4fe1o7","slide":11,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[468,254,38,38]}
+{"kind":"textbox","id":"sh/bqdwn6ps","slide":11,"name":"sys-title-1","text":"信息管理","textPreview":"信息管理","textChars":4,"textLines":1,"bbox":[522,260,180,24]}
+{"kind":"textbox","id":"sh/wr6xgb6d","slide":11,"name":"sys-body-1","text":"精选 2-3 个高质量信息源，减少重复输入和无效对比。","textPreview":"精选 2-3 个高质量信息源，减少重复输入和无效对比。","textChars":27,"textLines":1,"bbox":[468,314,264,72]}
+{"kind":"shape","id":"sh/xsfepg7y","slide":11,"bbox":[796,230,320,222]}
+{"kind":"textbox","id":"sh/ytofiloj","slide":11,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[824,254,38,38]}
+{"kind":"textbox","id":"sh/juxwrqp4","slide":11,"name":"sys-title-2","text":"复发预案","textPreview":"复发预案","textChars":4,"textLines":1,"bbox":[878,260,180,24]}
+{"kind":"textbox","id":"sh/vyhwfqlw","slide":11,"name":"sys-body-2","text":"提前准备替代活动：运动、阅读、写日记、做手工、出门走路。","textPreview":"提前准备替代活动：运动、阅读、写日记、做手工、出门走路。","textChars":28,"textLines":1,"bbox":[824,314,264,72]}
+{"kind":"shape","id":"sh/uxov6l4r","slide":11,"bbox":[196,506,888,74]}
+{"kind":"textbox","id":"sh/hkzehg32","slide":11,"name":"sys-strip","text":"把“看到什么都想跟”改成“遇到刺激先暂停、先判断、再选择”。","textPreview":"把“看到什么都想跟”改成“遇到刺激先暂停、先判断、再选择”。","textChars":30,"textLines":1,"bbox":[236,531,808,24]}
+{"kind":"notes","id":"nt/dcnjo8","slide":11,"text":""}
+{"kind":"slide","id":"sl/aqna8o","slide":12,"title":"CLOSING NOTE","textShapes":5}
+{"kind":"shape","id":"sh/47u5w7uh","slide":12,"bbox":[960,12,250,190]}
+{"kind":"shape","id":"sh/36lo32tc","slide":12,"bbox":[8,520,220,150]}
+{"kind":"shape","id":"sh/ilsnuxcr","slide":12,"bbox":[1060,548,140,96]}
+{"kind":"textbox","id":"sh/hkj61sb6","slide":12,"name":"eyebrow-12","text":"CLOSING NOTE","textPreview":"CLOSING NOTE","textChars":12,"textLines":1,"bbox":[84,22,220,22]}
+{"kind":"shape","id":"sh/gja5snul","slide":12,"bbox":[316,32,88,2]}
+{"kind":"textbox","id":"sh/vi14zit0","slide":12,"name":"page-12","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1140,660,60,22]}
+{"kind":"shape","id":"sh/uhsnqdcf","slide":12,"bbox":[446,138,388,388]}
+{"kind":"textbox","id":"sh/tgjmx8vu","slide":12,"name":"closing-title","text":"你不需要参加每一场派对，\n你本身就是一场盛宴。","textPreview":"你不需要参加每一场派对， | 你本身就是一场盛宴。","textChars":23,"textLines":2,"bbox":[250,244,780,130]}
+{"kind":"textbox","id":"sh/8fa5onu9","slide":12,"name":"closing-body","text":"从今天开始，只选一个策略实践：\n关掉一组通知、写下三件感恩小事，或给自己一个无手机的小时。","textPreview":"从今天开始，只选一个策略实践： | 关掉一组通知、写下三件感恩小事，或给自己一个无手机的小时。","textChars":45,"textLines":2,"bbox":[306,408,668,72]}
+{"kind":"shape","id":"sh/etg32l0n","slide":12,"bbox":[452,534,376,58]}
+{"kind":"textbox","id":"sh/fup4vq18","slide":12,"name":"closing-cta","text":"把注意力带回生活，定力会慢慢回来","textPreview":"把注意力带回生活，定力会慢慢回来","textChars":16,"textLines":1,"bbox":[484,554,312,26]}
+{"kind":"notes","id":"nt/aqna8o","slide":12,"text":""}
