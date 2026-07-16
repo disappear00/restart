@@ -77,6 +77,21 @@
     {"title":"Word文档 生成","src": "https://www.kdocs.cn/l/cocv8rEhnEwI"},
     {"title":"PPT 生成","src": "https://www.kdocs.cn/l/cmwnO06fEAmj"}
   ],
+  "animations": [
+    {
+      "name": "particles",
+      "enabled": false,
+      "css": "",
+      "js": "plugins/particles.js",
+      "config": {
+        "style": "nodes",
+        "count": 60,
+        "color": "#e11d48",
+        "opacity": 0.15,
+        "speed": 0.3
+      }
+    }
+  ],
   "cartoonText": {
     "text": "三极客智嵌社",
     "color": "#e11d48",

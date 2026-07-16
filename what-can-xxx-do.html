@@ -744,7 +744,7 @@ fetch('data.json')
     DATA = json
     loadSavedData()
     migrateOldStorage()
-    init()
+    loadPlugins().then(() => init())
   })
   .catch(() => {
     init()
@@ -769,6 +769,67 @@ function migrateOldStorage() {
     }
   } catch (_) {}
 }
+
+/* ─── Animation Plugin System ─── */
+let _activePluginInstances = []
+
+function loadPluginScript(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-plugin-src="${src}"]`)
+    if (existing) return resolve()
+    const s = document.createElement('script')
+    s.src = src
+    s.dataset.pluginSrc = src
+    s.onload = resolve
+    s.onerror = reject
+    document.head.appendChild(s)
+  })
+}
+
+function loadPluginCSS(href) {
+  if (!href) return Promise.resolve()
+  const existing = document.querySelector(`link[data-plugin-href="${href}"]`)
+  if (existing) return Promise.resolve()
+  const l = document.createElement('link')
+  l.rel = 'stylesheet'
+  l.href = href
+  l.dataset.pluginHref = href
+  document.head.appendChild(l)
+  return Promise.resolve()
+}
+
+function loadPlugins() {
+  const anims = DATA.animations || []
+  const tasks = anims.filter(a => a.enabled).map(a => {
+    const jobs = []
+    if (a.css) jobs.push(loadPluginCSS(a.css).catch(() => console.warn('CSS 插件加载失败:', a.css)))
+    if (a.js) jobs.push(loadPluginScript(a.js).catch(() => console.warn('JS 插件加载失败:', a.js)))
+    return Promise.all(jobs)
+  })
+  return Promise.all(tasks).then(() => initPlugins()).catch(() => initPlugins())
+}
+
+function initPlugins() {
+  destroyPlugins()
+  const anims = DATA.animations || []
+  anims.filter(a => a.enabled).forEach(a => {
+    const plugin = window.AnimationPlugins && window.AnimationPlugins.get(a.name)
+    if (plugin) {
+      plugin.init(a.config || {})
+      _activePluginInstances.push(plugin)
+    }
+  })
+}
+
+function destroyPlugins() {
+  _activePluginInstances.forEach(p => {
+    if (p.uninstall) p.uninstall()
+    if (p.destroy) p.destroy()
+  })
+  _activePluginInstances = []
+}
+
+/* ─── End Animation Plugin System ─── */
 
 function renderSlides() {
   const { cover, features, practices, impressions, scores, usecases, cta } = DATA
@@ -1322,6 +1383,60 @@ function renderSettings() {
     <div class="s-field" style="margin-top:10px"><label>每个字的动作</label></div>
     <div id="ct-char-anims" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px"></div>
   </div>`
+  // ── Particles ──
+  const particleCfg = (D.animations && D.animations[0]) || { enabled: false, config: {} }
+  const pc = particleCfg.config || {}
+  const styleOpts = [
+    { value: 'nodes', label: '浮游节点' },
+    { value: 'stars', label: '闪烁星辰' },
+    { value: 'bubbles', label: '上升气泡' },
+    { value: 'fireflies', label: '萤火虫' },
+    { value: 'snow', label: '飘雪' },
+    { value: 'aurora', label: '极光粒子流' },
+  ]
+  html += `<div class="settings-section">
+    <h3>背景粒子 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（Canvas 动态粒子效果，多种风格可选）</span></h3>
+    <div class="s-row" style="align-items:center">
+      <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:14px;font-weight:600;color:#57534e">
+        <input type="checkbox" data-path="animations.0.enabled" ${particleCfg.enabled ? 'checked' : ''}>
+        启用粒子
+      </label>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px">
+      <div class="s-field">
+        <label>风格</label>
+        <select data-path="animations.0.config.style" style="width:100%;padding:10px 14px;border:2px solid #e7e5e4;font-size:14px;font-family:inherit;color:#292524;outline:none;background:#fff">${
+          styleOpts.map(o => `<option value="${o.value}"${pc.style === o.value ? ' selected' : ''}>${o.label}</option>`).join('')
+        }</select>
+      </div>
+      <div class="s-field">
+        <label>颜色</label>
+        <input type="color" data-path="animations.0.config.color" value="${pc.color || '#e11d48'}" style="width:100%;height:40px;padding:2px;border:2px solid #e7e5e4;cursor:pointer">
+      </div>
+      <div class="s-field">
+        <label>粒子数量</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="range" min="5" max="200" value="${pc.count || 60}" data-path="animations.0.config.count" oninput="document.getElementById('pc-count-val').textContent=this.value" style="flex:1">
+          <span id="pc-count-val" style="font-size:14px;font-weight:700;color:#e11d48;min-width:30px;text-align:center">${pc.count || 60}</span>
+        </div>
+      </div>
+      <div class="s-field">
+        <label>透明度</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="range" min="0.02" max="1" step="0.02" value="${pc.opacity || 0.15}" data-path="animations.0.config.opacity" oninput="document.getElementById('pc-opacity-val').textContent=this.value" style="flex:1">
+          <span id="pc-opacity-val" style="font-size:14px;font-weight:700;color:#e11d48;min-width:30px;text-align:center">${pc.opacity || 0.15}</span>
+        </div>
+      </div>
+      <div class="s-field">
+        <label>移动速度</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input type="range" min="0.02" max="1" step="0.02" value="${pc.speed || 0.3}" data-path="animations.0.config.speed" oninput="document.getElementById('pc-speed-val').textContent=this.value" style="flex:1">
+          <span id="pc-speed-val" style="font-size:14px;font-weight:700;color:#e11d48;min-width:30px;text-align:center">${pc.speed || 0.3}</span>
+        </div>
+      </div>
+    </div>
+  </div>`
+
   // Delay rendering per-char anims so element exists in DOM
   setTimeout(renderCartoonCharAnims, 0)
 
@@ -1439,7 +1554,10 @@ function collectSettings() {
       obj = obj[path[i]]
     }
     if (obj == null) return
-    let val = el.type === 'number' ? parseFloat(el.value) || 0 : el.value
+    let val
+    if (el.type === 'checkbox') val = el.checked
+    else if (el.type === 'number' || el.type === 'range') val = parseFloat(el.value) || 0
+    else val = el.value
     obj[path[path.length - 1]] = val
   })
 }
@@ -1449,8 +1567,10 @@ function applySettings() {
     collectSettings()
     collectCartoonAnims()
     saveData()
-    rebuild()
-    closeSettings()
+    loadPlugins().then(() => {
+      rebuild()
+      closeSettings()
+    })
   } catch (e) {
     alert('应用失败：' + e.message)
     console.error(e)
@@ -1494,13 +1614,24 @@ function init() {
     counter.textContent = `${current + 1} / ${total}`
     window._totalSlides = total
     updateCartoonText()
+    initPlugins()
   }
 
+  window._pageGoTo = goTo
   rebuild()
 
   function goTo(index) {
     const total = window._totalSlides || document.querySelectorAll('.slide').length
     if (index < 0 || index >= total) return
+
+    if (window._pluginGoTo) {
+      window._pluginGoTo(index)
+      document.querySelectorAll('.nav-dot').forEach((el, i) => el.classList.toggle('active', i === index))
+      current = index
+      counter.textContent = `${current + 1} / ${total}`
+      return
+    }
+
     document.querySelectorAll('.slide').forEach((el, i) => {
       el.classList.toggle('active', i === index)
     })
