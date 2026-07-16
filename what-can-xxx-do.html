@@ -422,6 +422,13 @@
   }
   .cta-feature .lbl { font-size:13px; color:#d6d3d1; margin-top:4px; font-weight:500 }
 
+  /* ─── Extra Slides (iframe) ─── */
+  .slide-iframe { padding:0 !important; background:#fff }
+  .slide-iframe iframe {
+    width:100%; height:100%; border:none;
+    position:absolute; inset:0
+  }
+
   /* ─── Navigation ─── */
   .nav-bar {
     position:fixed; bottom:40px; left:50%; transform:translateX(-50%);
@@ -777,9 +784,8 @@ function renderSlides() {
     return s ? `style="${s}"` : `class="${cls}"`
   }
 
-  return [
-    // ── 1. Cover ──
-    `<div class="slide cover active" ${sc(cover, 'bg-white')}>
+  const slideMap = {
+    cover: `<div class="slide cover active" ${sc(cover, 'bg-white')}>
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
@@ -791,9 +797,7 @@ function renderSlides() {
         cover.badges.map(b => `<span class="cover-badge">${esc(b)}</span>`).join('')
       }</div>
     </div>`,
-
-    // ── 2. Features ──
-    `<div class="slide" ${sc(features, 'bg-rose')}>
+    features: `<div class="slide" ${sc(features, 'bg-rose')}>
       <div class="deco deco-3"></div>
       <div class="page-tag">特点</div>
       <h2 class="pg-title">${esc(cover.product)} 的<span class="accent"> ${esc(features.title)}</span></h2>
@@ -810,9 +814,7 @@ function renderSlides() {
         `).join('')
       }</div>
     </div>`,
-
-    // ── 3. Practice ──
-    `<div class="slide" ${sc(practices, 'bg-white')}>
+    practices: `<div class="slide" ${sc(practices, 'bg-white')}>
       <div class="deco deco-4"></div>
       <div class="page-tag">测试实践</div>
       <h2 class="pg-title">${esc(practices.title)}</h2>
@@ -828,9 +830,7 @@ function renderSlides() {
         `).join('')
       }</div>
     </div>`,
-
-    // ── 4. Impressions ──
-    `<div class="slide" ${sc(impressions, 'bg-pink')}>
+    impressions: `<div class="slide" ${sc(impressions, 'bg-pink')}>
       <div class="deco deco-5"></div>
       <div class="deco deco-6"></div>
       <div class="page-tag">使用感想</div>
@@ -845,9 +845,7 @@ function renderSlides() {
         `).join('')
       }</div>
     </div>`,
-
-    // ── 5. Scoring ──
-    `<div class="slide" ${sc(scores, 'bg-coral')}>
+    scores: `<div class="slide" ${sc(scores, 'bg-coral')}>
       <div class="deco deco-7"></div>
       <div class="page-tag">综合评分</div>
       <h2 class="pg-title">为 ${esc(cover.product)} <span class="accent">${esc(scores.title)}</span></h2>
@@ -866,9 +864,7 @@ function renderSlides() {
         <div class="lbl">综合评分（满分 100）</div>
       </div>
     </div>`,
-
-    // ── 6. Use Cases ──
-    `<div class="slide" ${sc(usecases, 'bg-white')}>
+    usecases: `<div class="slide" ${sc(usecases, 'bg-white')}>
       <div class="page-tag">场景</div>
       <h2 class="pg-title">${esc(usecases.title)}</h2>
       <p class="pg-desc">${esc(usecases.desc)}</p>
@@ -883,9 +879,7 @@ function renderSlides() {
         `).join('')
       }</div>
     </div>`,
-
-    // ── 7. CTA / Conclusion ──
-    `<div class="slide cta" ${sc(cta, 'bg-warm')}>
+    cta: `<div class="slide cta" ${sc(cta, 'bg-warm')}>
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
@@ -901,7 +895,35 @@ function renderSlides() {
       <p class="cta-sub">${esc(cta.subtitle)}</p>
       <button class="cta-btn">${esc(cta.btnText)}</button>
     </div>`,
-  ]
+  }
+
+  const extraSlides = DATA.extraSlides || []
+  extraSlides.forEach((es, i) => {
+    slideMap['extra:' + i] = `<div class="slide slide-iframe">
+      <iframe src="${esc(es.src)}" loading="lazy" allowfullscreen></iframe>
+    </div>`
+  })
+
+  // Build title → extra:N lookup
+  const titleToExtra = {}
+  extraSlides.forEach((es, i) => { if (es.title) titleToExtra[es.title] = 'extra:' + i })
+
+  // Resolve a slideOrder entry to a slideMap key
+  function resolveId(id) {
+    if (slideMap[id]) return id
+    if (titleToExtra[id]) return titleToExtra[id]
+    return null
+  }
+
+  // Build order from slideOrder, appending any extra slides not yet listed
+  const defaultOrder = ['cover','features','practices','impressions','scores','usecases','cta']
+  let order = DATA.slideOrder && DATA.slideOrder.length ? [...DATA.slideOrder] : [...defaultOrder]
+  extraSlides.forEach(es => {
+    const id = resolveId(es.title) || ('extra:' + extraSlides.indexOf(es))
+    if (!order.some(o => resolveId(o) === id)) order.push(es.title || ('extra:' + extraSlides.indexOf(es)))
+  })
+
+  return order.map(id => slideMap[resolveId(id)]).filter(Boolean)
 }
 
 function esc(s) {
@@ -1236,6 +1258,50 @@ function renderSettings() {
     <button class="s-add" onclick="addCtaFeature()">＋ 添加指标</button>
   </div>`
 
+  // ── Slide Order ──
+  function slideLabel(id) {
+    const labels = { cover:'封面', features:'特点', practices:'测试实践', impressions:'使用感想', scores:'综合评分', usecases:'场景', cta:'结尾' }
+    if (labels[id]) return labels[id]
+    const m = id.match(/^extra:(\d+)$/)
+    if (m && D.extraSlides && D.extraSlides[+m[1]]) return D.extraSlides[+m[1]].title || '额外页面'
+    return id
+  }
+  const curOrder = D.slideOrder && D.slideOrder.length ? [...D.slideOrder] : ['cover','features','practices','impressions','scores','usecases','cta']
+  ;(D.extraSlides || []).forEach((es, i) => {
+    const alt = 'extra:' + i
+    const exists = curOrder.some(o => o === es.title || o === alt)
+    if (!exists) curOrder.push(es.title || alt)
+  })
+  html += `<div class="settings-section">
+    <h3>页面排序 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（拖拽或点击按钮调整顺序）</span></h3>
+    <div id="s-order-list" style="display:flex;flex-direction:column;gap:6px">`
+  curOrder.forEach((id, idx) => {
+    const isFirst = idx === 0
+    const isLast = idx === curOrder.length - 1
+    html += `<div class="s-row" style="align-items:center;gap:8px">
+      <span style="min-width:24px;font-size:12px;color:#d6d3d1;font-weight:600;text-align:center">${idx + 1}</span>
+      <span style="flex:1;font-size:14px;color:#292524;font-weight:500">${esc(slideLabel(id))}</span>
+      <button class="s-order-btn" onclick="slideMove('${id}',-1)" ${isFirst ? 'disabled style="opacity:.3"' : ''} style="width:28px;height:28px;border:2px solid #e7e5e4;background:#fafaf9;color:#a8a29e;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center">▲</button>
+      <button class="s-order-btn" onclick="slideMove('${id}',1)" ${isLast ? 'disabled style="opacity:.3"' : ''} style="width:28px;height:28px;border:2px solid #e7e5e4;background:#fafaf9;color:#a8a29e;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center">▼</button>
+    </div>`
+  })
+  html += `</div></div>`
+
+  // ── Extra Slides ──
+  html += `<div class="settings-section">
+    <h3>额外页面 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（嵌入外部 HTML 文件或网页 URL）</span></h3>
+    <div id="s-extra-list">`
+  ;(D.extraSlides || []).forEach((es, i) => {
+    html += `<div class="s-row" data-idx="${i}">
+      <div class="s-field" style="flex:1"><label>标题</label><input data-path="extraSlides.${i}.title" value="${esc(es.title)}"></div>
+      <div class="s-field" style="flex:3"><label>地址（本地HTML路径 或 网页URL）</label><input data-path="extraSlides.${i}.src" value="${esc(es.src)}"></div>
+      <button class="s-del" onclick="deleteExtraSlide(${i})" title="删除">✕</button>
+    </div>`
+  })
+  html += `</div>
+    <button class="s-add" onclick="addExtraSlide()">＋ 添加额外页面</button>
+  </div>`
+
   // ── Cartoon Text ──
   const ctCfg = getCartoonText()
   const posOptions = [
@@ -1308,6 +1374,50 @@ function deleteCoverBadge(idx) {
 function deleteCtaFeature(idx) {
   DATA.cta.features.splice(idx, 1)
   renderSettings()
+}
+function addExtraSlide() {
+  if (!DATA.extraSlides) DATA.extraSlides = []
+  DATA.extraSlides.push({ title: '新页面', src: '' })
+  if (DATA.slideOrder) DATA.slideOrder.push('新页面')
+  renderSettings()
+}
+function deleteExtraSlide(idx) {
+  const removed = DATA.extraSlides[idx]
+  const removedTitle = removed && removed.title
+  DATA.extraSlides.splice(idx, 1)
+  if (DATA.slideOrder) {
+    // Remove by title or extra:N ref
+    DATA.slideOrder = DATA.slideOrder.filter(id => {
+      if (id === removedTitle) return false
+      const m = id.match(/^extra:(\d+)$/)
+      if (m && +m[1] === idx) return false
+      return true
+    })
+    // Reindex remaining extra:N refs (backward compat)
+    DATA.slideOrder = DATA.slideOrder.map(id => {
+      const m = id.match(/^extra:(\d+)$/)
+      return m && +m[1] > idx ? 'extra:' + (+m[1] - 1) : id
+    })
+  }
+  renderSettings()
+}
+function slideMove(id, dir) {
+  if (!DATA.slideOrder) initSlideOrder()
+  const idx = DATA.slideOrder.indexOf(id)
+  if (idx === -1) return
+  const target = idx + dir
+  if (target < 0 || target >= DATA.slideOrder.length) return
+  ;[DATA.slideOrder[idx], DATA.slideOrder[target]] = [DATA.slideOrder[target], DATA.slideOrder[idx]]
+  saveData()
+  renderSettings()
+  rebuild()
+}
+function initSlideOrder() {
+  const def = ['cover','features','practices','impressions','scores','usecases','cta']
+  DATA.slideOrder = [...def]
+  ;(DATA.extraSlides || []).forEach(es => {
+    DATA.slideOrder.push(es.title || ('extra:' + DATA.slideOrder.length))
+  })
 }
 
 function editCode(idx) {
