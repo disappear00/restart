@@ -2,7 +2,7 @@
   "cover": {
     "bg": "",
     "fg": "",
-    "product": "ChatGPT (Codex)",
+    "product": "Codex",
     "subtitle": "AI 驱动的内容创作助手，一键生成网页、PPT、Word、Excel",
     "tagline": "文档生成 · 智能高效 · 即说即得",
     "badges": ["AI 驱动", "网页生成", "PPT 生成", "Word 生成", "Excel 生成"]
@@ -69,6 +69,12 @@
       { "icon": "🎨", "title": "创意设计", "desc": "生成海报、简历、名片等创意页面的 HTML 代码，快速落地设计稿。", "tag": "网页" },
       { "icon": "📚", "title": "教育培训", "desc": "制作课件 PPT、讲义文档、成绩统计表等教学相关材料。", "tag": "多格式" }
     ]
+  },
+  "cartoonText": {
+    "text": "三极客智嵌社",
+    "color": "#e11d48",
+    "position": "bottom-left",
+    "anims": ["bounce","wiggle","pulse"]
   },
   "cta": {
     "bg": "",

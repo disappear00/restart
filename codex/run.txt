@@ -1,1 +1,0 @@
-npx live-server "D:\System\Desktop\AGI\restart\codex"

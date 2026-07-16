@@ -616,12 +616,10 @@
 
   /* ─── Cartoon Text ─── */
   .cartoon-text {
-    position:fixed; bottom:100px; left:24px;
+    position:fixed;
     z-index:998;
     font-size:44px; font-weight:900;
     font-family:'Comic Sans MS','Chalkboard SE','Segoe Print','PingFang SC','Microsoft YaHei',cursive;
-    color:#e11d48;
-    text-shadow:3px 3px 0 #fecaca, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
     cursor:default; user-select:none;
     line-height:1.2; pointer-events:none;
     letter-spacing:2px;
@@ -915,8 +913,10 @@ function isImagePath(s) {
   return /\.(png|jpg|jpeg|gif|webp|svg|bmp)(\?.*)?$/i.test(s)
 }
 function getCartoonText() {
-  if (!DATA.cartoonText) DATA.cartoonText = { text: '加油！', anims: ['bounce','wiggle','pulse'] }
+  if (!DATA.cartoonText) DATA.cartoonText = { text: '加油！', color: '#e11d48', position: 'bottom-left', anims: ['bounce','wiggle','pulse'] }
   if (!DATA.cartoonText.anims) DATA.cartoonText.anims = []
+  if (!DATA.cartoonText.color) DATA.cartoonText.color = '#e11d48'
+  if (!DATA.cartoonText.position) DATA.cartoonText.position = 'bottom-left'
   while (DATA.cartoonText.anims.length < DATA.cartoonText.text.length) DATA.cartoonText.anims.push('bounce')
   while (DATA.cartoonText.anims.length > DATA.cartoonText.text.length) DATA.cartoonText.anims.pop()
   return DATA.cartoonText
@@ -927,6 +927,21 @@ function updateCartoonText() {
   const cfg = getCartoonText()
   const text = cfg.text || ''
   const anims = cfg.anims || []
+  const color = cfg.color || '#e11d48'
+  const position = cfg.position || 'bottom-left'
+
+  el.style.color = color
+  el.style.textShadow = `3px 3px 0 ${color}33, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff`
+
+  const positions = {
+    'bottom-left':  { bottom: '100px', left: '24px', top: 'auto', right: 'auto' },
+    'bottom-right': { bottom: '100px', right: '24px', top: 'auto', left: 'auto' },
+    'top-left':     { top: '100px', left: '24px', bottom: 'auto', right: 'auto' },
+    'top-right':    { top: '100px', right: '24px', bottom: 'auto', left: 'auto' },
+  }
+  const pos = positions[position] || positions['bottom-left']
+  Object.assign(el.style, pos)
+
   el.innerHTML = ''
   for (let i = 0; i < text.length; i++) {
     const ch = text[i]
@@ -1223,8 +1238,20 @@ function renderSettings() {
 
   // ── Cartoon Text ──
   const ctCfg = getCartoonText()
+  const posOptions = [
+    { value: 'bottom-left', label: '左下角' },
+    { value: 'bottom-right', label: '右下角' },
+    { value: 'top-left', label: '左上角' },
+    { value: 'top-right', label: '右上角' },
+  ]
   html += `<div class="settings-section">
     <h3>左下角卡通字</h3>
+    <div class="s-row">
+      <div class="s-field" style="max-width:80px"><label>颜色</label><input type="color" data-path="cartoonText.color" value="${ctCfg.color}"></div>
+      <div class="s-field" style="flex:1"><label>位置</label><select data-path="cartoonText.position" style="width:100%;padding:10px 14px;border:2px solid #e7e5e4;font-size:14px;font-family:inherit;color:#292524;outline:none;background:#fff">${
+        posOptions.map(o => `<option value="${o.value}"${ctCfg.position === o.value ? ' selected' : ''}>${o.label}</option>`).join('')
+      }</select></div>
+    </div>
     <div class="s-field"><label>文字内容</label><input id="ct-text-input" data-path="cartoonText.text" value="${esc(ctCfg.text)}" oninput="renderCartoonCharAnims()"></div>
     <div class="s-field" style="margin-top:10px"><label>每个字的动作</label></div>
     <div id="ct-char-anims" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px"></div>
