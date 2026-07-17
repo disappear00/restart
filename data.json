@@ -2,45 +2,45 @@
   "cover": {
     "bg": "",
     "fg": "",
-    "product": "Codex",
-    "subtitle": "AI 驱动的内容创作助手，一键生成网页、PPT、Word、Excel",
-    "tagline": "文档生成 · 智能高效 · 即说即得",
-    "badges": ["AI 驱动", "网页生成", "PPT 生成", "Word 生成", "Excel 生成"]
+    "product": "GPT5.6-sol",
+    "subtitle": "BUG 审计能力对比：GPT5.6-sol vs GPT5.5",
+    "tagline": "更强 · 更全面 · 更深入",
+    "badges": ["GPT5.6-sol", "BUG 审计", "CodexCLI", "代码安全", "对比测试"]
   },
   "features": {
     "bg": "",
     "fg": "",
-    "title": "核心特点",
-    "desc": "围绕四大办公场景，AI 帮你快速产出内容",
+    "title": "测试方法",
+    "desc": "相同提示词 + 相同代码文件 + CodexCLI，对比两个模型的 BUG 审计能力",
     "items": [
-      { "title": "网页生成", "desc": "输入需求描述，AI 自动生成完整的 HTML/CSS/JS 网页，支持响应式与交互效果。" },
-      { "title": "PPT 生成", "desc": "根据大纲或主题，自动生成结构清晰的幻灯片，支持多页布局与视觉美化。" },
-      { "title": "Word 文档生成", "desc": "从提纲到全文，快速生成排版规范的 Word 文档，支持报告、方案、纪要等。" },
-      { "title": "Excel 表格生成", "desc": "描述数据结构与计算逻辑，AI 自动创建带公式与格式的 Excel 表格。" }
+      { "title": "测试环境", "desc": "使用 CodexCLI 对 test 目录下 7 个 buggy 文件进行 BUG 审计，提示词完全一致。" },
+      { "title": "审计范围", "desc": "覆盖 Python 和 JavaScript 共 7 个含缺陷文件，包含认证、文件管理、数学引擎、DAG 编排、异步管道、限流器、响应式引擎。" },
+      { "title": "分析维度", "desc": "总发现数、高风险/中风险/低风险分布、代码质量评分、跨文件综合分析深度。" },
+      { "title": "对比基准", "desc": "GPT5.5 作为对照组，GPT5.6-sol 作为实验组，评估审计质量差异。" }
     ]
   },
   "practices": {
     "bg": "",
     "fg": "",
-    "title": "实际测试体验",
-    "desc": "四个方向的实测效果展示",
+    "title": "审计结果对比",
+    "desc": "GPT5.6-sol vs GPT5.5 在 7 个文件上的 BUG 发现能力对比",
     "items": [
-      { "label": "测试一", "title": "网页生成", "desc": "任务：构建一个高保真交互式个人作品集网站。", "code": "static/codex-web.png" },
-      { "label": "测试二", "title": "PPT 生成", "desc": "请帮我生成一份关于'如何避免FOMO（错失恐惧症）'的PPT。", "code": "static/codex-pptx.png" },
-      { "label": "测试三", "title": "Word 文档生成", "desc": "请帮我生成一份关于'西红柿炒鸡蛋的最佳做法的Word文档（.docx格式）'。", "code": "static/codex-docx.png" },
-      { "label": "测试四", "title": "Excel 表格生成", "desc": "你是一位专业的学习规划师。请为我设计一份动态学习计划电子表格。", "code": "static/codex-excel.png" }
+      { "label": "总发现数", "title": "GPT5.6-sol: 64 个 / GPT5.5: 54 个", "desc": "GPT5.6-sol 多发现 10 个 BUG，检出率高出 18.5%", "code": "/static/codex-docx.png" },
+      { "label": "高风险", "title": "GPT5.6-sol: 26 个 / GPT5.5: 24 个", "desc": "GPT5.6-sol 在高风险 BUG 上多发现 2 个", "code": "" },
+      { "label": "中风险", "title": "GPT5.6-sol: 31 个 / GPT5.5: 23 个", "desc": "中风险 BUG 检出量 GPT5.6-sol 高出 34.8%，分析更细", "code": "" },
+      { "label": "跨文件分析", "title": "GPT5.6-sol 有 / GPT5.5 无", "desc": "GPT5.6-sol 提供跨文件依赖风险分析，GPT5.5 仅做单文件汇总", "code": "" }
     ]
   },
   "impressions": {
     "bg": "",
     "fg": "",
-    "title": "我的体验如何",
-    "desc": "来自真实用户的实际使用反馈",
+    "title": "核心结论",
+    "desc": "GPT5.6-sol 为何更强？",
     "items": [
-      { "quote": "网页审美非常在线，交互流程，严格符合提示词要求，初次迭代产品出现较少的字体遮挡，整体效果优质", "author": "网页生成" },
-      { "quote": "内容大纲严格符合要求，拥有必要的引子/总结语,文稿流畅度高，但整体背景风格较单调", "author": "PPT生成" },
-      { "quote": "文档内字体样式和格式严格符合提示词要求，且可以自主生成/插入文档所需图片，并无明显缺点", "author": "word生成" },
-      { "quote": "格式无明显问题，整体样式美观，公式严谨且正确，有美观的可视化图表", "author": "excel生成" }
+      { "quote": "GPT5.6-sol 总发现 64 个 BUG，比 GPT5.5 多 10 个（+18.5%），尤其在中高风险问题上检出率显著更高", "author": "数量优势" },
+      { "quote": "GPT5.6-sol 提供跨文件依赖风险分析，识别组件间的组合风险；GPT5.5 仅做单文件独立汇总", "author": "跨文件分析" },
+      { "quote": "GPT5.6-sol 为每个文件提供完整的单元测试文件设计，覆盖关键缺陷路径；GPT5.5 仅粗略建议", "author": "测试覆盖" },
+      { "quote": "GPT5.6-sol 评分更严格（综合 2.9/10），不低估风险；GPT5.5 评分 3/10，对部分文件评分偏高", "author": "评分严格度" }
     ]
   },
   "scores": {
@@ -70,7 +70,7 @@
       { "icon": "📚", "title": "教育培训", "desc": "制作课件 PPT、讲义文档、成绩统计表等教学相关材料。", "tag": "多格式" }
     ]
   },
-  "slideOrder": ["cover", "features", "practices", "网页生成","Excel 表格生成","Word文档 生成","PPT 生成","impressions", "scores", "usecases", "cta"],
+  "slideOrder": ["cover", "features", "practices", "impressions", "scores", "usecases", "cta"],
   "extraSlides": [
     {"title":"网页生成","src": "http://127.0.0.1:3000/codex/index.html?vscode-livepreview=true#/home"},
     {"title":"Excel 表格生成","src": "https://www.kdocs.cn/l/ct9RqM2pqhJX"},
@@ -93,7 +93,7 @@
     }
   ],
   "cartoonText": {
-    "text": "三极客智嵌社",
+    "text": "GPT5.6-sol 更强",
     "color": "#e11d48",
     "position": "bottom-left",
     "anims": ["bounce","wiggle","pulse"]
@@ -101,13 +101,13 @@
   "cta": {
     "bg": "",
     "fg": "",
-    "title": "准备好体验Codex了吗",
-    "subtitle": "让 ChatGPT (Codex) 成为你的内容创作搭档，从网页到表格一应俱全",
+    "title": "GPT5.6-sol 为什么更强？",
+    "subtitle": "更多 BUG 发现 · 更深入的跨文件分析 · 更严格的评分标准 · 更完整的测试覆盖",
     "btnText": "感谢观看",
     "features": [
-      { "num": "10x", "lbl": "效率提升" },
-      { "num": "4+", "lbl": "文档格式" },
-      { "num": "89%", "lbl": "满意度" }
+      { "num": "64", "lbl": "总 BUG 发现" },
+      { "num": "26", "lbl": "高风险发现" },
+      { "num": "+18.5%", "lbl": "检出率提升" }
     ]
   }
 }

@@ -621,6 +621,83 @@
   .preset-btn span { border-radius:0; flex-shrink:0 }
   .preset-name { margin-left:2px }
 
+  /* ─── Card Modal ─── */
+  .card-modal-overlay {
+    position:fixed; inset:0; z-index:5000;
+    background:rgba(28,25,23,.5);
+    display:none; align-items:center; justify-content:center;
+    backdrop-filter:blur(4px)
+  }
+  .card-modal-overlay.open { display:flex }
+  .card-modal {
+    background:#fcfbfa;
+    max-width:1400px; width:90%; max-height:85vh;
+    overflow-y:auto;
+    box-shadow:16px 16px 0 rgba(28,25,23,.1);
+    border:2px solid #e7e5e4;
+    padding:48px 56px;
+    animation:fadeSlideUp .35s ease;
+    position:relative
+  }
+  .card-modal::-webkit-scrollbar { width:6px }
+  .card-modal::-webkit-scrollbar-thumb { background:#e11d48 }
+  .card-modal::-webkit-scrollbar-track { background:#f5f5f4 }
+  .card-modal-close {
+    position:absolute; top:16px; right:16px;
+    width:36px; height:36px;
+    border:2px solid #e7e5e4;
+    background:#fff;
+    color:#a8a29e; font-size:16px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:all .2s; line-height:1
+  }
+  .card-modal-close:hover {
+    border-color:#e11d48; color:#e11d48;
+    box-shadow:3px 3px 0 rgba(225,29,72,.15);
+    transform:translate(-1px,-1px)
+  }
+  .card-modal h2 { font-size:32px; margin-bottom:16px; color:#1c1917; font-weight:700 }
+  .card-modal .cm-label {
+    display:inline-block; font-size:12px; font-weight:700;
+    color:#e11d48; background:#fef2f2;
+    padding:4px 14px; margin-bottom:14px;
+    border:2px solid #fecaca
+  }
+  .card-modal p { font-size:18px; color:#57534e; line-height:1.8; margin-bottom:20px; font-weight:400 }
+  .card-modal .cm-code {
+    font-family:'SF Mono','Fira Code','Consolas',monospace;
+    font-size:14px; background:#fafaf9;
+    padding:20px 24px; color:#57534e; line-height:1.8; white-space:pre-wrap;
+    border-left:4px solid #e11d48;
+    border:2px solid #e7e5e4;
+    border-left-width:4px;
+    margin-top:12px
+  }
+  .card-modal .cm-quote {
+    font-size:22px; line-height:1.9; color:#292524; font-style:italic;
+    padding:24px 32px; background:#fafaf9;
+    border:2px solid #e7e5e4;
+    margin-bottom:16px
+  }
+  .card-modal .cm-author {
+    font-size:16px; color:#a8a29e; text-align:right
+  }
+  .card-modal .cm-author strong { color:#57534e }
+  .card-modal .cm-img {
+    margin-top:16px; border:2px solid #e7e5e4; overflow:hidden
+  }
+  .card-modal .cm-img img {
+    display:block; width:100%; height:auto; max-height:500px; object-fit:contain
+  }
+  .card-modal .cm-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:12px
+  }
+  .card-modal .cm-grid-item {
+    padding:16px; border:2px solid #f5f5f4; background:#fafaf9
+  }
+  .card-modal .cm-grid-item h4 { font-size:16px; color:#292524; font-weight:600; margin-bottom:4px }
+  .card-modal .cm-grid-item p { font-size:14px; color:#a8a29e; margin-bottom:0 }
+
   /* ─── Cartoon Text ─── */
   .cartoon-text {
     position:fixed;
@@ -706,6 +783,13 @@
 </div>
 
 <div class="cartoon-text" id="cartoonText">加油！</div>
+
+<div class="card-modal-overlay" id="cardModal">
+  <div class="card-modal" id="cardModalBody">
+    <button class="card-modal-close" id="cardModalClose">✕</button>
+    <div id="cardModalContent"></div>
+  </div>
+</div>
 
 <script>
 let DATA = {}
@@ -1653,6 +1737,61 @@ function init() {
     if (dot) goTo(parseInt(dot.dataset.index))
   })
 
+  // Card modal
+  function openCardModal(html) {
+    document.getElementById('cardModalContent').innerHTML = html
+    document.getElementById('cardModal').classList.add('open')
+  }
+  function closeCardModal() {
+    document.getElementById('cardModal').classList.remove('open')
+  }
+  document.getElementById('cardModalClose').addEventListener('click', closeCardModal)
+  document.getElementById('cardModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeCardModal()
+  })
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeCardModal()
+  })
+
+  stage.addEventListener('click', e => {
+    const card = e.target.closest('.feat-card, .prac-card, .impr-card, .usecase-card')
+    if (!card) return
+
+    let html = ''
+    if (card.classList.contains('feat-card')) {
+      const num = card.querySelector('.feat-num')?.textContent || ''
+      const title = card.querySelector('h3')?.textContent || ''
+      const desc = card.querySelector('p')?.textContent || ''
+      html = `<h2><span class="accent">${esc(num)}.</span> ${esc(title)}</h2><p>${esc(desc)}</p>`
+    } else if (card.classList.contains('prac-card')) {
+      const label = card.querySelector('.label')?.textContent || ''
+      const title = card.querySelector('h3')?.textContent || ''
+      const desc = card.querySelector('p')?.textContent || ''
+      const codeEl = card.querySelector('.code, .code-img, .img-placeholder')
+      html = `<span class="cm-label">${esc(label)}</span><h2>${esc(title)}</h2><p>${esc(desc)}</p>`
+      if (codeEl) {
+        if (codeEl.classList.contains('code')) {
+          html += `<div class="cm-code">${codeEl.innerHTML}</div>`
+        } else if (codeEl.classList.contains('code-img')) {
+          const img = codeEl.querySelector('img')
+          if (img) html += `<div class="cm-img">${img.outerHTML}</div>`
+        }
+      }
+    } else if (card.classList.contains('impr-card')) {
+      const quote = card.querySelector('.impr-quote')?.textContent || ''
+      const author = card.querySelector('.impr-author')?.innerHTML || ''
+      html = `<div class="cm-quote">${esc(quote)}</div><div class="cm-author">${author}</div>`
+    } else if (card.classList.contains('usecase-card')) {
+      const icon = card.querySelector('.usecase-icon')?.innerHTML || ''
+      const title = card.querySelector('h3')?.textContent || ''
+      const desc = card.querySelector('p')?.textContent || ''
+      const tag = card.querySelector('.usecase-tag')?.textContent || ''
+      html = `<div style="text-align:center;font-size:48px;margin-bottom:16px">${icon}</div><h2 style="text-align:center">${esc(title)}</h2><p style="text-align:center">${esc(desc)}</p><div style="text-align:center;margin-top:12px"><span class="cm-label">${esc(tag)}</span></div>`
+    }
+
+    if (html) openCardModal(html)
+  })
+
   document.getElementById('settingsBtn').addEventListener('click', () => {
     renderSettings()
     document.getElementById('settingsOverlay').classList.add('open')
@@ -1683,5 +1822,6 @@ const stage = document.getElementById('stage')
 const navDots = document.getElementById('navDots')
 const counter = document.getElementById('navCounter')
 </script>
+</body>
 </body>
 </html>
