@@ -212,6 +212,39 @@
   .feat-card h3 { font-size:22px; margin-bottom:6px; color:#292524; font-weight:600 }
   .feat-card p  { font-size:16px; color:#a8a29e; line-height:1.7; font-weight:400 }
 
+  /* ─── Unified Card Attachment ─── */
+  .card-attach { margin-top:14px }
+  .card-attach-img {
+    border:2px solid #e7e5e4;
+    background:#fafaf9;
+    overflow:hidden
+  }
+  .card-attach-img img {
+    display:block; width:100%; height:auto;
+    max-height:280px; object-fit:contain
+  }
+  .card-attach-video {
+    border:2px solid #e7e5e4;
+    background:#000;
+    overflow:hidden
+  }
+  .card-attach-video video {
+    display:block; width:100%; height:auto;
+    max-height:320px; object-fit:contain
+  }
+  .card-attach-code {
+    font-family:'SF Mono','Fira Code','Consolas',monospace;
+    font-size:13px;
+    background:#fafaf9;
+    padding:14px 18px;
+    color:#57534e; line-height:1.7; white-space:pre-wrap;
+    border-left:4px solid #e11d48;
+    border:2px solid #e7e5e4;
+    border-left-width:4px
+  }
+  .feat-card .card-attach-img { border-color:#fecaca; background:#fef2f2 }
+  .feat-card .card-attach-img img { max-height:200px }
+
   /* ─── Slide 3: Practice ─── */
   .prac-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; width:100%; max-width:1400px; position:relative; z-index:1 }
   .prac-card {
@@ -236,33 +269,6 @@
   }
   .prac-card h3    { font-size:20px; margin-bottom:8px; color:#292524; font-weight:600 }
   .prac-card p     { font-size:15px; color:#a8a29e; line-height:1.7; font-weight:400 }
-  .prac-card .code {
-    font-family:'SF Mono','Fira Code','Consolas',monospace;
-    font-size:13px;
-    background:#fafaf9;
-    padding:14px 18px; margin-top:14px;
-    color:#57534e; line-height:1.7; white-space:pre-wrap;
-    border-left:4px solid #e11d48;
-    border:2px solid #e7e5e4;
-    border-left-width:4px
-  }
-  .prac-card .img-placeholder {
-    width:100%; height:130px;
-    background:#fafaf9;
-    border:2px dashed #e7e5e4;
-    display:flex; align-items:center; justify-content:center;
-    font-size:13px; color:#d6d3d1; margin-top:14px
-  }
-  .prac-card .code-img {
-    margin-top:14px;
-    border:2px solid #e7e5e4;
-    background:#fafaf9;
-    overflow:hidden
-  }
-  .prac-card .code-img img {
-    display:block; width:100%; height:auto;
-    max-height:280px; object-fit:contain
-  }
 
   /* ─── Slide 4: Impressions ─── */
   .impr-wrap { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; width:100%; max-width:1400px; position:relative; z-index:1 }
@@ -689,6 +695,17 @@
   .card-modal .cm-img img {
     display:block; width:100%; height:auto; max-height:500px; object-fit:contain
   }
+  .card-modal .card-attach { margin-top:16px }
+  .card-modal .card-attach-img { border:2px solid #e7e5e4; background:#fafaf9; overflow:hidden }
+  .card-modal .card-attach-img img { display:block; width:100%; height:auto; max-height:500px; object-fit:contain }
+  .card-modal .card-attach-video { border:2px solid #e7e5e4; background:#000; overflow:hidden }
+  .card-modal .card-attach-video video { display:block; width:100%; height:auto; max-height:500px; object-fit:contain }
+  .card-modal .card-attach-code {
+    font-family:'SF Mono','Fira Code','Consolas',monospace;
+    font-size:14px; background:#fafaf9; padding:20px 24px;
+    color:#57534e; line-height:1.8; white-space:pre-wrap;
+    border-left:4px solid #e11d48; border:2px solid #e7e5e4; border-left-width:4px
+  }
   .card-modal .cm-grid {
     display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:12px
   }
@@ -934,7 +951,7 @@ function renderSlides() {
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
-      <h1><span class="product-name">${esc(cover.product)}</span> 可以做什么？</h1>
+      <h1><span class="product-name">${esc(cover.product)}</span> ${esc(cover.questionSuffix || '可以做什么？')}</h1>
       <div class="divider"></div>
       <p class="cover-sub">${esc(cover.subtitle)}</p>
       <p style="margin-top:28px;font-size:15px;color:#d6d3d1;letter-spacing:4px">——— ${esc(cover.tagline)} ———</p>
@@ -944,7 +961,7 @@ function renderSlides() {
     </div>`,
     features: `<div class="slide" ${sc(features, 'bg-rose')}>
       <div class="deco deco-3"></div>
-      <div class="page-tag">特点</div>
+      <div class="page-tag">${esc(features.tag || '特点')}</div>
       <h2 class="pg-title">${esc(cover.product)} 的<span class="accent"> ${esc(features.title)}</span></h2>
       <p class="pg-desc">${esc(features.desc)}</p>
       <div class="feat-wrap">${
@@ -954,6 +971,7 @@ function renderSlides() {
             <div>
               <h3>${esc(f.title)}</h3>
               <p>${esc(f.desc)}</p>
+              ${renderAttach(f.code)}
             </div>
           </div>
         `).join('')
@@ -961,7 +979,7 @@ function renderSlides() {
     </div>`,
     practices: `<div class="slide" ${sc(practices, 'bg-white')}>
       <div class="deco deco-4"></div>
-      <div class="page-tag">测试实践</div>
+      <div class="page-tag">${esc(practices.tag || '测试实践')}</div>
       <h2 class="pg-title">${esc(practices.title)}</h2>
       <p class="pg-desc">${esc(practices.desc)}</p>
       <div class="prac-grid">${
@@ -970,7 +988,7 @@ function renderSlides() {
             <span class="label">${esc(p.label)}</span>
             <h3>${esc(p.title)}</h3>
             <p>${esc(p.desc)}</p>
-            ${p.code ? (isImagePath(p.code) ? `<div class="code-img"><img src="${esc(p.code)}" alt="${esc(p.title)}"></div>` : `<div class="code">${esc(p.code)}</div>`) : '<div class="img-placeholder">[ 截图待添加 ]</div>'}
+            ${renderAttach(p.code)}
           </div>
         `).join('')
       }</div>
@@ -978,7 +996,7 @@ function renderSlides() {
     impressions: `<div class="slide" ${sc(impressions, 'bg-pink')}>
       <div class="deco deco-5"></div>
       <div class="deco deco-6"></div>
-      <div class="page-tag">使用感想</div>
+      <div class="page-tag">${esc(impressions.tag || '使用感想')}</div>
       <h2 class="pg-title">${esc(impressions.title)}</h2>
       <p class="pg-desc">${esc(impressions.desc)}</p>
       <div class="impr-wrap">${
@@ -986,13 +1004,14 @@ function renderSlides() {
           <div class="impr-card">
             <div class="impr-quote">${esc(im.quote)}</div>
             <div class="impr-author">—— <strong>${esc(im.author)}</strong></div>
+            ${renderAttach(im.code)}
           </div>
         `).join('')
       }</div>
     </div>`,
     scores: `<div class="slide" ${sc(scores, 'bg-coral')}>
       <div class="deco deco-7"></div>
-      <div class="page-tag">综合评分</div>
+      <div class="page-tag">${esc(scores.tag || '综合评分')}</div>
       <h2 class="pg-title">为 ${esc(cover.product)} <span class="accent">${esc(scores.title)}</span></h2>
       <p class="pg-desc">${esc(scores.desc)}</p>
       <div class="score-wrap">${
@@ -1010,7 +1029,7 @@ function renderSlides() {
       </div>
     </div>`,
     usecases: `<div class="slide" ${sc(usecases, 'bg-white')}>
-      <div class="page-tag">场景</div>
+      <div class="page-tag">${esc(usecases.tag || '场景')}</div>
       <h2 class="pg-title">${esc(usecases.title)}</h2>
       <p class="pg-desc">${esc(usecases.desc)}</p>
       <div class="usecase-wrap">${
@@ -1019,6 +1038,7 @@ function renderSlides() {
             <div class="usecase-icon">${esc(u.icon)}</div>
             <h3>${esc(u.title)}</h3>
             <p>${esc(u.desc)}</p>
+            ${renderAttach(u.code)}
             <span class="usecase-tag">${esc(u.tag)}</span>
           </div>
         `).join('')
@@ -1078,6 +1098,23 @@ function esc(s) {
 }
 function isImagePath(s) {
   return /\.(png|jpg|jpeg|gif|webp|svg|bmp)(\?.*)?$/i.test(s)
+}
+function isVideoPath(s) {
+  return /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(s)
+}
+function renderAttach(code) {
+  if (!code) return ''
+  if (isImagePath(code)) return `<div class="card-attach card-attach-img"><img src="${esc(code)}"></div>`
+  if (isVideoPath(code)) return `<div class="card-attach card-attach-video"><video src="${esc(code)}" controls playsinline></video></div>`
+  return `<div class="card-attach card-attach-code">${esc(code)}</div>`
+}
+function editItemCode(section, idx) {
+  const v = DATA[section].items[idx].code || ''
+  const ta = prompt('输入图片/视频URL或代码内容（留空不显示）：', v)
+  if (ta !== null) {
+    DATA[section].items[idx].code = ta
+    applySettings()
+  }
 }
 function getCartoonText() {
   if (!DATA.cartoonText) DATA.cartoonText = { text: '加油！', color: '#e11d48', position: 'bottom-left', anims: ['bounce','wiggle','pulse'] }
@@ -1253,6 +1290,7 @@ function renderSettings() {
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="cover.fg" value="${D.cover.fg || '#1c1917'}"></div>
     </div>
     <div class="s-field"><label>产品名称</label><input data-path="cover.product" value="${esc(D.cover.product)}"></div>
+    <div class="s-field"><label>标题后缀</label><input data-path="cover.questionSuffix" value="${esc(D.cover.questionSuffix || '可以做什么？')}" placeholder="可以做什么？"></div>
     <div class="s-field"><label>副标题</label><input data-path="cover.subtitle" value="${esc(D.cover.subtitle)}"></div>
     <div class="s-field"><label>标语</label><input data-path="cover.tagline" value="${esc(D.cover.tagline)}"></div>
     <div id="s-badge-list">`
@@ -1273,6 +1311,7 @@ function renderSettings() {
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="features.bg" value="${D.features.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="features.fg" value="${D.features.fg || '#1c1917'}"></div>
     </div>
+    <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="features.tag" value="${esc(D.features.tag || '特点')}" placeholder="特点"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="features.title" value="${esc(D.features.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="features.desc" value="${esc(D.features.desc)}"></div>
     </div>
@@ -1284,6 +1323,9 @@ function renderSettings() {
       <div class="s-field" style="flex:0 0 36px"><label>#</label><input class="s-display" value="${i + 1}" disabled style="text-align:center;background:#f5f5f4"></div>
       <div class="s-field"><label>标题</label><input data-path="features.items.${i}.title" value="${esc(f.title)}"></div>
       <div class="s-field"><label>描述</label><input data-path="features.items.${i}.desc" value="${esc(f.desc)}"></div>
+      <div class="s-field" style="flex:0 0 36px"><label>附件</label>
+        <button style="padding:6px 10px;border:2px solid #e7e5e4;background:#fff;cursor:pointer;font-size:12px;color:#d6d3d1;font-weight:600" onclick="editItemCode('features',${i})" title="编辑图片/视频/代码">✎</button>
+      </div>
       <button class="s-del" onclick="deleteItem('features.items',${i})" title="删除">✕</button>
     </div>`
   })
@@ -1298,6 +1340,7 @@ function renderSettings() {
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="practices.bg" value="${D.practices.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="practices.fg" value="${D.practices.fg || '#1c1917'}"></div>
     </div>
+    <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="practices.tag" value="${esc(D.practices.tag || '测试实践')}" placeholder="测试实践"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="practices.title" value="${esc(D.practices.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="practices.desc" value="${esc(D.practices.desc)}"></div>
     <div id="s-prac-list">`
@@ -1306,8 +1349,8 @@ function renderSettings() {
       <div class="s-field" style="flex:0 0 80px"><label>标签</label><input data-path="practices.items.${i}.label" value="${esc(p.label)}"></div>
       <div class="s-field"><label>标题</label><input data-path="practices.items.${i}.title" value="${esc(p.title)}"></div>
       <div class="s-field"><label>描述</label><input data-path="practices.items.${i}.desc" value="${esc(p.desc)}"></div>
-      <div class="s-field" style="flex:0 0 36px"><label>代码</label>
-        <button style="padding:6px 10px;border:2px solid #e7e5e4;background:#fff;cursor:pointer;font-size:12px;color:#d6d3d1;font-weight:600" onclick="editCode(${i})">✎</button>
+      <div class="s-field" style="flex:0 0 36px"><label>附件</label>
+        <button style="padding:6px 10px;border:2px solid #e7e5e4;background:#fff;cursor:pointer;font-size:12px;color:#d6d3d1;font-weight:600" onclick="editItemCode('practices',${i})" title="编辑图片/视频/代码">✎</button>
       </div>
       <button class="s-del" onclick="deleteItem('practices.items',${i})" title="删除">✕</button>
     </div>`
@@ -1323,6 +1366,7 @@ function renderSettings() {
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="impressions.bg" value="${D.impressions.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="impressions.fg" value="${D.impressions.fg || '#1c1917'}"></div>
     </div>
+    <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="impressions.tag" value="${esc(D.impressions.tag || '使用感想')}" placeholder="使用感想"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="impressions.title" value="${esc(D.impressions.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="impressions.desc" value="${esc(D.impressions.desc)}"></div>
     <div id="s-impr-list">`
@@ -1330,6 +1374,9 @@ function renderSettings() {
     html += `<div class="s-row" data-idx="${i}">
       <div class="s-field"><label>引语</label><textarea data-path="impressions.items.${i}.quote" rows="2">${esc(im.quote)}</textarea></div>
       <div class="s-field"><label>作者</label><input data-path="impressions.items.${i}.author" value="${esc(im.author)}"></div>
+      <div class="s-field" style="flex:0 0 36px"><label>附件</label>
+        <button style="padding:6px 10px;border:2px solid #e7e5e4;background:#fff;cursor:pointer;font-size:12px;color:#d6d3d1;font-weight:600" onclick="editItemCode('impressions',${i})" title="编辑图片/视频/代码">✎</button>
+      </div>
       <button class="s-del" onclick="deleteItem('impressions.items',${i})" title="删除">✕</button>
     </div>`
   })
@@ -1344,6 +1391,7 @@ function renderSettings() {
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="scores.bg" value="${D.scores.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="scores.fg" value="${D.scores.fg || '#1c1917'}"></div>
     </div>
+    <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="scores.tag" value="${esc(D.scores.tag || '综合评分')}" placeholder="综合评分"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="scores.title" value="${esc(D.scores.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="scores.desc" value="${esc(D.scores.desc)}"></div>
     <div id="s-score-list">`
@@ -1365,6 +1413,7 @@ function renderSettings() {
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="usecases.bg" value="${D.usecases.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="usecases.fg" value="${D.usecases.fg || '#1c1917'}"></div>
     </div>
+    <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="usecases.tag" value="${esc(D.usecases.tag || '场景')}" placeholder="场景"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="usecases.title" value="${esc(D.usecases.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="usecases.desc" value="${esc(D.usecases.desc)}"></div>
     <div id="s-usecase-list">`
@@ -1374,6 +1423,9 @@ function renderSettings() {
       <div class="s-field"><label>标题</label><input data-path="usecases.items.${i}.title" value="${esc(u.title)}"></div>
       <div class="s-field"><label>描述</label><input data-path="usecases.items.${i}.desc" value="${esc(u.desc)}"></div>
       <div class="s-field" style="flex:0 0 100px"><label>标签</label><input data-path="usecases.items.${i}.tag" value="${esc(u.tag)}"></div>
+      <div class="s-field" style="flex:0 0 36px"><label>附件</label>
+        <button style="padding:6px 10px;border:2px solid #e7e5e4;background:#fff;cursor:pointer;font-size:12px;color:#d6d3d1;font-weight:600" onclick="editItemCode('usecases',${i})" title="编辑图片/视频/代码">✎</button>
+      </div>
       <button class="s-del" onclick="deleteItem('usecases.items',${i})" title="删除">✕</button>
     </div>`
   })
@@ -1529,7 +1581,7 @@ function renderSettings() {
 }
 
 function addFeature() {
-  DATA.features.items.push({ title: '新特点', desc: '请输入描述' })
+  DATA.features.items.push({ title: '新特点', desc: '请输入描述', code: '' })
   renderSettings()
 }
 function addPractice() {
@@ -1537,7 +1589,7 @@ function addPractice() {
   renderSettings()
 }
 function addImpression() {
-  DATA.impressions.items.push({ quote: '请输入感想内容', author: '姓名 · 身份' })
+  DATA.impressions.items.push({ quote: '请输入感想内容', author: '姓名 · 身份', code: '' })
   renderSettings()
 }
 function addScore() {
@@ -1545,7 +1597,7 @@ function addScore() {
   renderSettings()
 }
 function addUseCase() {
-  DATA.usecases.items.push({ icon: '🚀', title: '新场景', desc: '请输入描述', tag: '分类' })
+  DATA.usecases.items.push({ icon: '🚀', title: '新场景', desc: '请输入描述', tag: '分类', code: '' })
   renderSettings()
 }
 function addCoverBadge() {
@@ -1619,15 +1671,7 @@ function initSlideOrder() {
   })
 }
 
-function editCode(idx) {
-  window._codeToEdit = idx
-  const v = DATA.practices.items[idx].code
-  const ta = prompt('编辑代码内容（支持换行）：', v)
-  if (ta !== null) {
-    DATA.practices.items[idx].code = ta
-    applySettings()
-  }
-}
+
 
 function collectSettings() {
   document.querySelectorAll('#settingsBody [data-path]').forEach(el => {
@@ -1758,35 +1802,29 @@ function init() {
     if (!card) return
 
     let html = ''
+    const attachEl = card.querySelector('.card-attach')
+    const attachHtml = attachEl ? attachEl.outerHTML : ''
+
     if (card.classList.contains('feat-card')) {
       const num = card.querySelector('.feat-num')?.textContent || ''
       const title = card.querySelector('h3')?.textContent || ''
       const desc = card.querySelector('p')?.textContent || ''
-      html = `<h2><span class="accent">${esc(num)}.</span> ${esc(title)}</h2><p>${esc(desc)}</p>`
+      html = `<h2><span class="accent">${esc(num)}.</span> ${esc(title)}</h2><p>${esc(desc)}</p>${attachHtml}`
     } else if (card.classList.contains('prac-card')) {
       const label = card.querySelector('.label')?.textContent || ''
       const title = card.querySelector('h3')?.textContent || ''
       const desc = card.querySelector('p')?.textContent || ''
-      const codeEl = card.querySelector('.code, .code-img, .img-placeholder')
-      html = `<span class="cm-label">${esc(label)}</span><h2>${esc(title)}</h2><p>${esc(desc)}</p>`
-      if (codeEl) {
-        if (codeEl.classList.contains('code')) {
-          html += `<div class="cm-code">${codeEl.innerHTML}</div>`
-        } else if (codeEl.classList.contains('code-img')) {
-          const img = codeEl.querySelector('img')
-          if (img) html += `<div class="cm-img">${img.outerHTML}</div>`
-        }
-      }
+      html = `<span class="cm-label">${esc(label)}</span><h2>${esc(title)}</h2><p>${esc(desc)}</p>${attachHtml}`
     } else if (card.classList.contains('impr-card')) {
       const quote = card.querySelector('.impr-quote')?.textContent || ''
       const author = card.querySelector('.impr-author')?.innerHTML || ''
-      html = `<div class="cm-quote">${esc(quote)}</div><div class="cm-author">${author}</div>`
+      html = `<div class="cm-quote">${esc(quote)}</div><div class="cm-author">${author}</div>${attachHtml}`
     } else if (card.classList.contains('usecase-card')) {
       const icon = card.querySelector('.usecase-icon')?.innerHTML || ''
       const title = card.querySelector('h3')?.textContent || ''
       const desc = card.querySelector('p')?.textContent || ''
       const tag = card.querySelector('.usecase-tag')?.textContent || ''
-      html = `<div style="text-align:center;font-size:48px;margin-bottom:16px">${icon}</div><h2 style="text-align:center">${esc(title)}</h2><p style="text-align:center">${esc(desc)}</p><div style="text-align:center;margin-top:12px"><span class="cm-label">${esc(tag)}</span></div>`
+      html = `<div style="text-align:center;font-size:48px;margin-bottom:16px">${icon}</div><h2 style="text-align:center">${esc(title)}</h2><p style="text-align:center">${esc(desc)}</p>${attachHtml}<div style="text-align:center;margin-top:12px"><span class="cm-label">${esc(tag)}</span></div>`
     }
 
     if (html) openCardModal(html)
