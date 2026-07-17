@@ -11,14 +11,14 @@
   "features": {
     "bg": "",
     "fg": "",
-    "tag": "特点",
-    "title": "测试方法",
+    "tag": "流程",
+    "title": "我们如何来见证GPT5.6-sol的强大呢",
     "desc": "相同提示词 + 相同代码文件 + CodexCLI，对比两个模型的 BUG 审计能力",
     "items": [
-      { "title": "测试环境", "desc": "使用 CodexCLI 对 test 目录下 7 个 buggy 文件进行 BUG 审计，提示词完全一致。", "code": "/gpt5.6sol/static/修改为5.6sol极高.mp4" },
-      { "title": "审计范围", "desc": "覆盖 Python 和 JavaScript 共 7 个含缺陷文件，包含认证、文件管理、数学引擎、DAG 编排、异步管道、限流器、响应式引擎。", "code": "" },
-      { "title": "分析维度", "desc": "总发现数、高风险/中风险/低风险分布、代码质量评分、跨文件综合分析深度。", "code": "" },
-      { "title": "对比基准", "desc": "GPT5.5 作为对照组，GPT5.6-sol 作为实验组，评估审计质量差异。", "code": "" }
+      { "title": "测试环境", "desc": "使用 CodexCLI 对 test 目录下 7 个 buggy 文件进行 BUG 审计，其中5个文件存在多处隐性问题，两个文件保证复杂且安全，提示词完全一致。", "code": "/gpt5.6sol/static/测试的文件.png" },
+      { "title": "审计范围", "desc": "覆盖 Python 和 JavaScript 共 5 个含缺陷文件，包含认证、文件管理、数学引擎、DAG 编排、异步管道、限流器、响应式引擎。", "code": "/gpt5.6sol/static/测试文件主题.png" },
+      { "title": "分析维度", "desc": "总发现数、高风险/中风险/低风险分布、代码质量评分、跨文件综合分析深度。", "code": "/gpt5.6sol/static/系统提示词要求.png" },
+      { "title": "对比基准", "desc": "GPT5.5 作为对照组，GPT5.6-sol 作为实验组，评估审计质量差异。", "code": "/gpt5.6sol/static/模型对比.png" }
     ]
   },
   "practices": {
@@ -28,10 +28,10 @@
     "title": "审计结果对比",
     "desc": "GPT5.6-sol vs GPT5.5 在 7 个文件上的 BUG 发现能力对比",
     "items": [
-      { "label": "总发现数", "title": "GPT5.6-sol: 64 个 / GPT5.5: 54 个", "desc": "GPT5.6-sol 多发现 10 个 BUG，检出率高出 18.5%", "code": "/static/codex-docx.png" },
-      { "label": "高风险", "title": "GPT5.6-sol: 26 个 / GPT5.5: 24 个", "desc": "GPT5.6-sol 在高风险 BUG 上多发现 2 个", "code": "" },
-      { "label": "中风险", "title": "GPT5.6-sol: 31 个 / GPT5.5: 23 个", "desc": "中风险 BUG 检出量 GPT5.6-sol 高出 34.8%，分析更细", "code": "" },
-      { "label": "跨文件分析", "title": "GPT5.6-sol 有 / GPT5.5 无", "desc": "GPT5.6-sol 提供跨文件依赖风险分析，GPT5.5 仅做单文件汇总", "code": "" }
+      { "label": "总发现数", "title": "GPT5.6-sol: 64 个 / GPT5.5: 54 个", "desc": "GPT5.6-sol 多发现 10 个 BUG，检出率高出 18.5%", "code": "/gpt5.6sol/static/结果对比.png" },
+      { "label": "跨文件分析", "title": "GPT5.6-sol 有 / GPT5.5 无", "desc": "GPT5.6-sol 提供跨文件依赖风险分析，GPT5.5 仅做单文件汇总", "code": "/gpt5.6sol/static/跨文件依赖风险.png" },
+      { "label": "GPT5.5的top5", "title": "GPT5.5的top5 位置模糊，形容不具体", "desc": "GPT5.6-sol 在高风险 BUG 上多发现 2 个", "code": "/gpt5.6sol/static/5.5top5.png" },
+      { "label": "GPT5.6-sol的top5", "title": "GPT5.6-sol的top5 位置具体到上文的提到的问题编号，语言描述更为官方", "desc": "中风险 BUG 检出量 GPT5.6-sol 高出 34.8%，分析更细", "code": "/gpt5.6sol/static/5.6top5.png" }
     ]
   },
   "impressions": {
@@ -76,12 +76,9 @@
       { "icon": "📚", "title": "教育培训", "desc": "制作课件 PPT、讲义文档、成绩统计表等教学相关材料。", "tag": "多格式", "code": "" }
     ]
   },
-  "slideOrder": ["cover", "features", "practices", "impressions", "scores", "usecases", "cta"],
+  "slideOrder": ["cover", "features", "practices", "impressions", "scores", "cta"],
   "extraSlides": [
-    {"title":"网页生成","src": "http://127.0.0.1:3000/codex/index.html?vscode-livepreview=true#/home"},
-    {"title":"Excel 表格生成","src": "https://www.kdocs.cn/l/ct9RqM2pqhJX"},
-    {"title":"Word文档 生成","src": "https://www.kdocs.cn/l/cocv8rEhnEwI"},
-    {"title":"PPT 生成","src": "https://www.kdocs.cn/l/cmwnO06fEAmj"}
+    {"title":"网页生成","src": "http://127.0.0.1:3000/components/md-viewer.html?vscode-livepreview=true"}
   ],
   "animations": [
     {
