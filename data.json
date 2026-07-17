@@ -76,9 +76,45 @@
       { "icon": "📚", "title": "教育培训", "desc": "制作课件 PPT、讲义文档、成绩统计表等教学相关材料。", "tag": "多格式", "code": "" }
     ]
   },
-  "slideOrder": ["cover", "features", "practices", "impressions", "scores", "cta"],
+  "slideOrder": ["cover", "features", "custom:how", "practices", "impressions", "scores", "cta"],
   "extraSlides": [
     {"title":"网页生成","src": "http://127.0.0.1:3000/components/md-viewer.html?vscode-livepreview=true"}
+  ],
+  "customPages": [
+    {
+      "id": "how",
+      "title": "GPT5.6-sol是怎么做到的",
+      "tag": "方法揭秘",
+      "desc": "",
+      "bg": "",
+      "fg": "",
+      "blocks": [
+        {
+          "template": "two-col",
+          "style": "solid",
+          "title": "系统级审计策略",
+          "text": "GPT5.6-sol 先建立全局依赖图谱，识别组件间的调用链与数据流，再针对高风险路径进行深度追踪。每发现一个 BUG 后，自动检查其在其他文件中的关联影响，实现跨文件风险发现。",
+          "media": "",
+          "reverse": false
+        },
+        {
+          "template": "two-col",
+          "style": "dashed",
+          "title": "多维度交叉验证",
+          "text": "对每个 BUG 从严重性、可利用性、影响范围三个维度独立评估，再交叉比对得出最终风险等级。避免单一视角导致的误判或漏判，确保高风险问题不被低估。",
+          "media": "",
+          "reverse": false
+        },
+        {
+          "template": "two-col",
+          "style": "accent",
+          "title": "严格评分标准",
+          "text": "采用更细化的评分矩阵，对代码质量、安全风险、可维护性分别打分后加权汇总。不因表面整洁而放松标准，综合评分 2.9/10 反映真实风险水平。",
+          "media": "",
+          "reverse": false
+        }
+      ]
+    }
   ],
   "animations": [
     {

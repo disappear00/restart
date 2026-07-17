@@ -1638,6 +1638,451 @@
         transform: translateY(-5px) rotate(-1deg)
       }
     }
+
+    /* ─── Custom Page: Block Templates ─── */
+    .custom-slide {
+      overflow-y: auto;
+      align-items: stretch;
+      justify-content: flex-start;
+      padding: 60px 120px 80px;
+      gap: 0
+    }
+
+    .custom-slide .cp-header {
+      text-align: center;
+      margin-bottom: 36px;
+      position: relative;
+      z-index: 1
+    }
+
+    .cp-block {
+      width: 100%;
+      max-width: 1500px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1
+    }
+
+    /* Block border styles */
+    .blk-frame-solid {
+      border: 2px solid #e7e5e4;
+      background: #fff;
+      padding: 32px;
+      box-shadow: 6px 6px 0 #e7e5e4;
+      transition: all .3s ease;
+      cursor: pointer
+    }
+
+    .blk-frame-solid:hover {
+      border-color: #e11d48;
+      box-shadow: 6px 6px 0 rgba(225, 29, 72, .2);
+      transform: translate(-2px, -2px)
+    }
+
+    .blk-frame-dashed {
+      border: 2px dashed #d6d3d1;
+      background: #fafaf9;
+      padding: 32px;
+      transition: all .3s ease;
+      cursor: pointer
+    }
+
+    .blk-frame-dashed:hover {
+      border-color: #e11d48;
+      background: #fff;
+      transform: translate(-1px, -1px)
+    }
+
+    .blk-frame-double {
+      border: 4px double #e7e5e4;
+      background: #fff;
+      padding: 32px;
+      box-shadow: 4px 4px 0 #f5f5f4;
+      transition: all .3s ease;
+      cursor: pointer
+    }
+
+    .blk-frame-double:hover {
+      border-color: #e11d48;
+      box-shadow: 4px 4px 0 rgba(225, 29, 72, .12);
+      transform: translate(-1px, -1px)
+    }
+
+    .blk-frame-rounded {
+      border: 2px solid #e7e5e4;
+      border-radius: 16px;
+      background: #fff;
+      padding: 32px;
+      box-shadow: 6px 6px 0 #e7e5e4;
+      transition: all .3s ease;
+      cursor: pointer
+    }
+
+    .blk-frame-rounded:hover {
+      border-color: #e11d48;
+      box-shadow: 6px 6px 0 rgba(225, 29, 72, .2);
+      transform: translate(-2px, -2px)
+    }
+
+    .blk-frame-accent {
+      border: 2px solid #e11d48;
+      background: #fff;
+      padding: 32px;
+      box-shadow: 6px 6px 0 rgba(225, 29, 72, .2);
+      transition: all .3s ease;
+      cursor: pointer
+    }
+
+    .blk-frame-accent:hover {
+      box-shadow: 8px 8px 0 rgba(225, 29, 72, .3);
+      transform: translate(-2px, -2px)
+    }
+
+    .blk-frame-accent::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #e11d48
+    }
+
+    /* Template: hero-text */
+    .blk-hero {
+      text-align: center;
+      padding: 40px 0
+    }
+
+    .blk-hero h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 12px;
+      line-height: 1.2;
+      letter-spacing: -1px
+    }
+
+    .blk-hero .blk-subtitle {
+      font-size: 20px;
+      color: #a8a29e;
+      margin-bottom: 28px;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .blk-hero .blk-media {
+      margin-top: 20px;
+      border: 2px solid #e7e5e4;
+      overflow: hidden;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .blk-hero .blk-media img,
+    .blk-hero .blk-media video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 480px;
+      object-fit: contain
+    }
+
+    /* Template: two-col */
+    .blk-twocol {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      padding: 24px 16px
+    }
+
+    .blk-twocol.reverse {
+      flex-direction: row-reverse
+    }
+
+    .blk-twocol .blk-text {
+      flex: 1
+    }
+
+    .blk-twocol .blk-text h3 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 12px;
+      line-height: 1.2
+    }
+
+    .blk-twocol .blk-text p {
+      font-size: 17px;
+      color: #57534e;
+      line-height: 1.8;
+      font-weight: 400
+    }
+
+    .blk-twocol .blk-media-wrap {
+      flex: 1;
+      border: 2px solid #e7e5e4;
+      overflow: hidden;
+      background: #fafaf9
+    }
+
+    .blk-twocol .blk-media-wrap img,
+    .blk-twocol .blk-media-wrap video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain
+    }
+
+    /* Template: gallery */
+    .blk-gallery {
+      padding: 16px 0
+    }
+
+    .blk-gallery h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 20px;
+      text-align: center
+    }
+
+    .blk-gallery .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px
+    }
+
+    .blk-gallery .gallery-item {
+      border: 2px solid #e7e5e4;
+      overflow: hidden;
+      background: #fafaf9;
+      transition: all .3s ease;
+      box-shadow: 4px 4px 0 #e7e5e4
+    }
+
+    .blk-gallery .gallery-item:hover {
+      border-color: #e11d48;
+      box-shadow: 4px 4px 0 rgba(225, 29, 72, .2);
+      transform: translate(-2px, -2px)
+    }
+
+    .blk-gallery .gallery-item img,
+    .blk-gallery .gallery-item video {
+      display: block;
+      width: 100%;
+      height: 200px;
+      object-fit: cover
+    }
+
+    .blk-gallery .gallery-item .gallery-caption {
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #57534e;
+      line-height: 1.5
+    }
+
+    /* Template: quote */
+    .blk-quote {
+      padding: 32px 0;
+      text-align: center
+    }
+
+    .blk-quote .quote-text {
+      font-size: 28px;
+      line-height: 1.8;
+      color: #292524;
+      font-style: italic;
+      max-width: 900px;
+      margin: 0 auto 20px;
+      position: relative;
+      padding: 24px 40px;
+      background: #fafaf9;
+      border: 2px solid #e7e5e4
+    }
+
+    .blk-quote .quote-text::before {
+      content: '\201C';
+      position: absolute;
+      top: -8px;
+      left: 16px;
+      font-size: 64px;
+      color: #fecaca;
+      font-family: Georgia, serif;
+      line-height: 1
+    }
+
+    .blk-quote .quote-author {
+      font-size: 16px;
+      color: #a8a29e;
+      font-weight: 500
+    }
+
+    .blk-quote .quote-author strong {
+      color: #57534e
+    }
+
+    /* Template: feature-list */
+    .blk-flist {
+      padding: 16px 0
+    }
+
+    .blk-flist h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 20px;
+      text-align: center
+    }
+
+    .blk-flist .flist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px
+    }
+
+    .blk-flist .flist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px 24px;
+      background: #fff;
+      border: 2px solid #e7e5e4;
+      transition: all .3s ease;
+      box-shadow: 4px 4px 0 #e7e5e4
+    }
+
+    .blk-flist .flist-item:hover {
+      border-color: #e11d48;
+      box-shadow: 4px 4px 0 rgba(225, 29, 72, .2);
+      transform: translate(-2px, -2px)
+    }
+
+    .blk-flist .flist-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      border: 2px solid #e7e5e4;
+      background: #fef2f2
+    }
+
+    .blk-flist .flist-content h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #292524;
+      margin-bottom: 4px
+    }
+
+    .blk-flist .flist-content p {
+      font-size: 14px;
+      color: #a8a29e;
+      line-height: 1.6
+    }
+
+    /* Template: video */
+    .blk-video {
+      padding: 20px 0;
+      text-align: center
+    }
+
+    .blk-video h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 8px
+    }
+
+    .blk-video .blk-subtitle {
+      font-size: 16px;
+      color: #a8a29e;
+      margin-bottom: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    .blk-video .video-container {
+      border: 2px solid #e7e5e4;
+      overflow: hidden;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #000
+    }
+
+    .blk-video .video-container video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain
+    }
+
+    /* Template: stats */
+    .blk-stats {
+      padding: 24px 0;
+      text-align: center
+    }
+
+    .blk-stats h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1c1917;
+      margin-bottom: 28px
+    }
+
+    .blk-stats .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px
+    }
+
+    .blk-stats .stat-item {
+      padding: 24px 32px;
+      background: #fff;
+      border: 2px solid #e7e5e4;
+      min-width: 160px;
+      transition: all .3s ease;
+      box-shadow: 4px 4px 0 #e7e5e4
+    }
+
+    .blk-stats .stat-item:hover {
+      border-color: #e11d48;
+      box-shadow: 4px 4px 0 rgba(225, 29, 72, .2);
+      transform: translate(-2px, -2px)
+    }
+
+    .blk-stats .stat-value {
+      font-size: 40px;
+      font-weight: 700;
+      color: #e11d48;
+      font-family: 'SF Mono', monospace;
+      letter-spacing: -2px;
+      text-shadow: 3px 3px 0 #fecaca
+    }
+
+    .blk-stats .stat-label {
+      font-size: 14px;
+      color: #a8a29e;
+      margin-top: 6px;
+      font-weight: 500
+    }
+
+    /* Custom page scrollbar */
+    .custom-slide::-webkit-scrollbar {
+      width: 4px
+    }
+
+    .custom-slide::-webkit-scrollbar-thumb {
+      background: #e11d48
+    }
   </style>
 </head>
 
@@ -1925,12 +2370,22 @@
     </div>`,
       }
 
+      /* Register custom pages into slideMap */
+      const customPages = DATA.customPages || []
+      customPages.forEach(cp => {
+        if (cp.id) slideMap['custom:' + cp.id] = renderCustomPage(cp)
+      })
+
       const extraSlides = DATA.extraSlides || []
       extraSlides.forEach((es, i) => {
         slideMap['extra:' + i] = `<div class="slide slide-iframe">
       <iframe src="${esc(es.src)}" loading="lazy" allowfullscreen></iframe>
     </div>`
       })
+
+      /* Build custom page title → id lookup */
+      const customTitleToId = {}
+      customPages.forEach(cp => { if (cp.id) customTitleToId[cp.id] = 'custom:' + cp.id })
 
       // Build title → extra:N lookup
       const titleToExtra = {}
@@ -1939,13 +2394,18 @@
       // Resolve a slideOrder entry to a slideMap key
       function resolveId(id) {
         if (slideMap[id]) return id
+        if (customTitleToId[id]) return customTitleToId[id]
         if (titleToExtra[id]) return titleToExtra[id]
         return null
       }
 
-      // Build order from slideOrder, appending any extra slides not yet listed
+      // Build order from slideOrder, appending any extra/custom slides not yet listed
       const defaultOrder = ['cover', 'features', 'practices', 'impressions', 'scores', 'usecases', 'cta']
       let order = DATA.slideOrder && DATA.slideOrder.length ? [...DATA.slideOrder] : [...defaultOrder]
+      customPages.forEach(cp => {
+        const id = cp.id ? 'custom:' + cp.id : null
+        if (id && !order.some(o => resolveId(o) === id)) order.push(cp.id)
+      })
       extraSlides.forEach(es => {
         const id = resolveId(es.title) || ('extra:' + extraSlides.indexOf(es))
         if (!order.some(o => resolveId(o) === id)) order.push(es.title || ('extra:' + extraSlides.indexOf(es)))
@@ -1971,6 +2431,125 @@
       if (isVideoPath(code)) return `<div class="card-attach card-attach-video"><video src="${esc(code)}" controls playsinline></video></div>`
       return `<div class="card-attach card-attach-code">${esc(code)}</div>`
     }
+    /* ─── Custom Page Block Rendering ─── */
+    function blockFrame(blk) {
+      const s = blk.style || 'solid'
+      return 'blk-frame-' + s
+    }
+
+    function renderBlock(blk) {
+      const t = blk.template || 'hero-text'
+      const fc = blockFrame(blk)
+      switch (t) {
+        case 'hero-text': return `
+          <div class="cp-block blk-hero ${fc}">
+            ${blk.title ? `<h2>${esc(blk.title)}</h2>` : ''}
+            ${blk.subtitle ? `<div class="blk-subtitle">${esc(blk.subtitle)}</div>` : ''}
+            ${blk.media ? renderAttach(blk.media) : ''}
+          </div>`
+        case 'two-col': return `
+          <div class="cp-block blk-twocol ${fc}${blk.reverse ? ' reverse' : ''}">
+            <div class="blk-text">
+              ${blk.title ? `<h3>${esc(blk.title)}</h3>` : ''}
+              ${blk.text ? `<p>${esc(blk.text)}</p>` : ''}
+            </div>
+            ${blk.media ? `<div class="blk-media-wrap">${renderAttachRaw(blk.media)}</div>` : ''}
+          </div>`
+        case 'gallery': {
+          const items = blk.items || []
+          return `
+          <div class="cp-block blk-gallery ${fc}">
+            ${blk.title ? `<h3>${esc(blk.title)}</h3>` : ''}
+            <div class="gallery-grid">${items.map(it => `
+              <div class="gallery-item">
+                ${it.media ? renderAttachRaw(it.media) : ''}
+                ${it.caption ? `<div class="gallery-caption">${esc(it.caption)}</div>` : ''}
+              </div>`).join('')}
+            </div>
+          </div>`
+        }
+        case 'quote': return `
+          <div class="cp-block blk-quote ${fc}">
+            ${blk.text ? `<div class="quote-text">${esc(blk.text)}</div>` : ''}
+            ${blk.author ? `<div class="quote-author">—— <strong>${esc(blk.author)}</strong></div>` : ''}
+          </div>`
+        case 'feature-list': {
+          const items = blk.items || []
+          return `
+          <div class="cp-block blk-flist ${fc}">
+            ${blk.title ? `<h3>${esc(blk.title)}</h3>` : ''}
+            <div class="flist-grid">${items.map(it => `
+              <div class="flist-item">
+                <div class="flist-icon">${esc(it.icon || '✦')}</div>
+                <div class="flist-content">
+                  <h4>${esc(it.title || '')}</h4>
+                  <p>${esc(it.desc || '')}</p>
+                </div>
+              </div>`).join('')}
+            </div>
+          </div>`
+        }
+        case 'video': return `
+          <div class="cp-block blk-video ${fc}">
+            ${blk.title ? `<h3>${esc(blk.title)}</h3>` : ''}
+            ${blk.text ? `<div class="blk-subtitle">${esc(blk.text)}</div>` : ''}
+            ${blk.media ? `<div class="video-container">${renderAttachRaw(blk.media)}</div>` : ''}
+          </div>`
+        case 'stats': {
+          const items = blk.items || []
+          return `
+          <div class="cp-block blk-stats ${fc}">
+            ${blk.title ? `<h3>${esc(blk.title)}</h3>` : ''}
+            <div class="stats-row">${items.map(it => `
+              <div class="stat-item">
+                <div class="stat-value">${esc(it.value || '')}</div>
+                <div class="stat-label">${esc(it.label || '')}</div>
+              </div>`).join('')}
+            </div>
+          </div>`
+        }
+        default: return `<div class="cp-block ${fc}"><p style="color:#d6d3d1;text-align:center">未知模板: ${esc(t)}</p></div>`
+      }
+    }
+
+    function renderAttachRaw(src) {
+      if (!src) return ''
+      if (isImagePath(src)) return `<img src="${esc(src)}">`
+      if (isVideoPath(src)) return `<video src="${esc(src)}" controls playsinline></video>`
+      return `<div class="card-attach-code">${esc(src)}</div>`
+    }
+
+    function renderCustomPage(page) {
+      const blocks = (page.blocks || []).map(b => renderBlock(b)).join('')
+      let sc = ''
+      if (page.bg) sc += `background:${esc(page.bg)};`
+      if (page.fg) sc += `color:${esc(page.fg)};`
+      const attr = sc ? `style="${sc}"` : 'class="bg-white"'
+      return `<div class="slide custom-slide" ${attr}>
+      <div class="cp-header">
+        ${page.tag ? `<div class="page-tag">${esc(page.tag)}</div>` : ''}
+        ${page.title ? `<h2 class="pg-title">${esc(page.title)}</h2>` : ''}
+        ${page.desc ? `<p class="pg-desc">${esc(page.desc)}</p>` : ''}
+      </div>
+      ${blocks}
+    </div>`
+    }
+
+    /* ─── Custom Page Block Template Definitions ─── */
+    const BLOCK_TEMPLATES = [
+      { value: 'hero-text', label: '大标题文本', desc: '居中大标题 + 副标题 + 可选媒体', fields: ['title', 'subtitle', 'media'] },
+      { value: 'two-col', label: '左右分栏', desc: '左文右图（或反转）', fields: ['title', 'text', 'media', 'reverse'] },
+      { value: 'gallery', label: '图片画廊', desc: '网格展示多张图片/视频', fields: ['title', 'items'] },
+      { value: 'quote', label: '引用块', desc: '大字引用 + 署名', fields: ['text', 'author'] },
+      { value: 'feature-list', label: '功能列表', desc: '图标 + 标题 + 描述的网格', fields: ['title', 'items'] },
+      { value: 'video', label: '视频展示', desc: '视频播放器 + 标题描述', fields: ['title', 'text', 'media'] },
+      { value: 'stats', label: '数据统计', desc: '大数字统计行', fields: ['title', 'items'] }
+    ]
+
+    function getBlockTemplate(val) {
+      return BLOCK_TEMPLATES.find(t => t.value === val) || BLOCK_TEMPLATES[0]
+    }
+
     function editItemCode(section, idx) {
       const v = DATA[section].items[idx].code || ''
       const ta = prompt('输入图片/视频URL或代码内容（留空不显示）：', v)
@@ -2324,6 +2903,8 @@
         if (labels[id]) return labels[id]
         const m = id.match(/^extra:(\d+)$/)
         if (m && D.extraSlides && D.extraSlides[+m[1]]) return D.extraSlides[+m[1]].title || '额外页面'
+        const cp = (D.customPages || []).find(p => p.id === id)
+        if (cp) return '自定义: ' + (cp.title || cp.id)
         return id
       }
       const curOrder = D.slideOrder && D.slideOrder.length ? [...D.slideOrder] : ['cover', 'features', 'practices', 'impressions', 'scores', 'usecases', 'cta']
@@ -2331,6 +2912,9 @@
           const alt = 'extra:' + i
           const exists = curOrder.some(o => o === es.title || o === alt)
           if (!exists) curOrder.push(es.title || alt)
+        })
+        ; (D.customPages || []).forEach(cp => {
+          if (cp.id && !curOrder.includes(cp.id)) curOrder.push(cp.id)
         })
       html += `<div class="settings-section">
     <h3>页面排序 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（拖拽或点击按钮调整顺序）</span></h3>
@@ -2360,6 +2944,47 @@
         })
       html += `</div>
     <button class="s-add" onclick="addExtraSlide()">＋ 添加额外页面</button>
+  </div>`
+
+      // ── Custom Pages ──
+      const cpList = D.customPages || []
+      const tplOpts = BLOCK_TEMPLATES.map(t => `<option value="${t.value}">${t.label} - ${t.desc}</option>`).join('')
+      html += `<div class="settings-section">
+    <h3>自定义页面 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（通过内容块模板构建页面，支持视频/图片/文本）</span></h3>
+    <div id="s-cp-list">`
+      cpList.forEach((cp, ci) => {
+        html += `<div style="border:2px solid #e7e5e4;padding:16px;margin-bottom:12px;background:#fafaf9">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="font-size:14px;font-weight:700;color:#e11d48">页面 ${ci + 1}</span>
+        <div class="s-field" style="flex:0 0 120px;margin-bottom:0"><label>页面ID</label><input data-path="customPages.${ci}.id" value="${esc(cp.id || '')}" placeholder="my-page"></div>
+        <div class="s-field" style="flex:0 0 80px;margin-bottom:0"><label>背景</label><input type="color" data-path="customPages.${ci}.bg" value="${cp.bg || '#fcfbfa'}"></div>
+        <div class="s-field" style="flex:0 0 80px;margin-bottom:0"><label>文字</label><input type="color" data-path="customPages.${ci}.fg" value="${cp.fg || '#1c1917'}"></div>
+        <button class="s-del" onclick="deleteCustomPage(${ci})" title="删除此页面">✕</button>
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:10px">
+        <div class="s-field" style="flex:1;margin-bottom:0"><label>页面标签</label><input data-path="customPages.${ci}.tag" value="${esc(cp.tag || '')}" placeholder="自定义标签"></div>
+        <div class="s-field" style="flex:2;margin-bottom:0"><label>页面标题</label><input data-path="customPages.${ci}.title" value="${esc(cp.title || '')}"></div>
+      </div>
+      <div class="s-field"><label>页面描述</label><input data-path="customPages.${ci}.desc" value="${esc(cp.desc || '')}"></div>
+      <div style="margin-top:10px"><label style="font-size:12px;font-weight:600;color:#a8a29e;display:block;margin-bottom:6px">内容块</label>`
+        const blocks = cp.blocks || []
+        blocks.forEach((blk, bi) => {
+          const tpl = getBlockTemplate(blk.template)
+          html += `<div class="s-row" style="flex-direction:column;align-items:stretch;background:#fff;margin-bottom:8px;padding:12px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:11px;font-weight:700;color:#e11d48;background:#fef2f2;padding:2px 8px;border:2px solid #fecaca">块 ${bi + 1}</span>
+            <select data-path="customPages.${ci}.blocks.${bi}.template" onchange="onBlockTemplateChange(${ci},${bi},this.value)" style="padding:5px 10px;border:2px solid #e7e5e4;font-size:12px;font-family:inherit;background:#fff;color:#292524;outline:none;flex:1">${BLOCK_TEMPLATES.map(t => `<option value="${t.value}"${blk.template === t.value ? ' selected' : ''}>${t.label} - ${t.desc}</option>`).join('')}</select>
+            <button class="s-del" onclick="deleteCustomBlock(${ci},${bi})" title="删除此块">✕</button>
+          </div>
+          <div id="cp-block-fields-${ci}-${bi}">${renderBlockFields(ci, bi, blk, tpl)}</div>
+        </div>`
+        })
+        html += `</div>
+      <button class="s-add" onclick="addCustomBlock(${ci})">＋ 添加内容块</button>
+    </div>`
+      })
+      html += `</div>
+    <button class="s-add" onclick="addCustomPage()">＋ 添加自定义页面</button>
   </div>`
 
       // ── Cartoon Text ──
@@ -2513,6 +3138,115 @@
       }
       renderSettings()
     }
+
+    /* ─── Custom Page Management ─── */
+    function addCustomPage() {
+      if (!DATA.customPages) DATA.customPages = []
+      const id = 'page-' + Date.now()
+      DATA.customPages.push({ id: id, title: '新自定义页面', tag: '', desc: '', bg: '', fg: '', blocks: [] })
+      if (DATA.slideOrder) DATA.slideOrder.push(id)
+      renderSettings()
+    }
+    function deleteCustomPage(idx) {
+      const cp = DATA.customPages[idx]
+      if (!cp) return
+      const cpId = cp.id
+      DATA.customPages.splice(idx, 1)
+      if (DATA.slideOrder && cpId) {
+        DATA.slideOrder = DATA.slideOrder.filter(id => id !== cpId && id !== 'custom:' + cpId)
+      }
+      renderSettings()
+    }
+    function addCustomBlock(pageIdx) {
+      if (!DATA.customPages[pageIdx].blocks) DATA.customPages[pageIdx].blocks = []
+      DATA.customPages[pageIdx].blocks.push({ template: 'hero-text', title: '', subtitle: '', media: '', text: '', items: [], reverse: false })
+      renderSettings()
+    }
+    function deleteCustomBlock(pageIdx, blockIdx) {
+      DATA.customPages[pageIdx].blocks.splice(blockIdx, 1)
+      renderSettings()
+    }
+    function onBlockTemplateChange(pageIdx, blockIdx, val) {
+      const blk = DATA.customPages[pageIdx].blocks[blockIdx]
+      blk.template = val
+      renderSettings()
+    }
+
+    function renderBlockFields(ci, bi, blk, tpl) {
+      const prefix = `customPages.${ci}.blocks.${bi}`
+      const FRAME_STYLES = [
+        { value: 'solid', label: '实线边框' },
+        { value: 'dashed', label: '虚线边框' },
+        { value: 'double', label: '双线边框' },
+        { value: 'rounded', label: '圆角边框' },
+        { value: 'accent', label: '强调色边框' }
+      ]
+      let h = `<div class="s-field"><label>边框样式</label><select data-path="${prefix}.style">${FRAME_STYLES.map(fs => `<option value="${fs.value}"${(blk.style || 'solid') === fs.value ? ' selected' : ''}>${fs.label}</option>`).join('')}</select></div>`
+      if (tpl.fields.includes('title')) {
+        h += `<div class="s-field"><label>标题</label><input data-path="${prefix}.title" value="${esc(blk.title || '')}"></div>`
+      }
+      if (tpl.fields.includes('subtitle')) {
+        h += `<div class="s-field"><label>副标题</label><input data-path="${prefix}.subtitle" value="${esc(blk.subtitle || '')}"></div>`
+      }
+      if (tpl.fields.includes('text')) {
+        h += `<div class="s-field"><label>文本内容</label><textarea data-path="${prefix}.text" rows="2">${esc(blk.text || '')}</textarea></div>`
+      }
+      if (tpl.fields.includes('media')) {
+        h += `<div class="s-field"><label>媒体地址（图片URL / 视频URL）</label><input data-path="${prefix}.media" value="${esc(blk.media || '')}" placeholder="路径或URL"></div>`
+      }
+      if (tpl.fields.includes('reverse')) {
+        h += `<div class="s-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" data-path="${prefix}.reverse" ${blk.reverse ? 'checked' : ''}> 左右反转（图在左，文在右）</label></div>`
+      }
+      if (tpl.fields.includes('items')) {
+        const items = blk.items || []
+        h += `<div style="margin-top:6px"><label style="font-size:11px;font-weight:600;color:#a8a29e;display:block;margin-bottom:4px">列表项</label>`
+        if (blk.template === 'gallery') {
+          items.forEach((it, ii) => {
+            h += `<div class="s-row" style="margin-bottom:6px">
+              <div class="s-field" style="flex:2;margin-bottom:0"><label>媒体</label><input data-path="${prefix}.items.${ii}.media" value="${esc(it.media || '')}"></div>
+              <div class="s-field" style="flex:2;margin-bottom:0"><label>说明</label><input data-path="${prefix}.items.${ii}.caption" value="${esc(it.caption || '')}"></div>
+              <button class="s-del" onclick="deleteCustomBlockItem(${ci},${bi},${ii})" title="删除">✕</button>
+            </div>`
+          })
+          h += `<button class="s-add" onclick="addCustomBlockItem(${ci},${bi},'gallery')">＋ 添加图片</button>`
+        } else if (blk.template === 'feature-list') {
+          items.forEach((it, ii) => {
+            h += `<div class="s-row" style="margin-bottom:6px">
+              <div class="s-field" style="flex:0 0 50px;margin-bottom:0"><label>图标</label><input data-path="${prefix}.items.${ii}.icon" value="${esc(it.icon || '')}"></div>
+              <div class="s-field" style="flex:1;margin-bottom:0"><label>标题</label><input data-path="${prefix}.items.${ii}.title" value="${esc(it.title || '')}"></div>
+              <div class="s-field" style="flex:2;margin-bottom:0"><label>描述</label><input data-path="${prefix}.items.${ii}.desc" value="${esc(it.desc || '')}"></div>
+              <button class="s-del" onclick="deleteCustomBlockItem(${ci},${bi},${ii})" title="删除">✕</button>
+            </div>`
+          })
+          h += `<button class="s-add" onclick="addCustomBlockItem(${ci},${bi},'feature-list')">＋ 添加功能项</button>`
+        } else if (blk.template === 'stats') {
+          items.forEach((it, ii) => {
+            h += `<div class="s-row" style="margin-bottom:6px">
+              <div class="s-field" style="flex:0 0 100px;margin-bottom:0"><label>数值</label><input data-path="${prefix}.items.${ii}.value" value="${esc(it.value || '')}"></div>
+              <div class="s-field" style="flex:1;margin-bottom:0"><label>标签</label><input data-path="${prefix}.items.${ii}.label" value="${esc(it.label || '')}"></div>
+              <button class="s-del" onclick="deleteCustomBlockItem(${ci},${bi},${ii})" title="删除">✕</button>
+            </div>`
+          })
+          h += `<button class="s-add" onclick="addCustomBlockItem(${ci},${bi},'stats')">＋ 添加统计项</button>`
+        }
+        h += `</div>`
+      }
+      return h
+    }
+
+    function addCustomBlockItem(ci, bi, type) {
+      const blk = DATA.customPages[ci].blocks[bi]
+      if (!blk.items) blk.items = []
+      if (type === 'gallery') blk.items.push({ media: '', caption: '' })
+      else if (type === 'feature-list') blk.items.push({ icon: '✦', title: '', desc: '' })
+      else if (type === 'stats') blk.items.push({ value: '', label: '' })
+      renderSettings()
+    }
+
+    function deleteCustomBlockItem(ci, bi, ii) {
+      DATA.customPages[ci].blocks[bi].items.splice(ii, 1)
+      renderSettings()
+    }
     function slideMove(id, dir) {
       if (!DATA.slideOrder) initSlideOrder()
       const idx = DATA.slideOrder.indexOf(id)
@@ -2527,6 +3261,9 @@
     function initSlideOrder() {
       const def = ['cover', 'features', 'practices', 'impressions', 'scores', 'usecases', 'cta']
       DATA.slideOrder = [...def]
+        ; (DATA.customPages || []).forEach(cp => {
+          DATA.slideOrder.push(cp.id || ('custom:' + DATA.slideOrder.length))
+        })
         ; (DATA.extraSlides || []).forEach(es => {
           DATA.slideOrder.push(es.title || ('extra:' + DATA.slideOrder.length))
         })
@@ -2659,7 +3396,7 @@
       })
 
       stage.addEventListener('click', e => {
-        const card = e.target.closest('.feat-card, .prac-card, .impr-card, .usecase-card')
+        const card = e.target.closest('.feat-card, .prac-card, .impr-card, .usecase-card, [class*="blk-frame-"]')
         if (!card) return
 
         let html = ''
@@ -2686,6 +3423,10 @@
           const desc = card.querySelector('p')?.textContent || ''
           const tag = card.querySelector('.usecase-tag')?.textContent || ''
           html = `<div style="text-align:center;font-size:48px;margin-bottom:16px">${icon}</div><h2 style="text-align:center">${esc(title)}</h2><p style="text-align:center">${esc(desc)}</p>${attachHtml}<div style="text-align:center;margin-top:12px"><span class="cm-label">${esc(tag)}</span></div>`
+        } else {
+          const clone = card.cloneNode(true)
+          clone.style.cssText = 'border:none;box-shadow:none;background:transparent;padding:0;transform:none'
+          html = clone.innerHTML
         }
 
         if (html) openCardModal(html)
