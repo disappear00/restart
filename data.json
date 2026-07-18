@@ -5,6 +5,7 @@
     "product": "GPT5.6-sol",
     "questionSuffix": "为什么强",
     "subtitle": "相较于GPT5.5 有哪方面的提升",
+    "entrance": { "type": "fadeSlideUp", "delay": 200, "stagger": false },
 
     "badges": ["GPT5.6-sol", "BUG 审计", "CodexCLI", "代码安全", "对比测试"]
   },
@@ -14,6 +15,7 @@
     "tag": "流程",
     "title": "我们如何来见证GPT5.6-sol的强大呢",
     "desc": "相同提示词 + 相同代码文件 + CodexCLI，对比两个模型的 BUG 审计能力",
+    "entrance": { "type": "fadeSlideUp", "delay": 200, "stagger": true },
     "items": [
       { "title": "测试环境", "desc": "使用 CodexCLI 对 test 目录下 7 个 buggy 文件进行 BUG 审计，其中5个文件存在多处隐性问题，两个文件保证复杂且安全，提示词完全一致。", "code": "/gpt5.6sol/static/测试的文件.png" },
       { "title": "审计范围", "desc": "覆盖 Python 和 JavaScript 共 5 个含缺陷文件，包含认证、文件管理、数学引擎、DAG 编排、异步管道、限流器、响应式引擎。", "code": "/gpt5.6sol/static/测试文件主题.png" },
@@ -27,6 +29,7 @@
     "tag": "测试实践",
     "title": "审计结果对比",
     "desc": "GPT5.6-sol vs GPT5.5 在 7 个文件上的 BUG 发现能力对比",
+    "entrance": { "type": "scaleIn", "delay": 200, "stagger": true },
     "items": [
       { "label": "总发现数", "title": "GPT5.6-sol: 64 个 / GPT5.5: 54 个", "desc": "GPT5.6-sol 多发现 10 个 BUG，检出率高出 18.5%", "code": "/gpt5.6sol/static/结果对比.png" },
       { "label": "跨文件分析", "title": "GPT5.6-sol 有 / GPT5.5 无", "desc": "GPT5.6-sol 提供跨文件依赖风险分析，GPT5.5 仅做单文件汇总", "code": "/gpt5.6sol/static/跨文件依赖风险.png" },
@@ -40,6 +43,7 @@
     "tag": "使用感想",
     "title": "核心结论",
     "desc": "GPT5.6-sol 为何更强？",
+    "entrance": { "type": "driftUp", "delay": 200, "stagger": true },
     "items": [
       { "quote": "GPT5.6-sol 总发现 64 个 BUG，比 GPT5.5 多 10 个（+18.5%），尤其在中高风险问题上检出率显著更高", "author": "数量优势", "code": "" },
       { "quote": "GPT5.6-sol 提供跨文件依赖风险分析，识别组件间的组合风险；GPT5.5 仅做单文件独立汇总", "author": "跨文件分析", "code": "" },
@@ -53,6 +57,7 @@
     "tag": "综合评分",
     "title": "综合评分",
     "desc": "基于多个维度的使用体验评估",
+    "entrance": { "type": "zoomUp", "delay": 200, "stagger": false },
     "items": [
       { "label": "网页生成", "value": 80 },
       { "label": "PPT 生成", "value": 75 },
@@ -67,6 +72,7 @@
     "tag": "场景",
     "title": "应用场景",
     "desc": "覆盖多种办公场景，提升内容产出效率",
+    "entrance": { "type": "popIn", "delay": 200, "stagger": true },
     "items": [
       { "icon": "🌐", "title": "营销落地页", "desc": "快速生成品牌宣传、活动推广等营销网页，支持自定义样式与动效。", "tag": "网页", "code": "" },
       { "icon": "📊", "title": "商务演示", "desc": "自动生成产品介绍、季度汇报、方案演讲等各类 PPT 演示文稿。", "tag": "PPT", "code": "" },
@@ -88,6 +94,7 @@
       "desc": "",
       "bg": "",
       "fg": "",
+      "entrance": { "type": "fadeSlideLeft", "delay": 200, "stagger": true },
       "blocks": [
         {
           "template": "two-col",
@@ -143,6 +150,7 @@
     "title": "GPT5.6-sol 为什么更强？",
     "subtitle": "更多 BUG 发现 · 更深入的跨文件分析 · 更严格的评分标准 · 更完整的测试覆盖",
     "btnText": "感谢观看",
+    "entrance": { "type": "blurIn", "delay": 200, "stagger": false },
     "features": [
       { "num": "64", "lbl": "总 BUG 发现" },
       { "num": "26", "lbl": "高风险发现" },

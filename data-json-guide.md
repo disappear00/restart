@@ -27,9 +27,10 @@
    - [模板: stats](#模板-stats)
 10. [extraSlides — 额外页面（iframe）](#extraslides--额外页面iframe)
 11. [slideOrder — 页面排序](#slideorder--页面排序)
-12. [animations — 背景粒子动画](#animations--背景粒子动画)
-13. [cartoonText — 卡通文字](#cartoontext--卡通文字)
-14. [通用规则](#通用规则)
+12. [entrance — 入场动画](#entrance--入场动画)
+13. [animations — 背景粒子动画](#animations--背景粒子动画)
+14. [cartoonText — 卡通文字](#cartoontext--卡通文字)
+15. [通用规则](#通用规则)
 
 ---
 
@@ -48,7 +49,8 @@
   "extraSlides": [ ... ],     // 额外 iframe 页面
   "slideOrder": [ ... ],      // 页面排序
   "animations": [ ... ],      // 背景粒子动画
-  "cartoonText": { ... }      // 卡通文字
+  "cartoonText": { ... },     // 卡通文字
+  "entrance": { ... }         // 入场动画配置
 }
 ```
 
@@ -76,7 +78,12 @@
     "questionSuffix": "为什么强",  // 标题后缀，完整标题 = product + questionSuffix
     "subtitle": "...",           // 副标题
     "tagline": "...",            // 标语（标题与副标题之间的装饰文字）
-    "badges": ["标签1", "标签2"]  // 标签数组，显示为圆角徽章
+    "badges": ["标签1", "标签2"], // 标签数组，显示为圆角徽章
+    "entrance": {                // 入场动画（可选，见下方统一说明）
+      "type": "fadeSlideUp",
+      "delay": 150,
+      "stagger": false
+    }
   }
 }
 ```
@@ -92,6 +99,7 @@
 | `subtitle` | string | 否 | 副标题描述 |
 | `tagline` | string | 否 | 装饰性标语 |
 | `badges` | string[] | 否 | 标签列表 |
+| `entrance` | object | 否 | 入场动画配置，详见 [entrance — 入场动画](#entrance--入场动画) |
 
 ---
 
@@ -111,7 +119,12 @@
         "desc": "特点描述文本",
         "code": "图片路径或视频路径"  // 可选附件
       }
-    ]
+    ],
+    "entrance": {               // 入场动画（可选）
+      "type": "fadeSlideUp",
+      "delay": 150,
+      "stagger": true
+    }
   }
 }
 ```
@@ -143,7 +156,12 @@
         "desc": "实践描述",
         "code": ""                // 可选附件
       }
-    ]
+    ],
+    "entrance": {                 // 入场动画（可选）
+      "type": "fadeSlideLeft",
+      "delay": 200,
+      "stagger": true
+    }
   }
 }
 ```
@@ -175,7 +193,12 @@
         "author": "作者署名",
         "code": ""               // 可选附件
       }
-    ]
+    ],
+    "entrance": {                // 入场动画（可选）
+      "type": "fadeIn",
+      "delay": 150,
+      "stagger": true
+    }
   }
 }
 ```
@@ -203,7 +226,12 @@
     "items": [
       { "label": "网页生成", "value": 80 },
       { "label": "PPT 生成", "value": 75 }
-    ]
+    ],
+    "entrance": {                // 入场动画（可选）
+      "type": "scaleIn",
+      "delay": 150,
+      "stagger": true
+    }
   }
 }
 ```
@@ -237,7 +265,12 @@
         "tag": "网页",            // 分类标签
         "code": ""               // 可选附件
       }
-    ]
+    ],
+    "entrance": {                // 入场动画（可选）
+      "type": "fadeSlideRight",
+      "delay": 150,
+      "stagger": true
+    }
   }
 }
 ```
@@ -268,7 +301,12 @@
       { "num": "64", "lbl": "总 BUG 发现" },
       { "num": "26", "lbl": "高风险发现" },
       { "num": "+18.5%", "lbl": "检出率提升" }
-    ]
+    ],
+    "entrance": {                // 入场动画（可选）
+      "type": "popIn",
+      "delay": 200,
+      "stagger": false
+    }
   }
 }
 ```
@@ -281,6 +319,7 @@
 | `subtitle` | string | 否 | 副标题 |
 | `btnText` | string | 是 | 按钮文字 |
 | `features` | array | 否 | 顶部数字指标列表 |
+| `entrance` | object | 否 | 入场动画配置，详见 [entrance — 入场动画](#entrance--入场动画) |
 
 **features 子项字段：**
 
@@ -310,7 +349,12 @@
       "blocks": [               // 内容块数组，按顺序从上到下排列
         { "template": "hero-text", "style": "solid", ... },
         { "template": "two-col", "style": "dashed", ... }
-      ]
+      ],
+      "entrance": {             // 入场动画（可选）
+        "type": "fadeSlideUp",
+        "delay": 150,
+        "stagger": true
+      }
     }
   ]
 }
@@ -325,6 +369,7 @@
 | `bg` | string | 否 | 背景色 |
 | `fg` | string | 否 | 文字色 |
 | `blocks` | array | **是** | 内容块列表 |
+| `entrance` | object | 否 | 入场动画配置，详见 [entrance — 入场动画](#entrance--入场动画) |
 
 > **重要：** `id` 必须唯一，且在 `slideOrder` 中通过 `"custom:你的id"` 引用。例如 `id` 为 `"demo"` 时，`slideOrder` 中写 `"custom:demo"`。
 
@@ -663,6 +708,81 @@
 
 ---
 
+## entrance — 入场动画
+
+每个页面都可以单独配置入场动画。当切换到该页面时，页面内的内容元素会按照指定的动画效果依次进入。
+
+```jsonc
+"entrance": {
+  "type": "fadeSlideUp",   // 动画类型
+  "delay": 150,            // 延迟（毫秒），页面切换后多久开始播放动画
+  "stagger": true          // 是否交错：子元素依次间隔出现
+}
+```
+
+| 字段 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| `type` | string | 否 | `"fadeSlideUp"` | 动画类型，见下表 |
+| `delay` | number | 否 | `150` | 首个元素开始动画前的延迟（ms） |
+| `stagger` | boolean | 否 | `true` | 子元素是否依次间隔出现（仅对包含多个子项的页面有效） |
+
+### 可用动画类型
+
+| `type` 值 | 名称 | 效果说明 |
+|-----------|------|----------|
+| `fadeSlideUp` | 上滑淡入 | 从下方 20px 处上滑并淡入（**默认**） |
+| `fadeIn` | 淡入 | 纯透明度淡入，无位移 |
+| `fadeSlideLeft` | 左侧滑入 | 从右侧 30px 处向左滑入并淡入 |
+| `fadeSlideRight` | 右侧滑入 | 从左侧 30px 处向右滑入并淡入 |
+| `scaleIn` | 缩放弹入 | 从 0.9 倍缩放弹入 |
+| `blurIn` | 模糊淡入 | 从 8px 模糊逐渐清晰 |
+| `flipIn` | 翻转入场 | 绕 X 轴旋转 90° 翻转入场 |
+| `popIn` | 弹跳缩放 | 从 0.85 倍弹性缩放弹入 |
+| `driftUp` | 飘浮上升 | 从下方 40px 处缓慢飘浮上升 |
+| `zoomUp` | 推近上升 | 从下方 25px 处推近上升，带轻微缩放 |
+
+### stagger 效果说明
+
+当 `stagger: true` 时，页面内的多个子元素会依次间隔出现：
+
+- **包含卡片的页面**（features、practices、impressions、usecases）：外层容器先淡入，内部每张卡片依次间隔 80ms 出现
+- **评分页面**（scores）：评分条依次间隔 120ms 出现，宽度从 0 填充到目标值
+- **其他页面**：页面内所有直接子元素依次间隔 80ms 出现
+
+当 `stagger: false` 时，整个页面内容作为一个整体同时播放动画。
+
+### 配置示例
+
+**所有内置页面统一配置：**
+```jsonc
+{
+  "cover":     { "entrance": { "type": "fadeSlideUp", "delay": 0 } },
+  "features":  { "entrance": { "type": "fadeSlideUp", "delay": 150, "stagger": true } },
+  "practices": { "entrance": { "type": "fadeSlideLeft", "delay": 200, "stagger": true } },
+  "impressions": { "entrance": { "type": "fadeIn", "delay": 150, "stagger": true } },
+  "scores":    { "entrance": { "type": "scaleIn", "delay": 150, "stagger": true } },
+  "usecases":  { "entrance": { "type": "fadeSlideRight", "delay": 150, "stagger": true } },
+  "cta":       { "entrance": { "type": "popIn", "delay": 200 } }
+}
+```
+
+**自定义页面配置：**
+```jsonc
+{
+  "customPages": [
+    {
+      "id": "demo",
+      "entrance": { "type": "blurIn", "delay": 300, "stagger": false },
+      "blocks": [ ... ]
+    }
+  ]
+}
+```
+
+> **提示：** 不写 `entrance` 字段时，使用默认配置（`fadeSlideUp`，延迟 150ms，自动 stagger）。设置面板中也可以实时修改入场动画类型、延迟和 stagger 开关。
+
+---
+
 ## animations — 背景粒子动画
 
 ```jsonc
@@ -748,7 +868,8 @@
     "product": "MyApp",
     "questionSuffix": "能做什么",
     "subtitle": "新一代智能开发工具",
-    "badges": ["AI 驱动", "开源", "跨平台"]
+    "badges": ["AI 驱动", "开源", "跨平台"],
+    "entrance": { "type": "fadeSlideUp", "delay": 0 }
   },
   "features": {
     "bg": "",
@@ -760,7 +881,8 @@
       { "title": "智能补全", "desc": "基于大模型的代码智能补全", "code": "" },
       { "title": "自动测试", "desc": "AI 自动生成单元测试", "code": "" },
       { "title": "代码审查", "desc": "实时检测潜在问题和安全漏洞", "code": "" }
-    ]
+    ],
+    "entrance": { "type": "fadeSlideUp", "delay": 150, "stagger": true }
   },
   "customPages": [
     {
@@ -770,6 +892,7 @@
       "desc": "通过多种内容块模板展示产品细节",
       "bg": "",
       "fg": "",
+      "entrance": { "type": "scaleIn", "delay": 200, "stagger": true },
       "blocks": [
         {
           "template": "hero-text",
@@ -843,7 +966,8 @@
       { "num": "10K+", "lbl": "GitHub Stars" },
       { "num": "500+", "lbl": "贡献者" },
       { "num": "98%", "lbl": "满意度" }
-    ]
+    ],
+    "entrance": { "type": "popIn", "delay": 200 }
   },
   "slideOrder": ["cover", "features", "custom:showcase", "cta"],
   "extraSlides": [],
@@ -854,7 +978,8 @@
     "color": "#e11d48",
     "position": "bottom-left",
     "anims": ["bounce", "wiggle", "pulse", "spin", "float"]
-  }
+  },
+  "entrance": {}
 }
 ```
 
@@ -886,3 +1011,18 @@
 | `.png` `.jpg` `.jpeg` `.gif` `.webp` `.svg` `.bmp` | 图片 |
 | `.mp4` `.webm` `.ogg` `.mov` | 视频播放器 |
 | 其他 / 无后缀 | 代码文本块 |
+
+**入场动画速查：**
+
+| `type` 值 | 效果 | 推荐场景 |
+|-----------|------|----------|
+| `fadeSlideUp` | 上滑淡入 | 通用默认，适合大多数页面 |
+| `fadeIn` | 纯淡入 | 引用类页面，简洁感 |
+| `fadeSlideLeft` | 左侧滑入 | 卡片从右侧滑入 |
+| `fadeSlideRight` | 右侧滑入 | 卡片从左侧滑入 |
+| `scaleIn` | 缩放弹入 | 数据展示页面 |
+| `blurIn` | 模糊淡入 | 创意/科技感页面 |
+| `flipIn` | 翻转入场 | 强调翻转效果 |
+| `popIn` | 弹跳缩放 | 结尾页/重点突出 |
+| `driftUp` | 飘浮上升 | 轻柔/优雅风格 |
+| `zoomUp` | 推近上升 | 空间感/推进感 |

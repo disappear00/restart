@@ -2083,6 +2083,84 @@
     .custom-slide::-webkit-scrollbar-thumb {
       background: #e11d48
     }
+
+    /* ─── Entrance Animations ─── */
+    .slide > * {
+      opacity: 0;
+      transform: translateY(20px)
+    }
+
+    .slide > .dot-grid,
+    .slide > .blob,
+    .slide > .deco {
+      opacity: .04;
+      animation: none !important;
+      transform: none !important
+    }
+
+    @keyframes entSlideUp {
+      from { opacity: 0; transform: translateY(20px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+    @keyframes entFadeIn {
+      from { opacity: 0 } to { opacity: 1 }
+    }
+    @keyframes entSlideLeft {
+      from { opacity: 0; transform: translateX(36px) }
+      to { opacity: 1; transform: translateX(0) }
+    }
+    @keyframes entSlideRight {
+      from { opacity: 0; transform: translateX(-36px) }
+      to { opacity: 1; transform: translateX(0) }
+    }
+    @keyframes entScaleIn {
+      from { opacity: 0; transform: scale(.88) }
+      to { opacity: 1; transform: scale(1) }
+    }
+    @keyframes entBlurIn {
+      from { opacity: 0; filter: blur(8px) }
+      to { opacity: 1; filter: blur(0) }
+    }
+    @keyframes entFlipIn {
+      from { opacity: 0; transform: perspective(600px) rotateX(-10deg) }
+      to { opacity: 1; transform: perspective(600px) rotateX(0) }
+    }
+    @keyframes entPopIn {
+      0% { opacity: 0; transform: scale(.6) }
+      60% { opacity: 1; transform: scale(1.05) }
+      100% { opacity: 1; transform: scale(1) }
+    }
+    @keyframes entDriftUp {
+      from { opacity: 0; transform: translateY(32px) translateX(-10px) }
+      to { opacity: 1; transform: translateY(0) translateX(0) }
+    }
+    @keyframes entZoomUp {
+      from { opacity: 0; transform: scale(.94) translateY(12px) }
+      to { opacity: 1; transform: scale(1) translateY(0) }
+    }
+
+    .ent-fadeSlideUp { animation: entSlideUp .5s cubic-bezier(.22,1,.36,1) both }
+    .ent-fadeIn { animation: entFadeIn .45s ease both }
+    .ent-fadeSlideLeft { animation: entSlideLeft .5s cubic-bezier(.22,1,.36,1) both }
+    .ent-fadeSlideRight { animation: entSlideRight .5s cubic-bezier(.22,1,.36,1) both }
+    .ent-scaleIn { animation: entScaleIn .5s cubic-bezier(.22,1,.36,1) both }
+    .ent-blurIn { animation: entBlurIn .55s ease both }
+    .ent-flipIn { animation: entFlipIn .55s cubic-bezier(.22,1,.36,1) both }
+    .ent-popIn { animation: entPopIn .5s cubic-bezier(.22,1,.36,1) both }
+    .ent-driftUp { animation: entDriftUp .55s cubic-bezier(.22,1,.36,1) both }
+    .ent-zoomUp { animation: entZoomUp .5s cubic-bezier(.22,1,.36,1) both }
+
+    .slide.active > .no-entrance,
+    .slide.active > .no-entrance > * {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+      filter: none
+    }
+
+    .ent-child-fade {
+      animation: entFadeIn .4s ease both
+    }
   </style>
 </head>
 
@@ -2724,6 +2802,43 @@
       })
       html += `</div></div>`
 
+      // ── Entrance Animations ──
+      const entranceOpts = [
+        { value: 'fadeSlideUp', label: '上滑淡入' },
+        { value: 'fadeIn', label: '淡入' },
+        { value: 'fadeSlideLeft', label: '左侧滑入' },
+        { value: 'fadeSlideRight', label: '右侧滑入' },
+        { value: 'scaleIn', label: '缩放弹入' },
+        { value: 'blurIn', label: '模糊淡入' },
+        { value: 'flipIn', label: '翻转入场' },
+        { value: 'popIn', label: '弹跳缩放' },
+        { value: 'driftUp', label: '飘浮上升' },
+        { value: 'zoomUp', label: '推近上升' }
+      ]
+      const sectionKeys = ['cover', 'features', 'practices', 'impressions', 'scores', 'usecases', 'cta']
+      const sectionLabels = { cover: '标题页', features: '特点', practices: '测试实践', impressions: '使用感想', scores: '综合评分', usecases: '应用场景', cta: '结尾页' }
+      html += `<div class="settings-section">
+    <h3>入场动画 <span style="font-weight:400;font-size:12px;color:#d6d3d1">（模块加载时的动画效果）</span></h3>`
+      sectionKeys.forEach(sk => {
+        const cfg = (D[sk] && D[sk].entrance) || {}
+        html += `<div class="s-row" style="align-items:center">
+      <span style="min-width:80px;font-size:13px;font-weight:600;color:#57534e">${sectionLabels[sk]}</span>
+      <div class="s-field" style="flex:1;margin-bottom:0">
+        <select data-path="${sk}.entrance.type" style="width:100%;padding:7px 10px;border:2px solid #e7e5e4;font-size:13px;font-family:inherit;color:#292524;outline:none;background:#fff">
+          ${entranceOpts.map(o => `<option value="${o.value}"${(cfg.type || 'fadeSlideUp') === o.value ? ' selected' : ''}>${o.label}</option>`).join('')}
+        </select>
+      </div>
+      <div class="s-field" style="flex:0 0 90px;margin-bottom:0">
+        <label>延迟(ms)</label>
+        <input type="number" data-path="${sk}.entrance.delay" value="${cfg.delay || 200}" min="0" max="2000" step="50" style="width:100%;padding:5px 8px;border:2px solid #e7e5e4;font-size:12px;font-family:inherit;text-align:center;background:#fff;color:#292524;outline:none">
+      </div>
+      <label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:12px;font-weight:500;color:#57534e;white-space:nowrap">
+        <input type="checkbox" data-path="${sk}.entrance.stagger"${cfg.stagger ? ' checked' : ''}> 交错
+      </label>
+    </div>`
+      })
+      html += `</div>`
+
       // ── Cover ──
       html += `<div class="settings-section">
     <h3>标题页</h3>
@@ -3318,6 +3433,91 @@
       document.getElementById('settingsOverlay').classList.remove('open')
     }
 
+    /* ─── Entrance Animation System ─── */
+    const ENTRANCE_TYPES = ['fadeSlideUp', 'fadeIn', 'fadeSlideLeft', 'fadeSlideRight', 'scaleIn', 'blurIn', 'flipIn', 'popIn', 'driftUp', 'zoomUp']
+    const WRAPPER_SEL = '.feat-wrap, .prac-grid, .usecase-wrap, .impr-wrap, .score-wrap, .cover-badges, .cta-features'
+    const CARD_SEL = '.feat-card, .prac-card, .usecase-card, .impr-card, .score-row, .cover-badge, .cta-feature'
+
+    function clearEntClasses(el) {
+      el.classList.remove('no-entrance', 'ent-child-fade')
+      ENTRANCE_TYPES.forEach(t => el.classList.remove('ent-' + t))
+      el.style.animationDelay = ''
+    }
+
+    function applyEntrance(slideEl, entranceCfg) {
+      if (!slideEl || !entranceCfg) return
+      const baseDelay = entranceCfg.delay || 150
+      const staggerStep = entranceCfg.stagger ? 70 : 0
+      const entranceType = entranceCfg.type || 'fadeSlideUp'
+      let d = 0
+
+      // Batch all DOM changes — no forced reflow between clear and set
+      slideEl.querySelectorAll('.slide > *').forEach(el => {
+        if (el.classList.contains('dot-grid') || el.classList.contains('blob') || el.classList.contains('deco')) return
+        clearEntClasses(el)
+        const cards = el.querySelectorAll(CARD_SEL)
+        const isWrapper = cards.length >= 2
+
+        if (isWrapper) {
+          el.style.animationDelay = d + 'ms'
+          d += 50
+          cards.forEach((card, i) => {
+            clearEntClasses(card)
+            card.style.animationDelay = (d + i * staggerStep) + 'ms'
+          })
+          d += cards.length * staggerStep + 80
+        } else {
+          el.style.animationDelay = d + 'ms'
+          d += staggerStep || 80
+        }
+      })
+
+      // Now add animation classes in a second pass — delays are already set
+      slideEl.querySelectorAll('.slide > *').forEach(el => {
+        if (el.classList.contains('dot-grid') || el.classList.contains('blob') || el.classList.contains('deco')) return
+        const cards = el.querySelectorAll(CARD_SEL)
+        const isWrapper = cards.length >= 2
+
+        if (isWrapper) {
+          el.classList.add('ent-fadeIn')
+          cards.forEach(card => card.classList.add('ent-' + entranceType))
+        } else {
+          el.classList.add('ent-' + entranceType)
+        }
+      })
+    }
+
+    function resetEntrance(slideEl) {
+      if (!slideEl) return
+      slideEl.querySelectorAll('.slide > *').forEach(el => {
+        clearEntClasses(el)
+        el.querySelectorAll(CARD_SEL).forEach(card => clearEntClasses(card))
+      })
+    }
+
+    function applyScoreBarAnimations(slideEl) {
+      if (!slideEl) return
+      const bars = slideEl.querySelectorAll('.score-bar-fill')
+      bars.forEach((bar, i) => {
+        bar.style.transition = 'none'
+        bar.style.width = '0'
+        void bar.offsetWidth
+        bar.style.transition = `width 1s cubic-bezier(.22,1,.36,1) ${250 + i * 100}ms`
+        bar.style.width = bar.dataset.targetWidth || bar.style.width
+      })
+    }
+
+    function resetScoreBarAnimations() {
+      document.querySelectorAll('.score-bar-fill').forEach(bar => {
+        bar.style.transition = 'none'
+        bar.style.width = '0'
+      })
+    }
+
+    function rebuild() {
+      if (window._rebuild) window._rebuild()
+    }
+
     function init() {
       let current = 0
 
@@ -3341,6 +3541,29 @@
         window._totalSlides = total
         updateCartoonText()
         initPlugins()
+
+        // Apply entrance animations to current slide
+        resetScoreBarAnimations()
+        document.querySelectorAll('.slide').forEach(s => resetEntrance(s))
+        const activeSlide = document.querySelector('.slide.active')
+        if (activeSlide) {
+          const sections = ['cover', 'features', 'practices', 'impressions', 'scores', 'usecases', 'cta']
+          const idx = Array.from(document.querySelectorAll('.slide')).indexOf(activeSlide)
+          const order = DATA.slideOrder && DATA.slideOrder.length ? DATA.slideOrder : sections
+          const sectionKey = order[current]
+          const sectionData = sectionKey && DATA[sectionKey]
+          if (sectionData && sectionData.entrance) {
+            applyEntrance(activeSlide, sectionData.entrance)
+          } else {
+            applyEntrance(activeSlide, { type: 'fadeSlideUp', delay: 200 })
+          }
+          if (sectionKey === 'scores') {
+            activeSlide.querySelectorAll('.score-bar-fill').forEach(bar => {
+              bar.dataset.targetWidth = bar.style.width
+            })
+            applyScoreBarAnimations(activeSlide)
+          }
+        }
       }
 
       window._pageGoTo = goTo
@@ -3358,6 +3581,11 @@
           return
         }
 
+        // Reset entrance animations on previous slide
+        const prevSlide = document.querySelectorAll('.slide')[current]
+        if (prevSlide) resetEntrance(prevSlide)
+        resetScoreBarAnimations()
+
         document.querySelectorAll('.slide').forEach((el, i) => {
           el.classList.toggle('active', i === index)
         })
@@ -3366,6 +3594,26 @@
         })
         current = index
         counter.textContent = `${current + 1} / ${total}`
+
+        // Apply entrance animations to new slide
+        const newSlide = document.querySelectorAll('.slide')[index]
+        if (newSlide) {
+          const sections = ['cover', 'features', 'practices', 'impressions', 'scores', 'usecases', 'cta']
+          const order = DATA.slideOrder && DATA.slideOrder.length ? DATA.slideOrder : sections
+          const sectionKey = order[index]
+          const sectionData = sectionKey && DATA[sectionKey]
+          if (sectionData && sectionData.entrance) {
+            applyEntrance(newSlide, sectionData.entrance)
+          } else {
+            applyEntrance(newSlide, { type: 'fadeSlideUp', delay: 200 })
+          }
+          if (sectionKey === 'scores') {
+            newSlide.querySelectorAll('.score-bar-fill').forEach(bar => {
+              bar.dataset.targetWidth = bar.style.width
+            })
+            applyScoreBarAnimations(newSlide)
+          }
+        }
       }
 
       document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1))
