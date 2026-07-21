@@ -2,16 +2,18 @@
   "cover": {
     "bg": "",
     "fg": "",
-    "product": "GPT5.6-sol",
-    "questionSuffix": "为什么强",
-    "subtitle": "相较于GPT5.5 有哪方面的提升",
+    "bgPattern": { "type": "stripe-h", "color": "#e11d48", "opacity": 0.12, "size": 24, "thickness": 1 },
+    "product": "为什么我推荐",
+    "questionSuffix": "用GPT5.6sol作为你的编程模型",
+    "subtitle": "一个在代码审计、跨文件分析和测试覆盖上全面碾压前代的编程模型",
     "entrance": { "type": "fadeSlideUp", "delay": 200, "stagger": false },
 
-    "badges": ["GPT5.6-sol", "BUG 审计", "CodexCLI", "代码安全", "对比测试"]
+    "badges": ["GPT5.6sol", "编程首选", "代码审计", "跨文件分析", "测试覆盖"]
   },
   "features": {
     "bg": "",
     "fg": "",
+    "bgPattern": { "type": "dots", "color": "#e11d48", "opacity": 0.12, "size": 32, "thickness": 1 },
     "tag": "流程",
     "title": "我们如何来见证GPT5.6-sol的强大呢",
     "desc": "相同提示词 + 相同代码文件 + CodexCLI，对比两个模型的 BUG 审计能力",
@@ -26,6 +28,7 @@
   "practices": {
     "bg": "",
     "fg": "",
+    "bgPattern": { "type": "stripe-d1", "color": "#e11d48", "opacity": 0.10, "size": 28, "thickness": 1 },
     "tag": "测试实践",
     "title": "审计结果对比",
     "desc": "GPT5.6-sol vs GPT5.5 在 7 个文件上的 BUG 发现能力对比",
@@ -40,6 +43,7 @@
   "impressions": {
     "bg": "",
     "fg": "",
+    "bgPattern": { "type": "grid", "color": "#93c5fd", "opacity": 0.10, "size": 20, "thickness": 1 },
     "tag": "使用感想",
     "title": "核心结论",
     "desc": "GPT5.6-sol 为何更强？",
@@ -54,6 +58,7 @@
   "scores": {
     "bg": "",
     "fg": "",
+    "bgPattern": { "type": "cross", "color": "#e11d48", "opacity": 0.10, "size": 24, "thickness": 1 },
     "tag": "综合评分",
     "title": "综合评分",
     "desc": "基于多个维度的使用体验评估",
@@ -69,6 +74,7 @@
   "usecases": {
     "bg": "",
     "fg": "",
+    "bgPattern": { "type": "checkerboard", "color": "#e11d48", "opacity": 0.08, "size": 16, "thickness": 1 },
     "tag": "场景",
     "title": "应用场景",
     "desc": "覆盖多种办公场景，提升内容产出效率",
@@ -82,34 +88,35 @@
       { "icon": "📚", "title": "教育培训", "desc": "制作课件 PPT、讲义文档、成绩统计表等教学相关材料。", "tag": "多格式", "code": "" }
     ]
   },
-  "slideOrder": ["cover", "features", "custom:how", "practices", "impressions", "scores", "cta"],
+  "slideOrder": ["cover", "features", "custom:how","网页生成", "practices", "impressions", "cta"],
   "extraSlides": [
     {"title":"网页生成","src": "http://127.0.0.1:3000/components/md-viewer.html?vscode-livepreview=true"}
   ],
   "customPages": [
     {
       "id": "how",
-      "title": "GPT5.6-sol是怎么做到的",
+      "title": "我们是如何测试的呢",
       "tag": "方法揭秘",
       "desc": "",
       "bg": "",
       "fg": "",
+      "bgPattern": { "type": "stripe-v", "color": "#e11d48", "opacity": 0.10, "size": 20, "thickness": 1 },
       "entrance": { "type": "fadeSlideLeft", "delay": 200, "stagger": true },
       "blocks": [
         {
           "template": "two-col",
           "style": "solid",
-          "title": "系统级审计策略",
-          "text": "GPT5.6-sol 先建立全局依赖图谱，识别组件间的调用链与数据流，再针对高风险路径进行深度追踪。每发现一个 BUG 后，自动检查其在其他文件中的关联影响，实现跨文件风险发现。",
-          "media": "",
+          "title": "完全一致的提示词",
+          "text": "保证除模型外其他条件一致",
+          "media": "/gpt5.6sol/static/5.5query.png",
           "reverse": false
         },
         {
           "template": "two-col",
           "style": "dashed",
-          "title": "多维度交叉验证",
-          "text": "对每个 BUG 从严重性、可利用性、影响范围三个维度独立评估，再交叉比对得出最终风险等级。避免单一视角导致的误判或漏判，确保高风险问题不被低估。",
-          "media": "",
+          "title": "GPT5.6sol主动编写测试脚本文件",
+          "text": "对每个 BUG 从严重性、可利用性、影响范围三个维度生成测试文件，进行自主测试",
+          "media": "/gpt5.6sol/static/5.6sol-check2.png",
           "reverse": false
         },
         {
@@ -117,7 +124,7 @@
           "style": "accent",
           "title": "严格评分标准",
           "text": "采用更细化的评分矩阵，对代码质量、安全风险、可维护性分别打分后加权汇总。不因表面整洁而放松标准，综合评分 2.9/10 反映真实风险水平。",
-          "media": "",
+          "media": "/gpt5.6sol/static/系统提示词要求.png",
           "reverse": false
         }
       ]
@@ -147,6 +154,7 @@
   "cta": {
     "bg": "",
     "fg": "",
+    "bgPattern": { "type": "herringbone", "color": "#e11d48", "opacity": 0.10, "size": 12, "thickness": 1 },
     "title": "GPT5.6-sol 为什么更强？",
     "subtitle": "更多 BUG 发现 · 更深入的跨文件分析 · 更严格的评分标准 · 更完整的测试覆盖",
     "btnText": "感谢观看",

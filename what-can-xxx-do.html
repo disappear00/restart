@@ -2098,6 +2098,11 @@
       transform: none !important
     }
 
+    .slide > .bg-pattern {
+      animation: none !important;
+      transform: none !important
+    }
+
     @keyframes entSlideUp {
       from { opacity: 0; transform: translateY(20px) }
       to { opacity: 1; transform: translateY(0) }
@@ -2160,6 +2165,15 @@
 
     .ent-child-fade {
       animation: entFadeIn .4s ease both
+    }
+
+    /* ─── Background Pattern Overlay ─── */
+    .bg-pattern {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden
     }
   </style>
 </head>
@@ -2341,6 +2355,7 @@
 
       const slideMap = {
         cover: `<div class="slide cover active" ${sc(cover, 'bg-white')}>
+      ${renderBgPattern(cover.bgPattern)}
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
@@ -2352,6 +2367,7 @@
           }</div>
     </div>`,
         features: `<div class="slide" ${sc(features, 'bg-rose')}>
+      ${renderBgPattern(features.bgPattern)}
       <div class="deco deco-3"></div>
       <div class="page-tag">${esc(features.tag || '特点')}</div>
       <h2 class="pg-title"><span class="accent"> ${esc(features.title)}</span></h2>
@@ -2369,6 +2385,7 @@
           }</div>
     </div>`,
         practices: `<div class="slide" ${sc(practices, 'bg-white')}>
+      ${renderBgPattern(practices.bgPattern)}
       <div class="deco deco-4"></div>
       <div class="page-tag">${esc(practices.tag || '测试实践')}</div>
       <h2 class="pg-title">${esc(practices.title)}</h2>
@@ -2384,6 +2401,7 @@
           }</div>
     </div>`,
         impressions: `<div class="slide" ${sc(impressions, 'bg-pink')}>
+      ${renderBgPattern(impressions.bgPattern)}
       <div class="deco deco-5"></div>
       <div class="deco deco-6"></div>
       <div class="page-tag">${esc(impressions.tag || '使用感想')}</div>
@@ -2399,6 +2417,7 @@
           }</div>
     </div>`,
         scores: `<div class="slide" ${sc(scores, 'bg-coral')}>
+      ${renderBgPattern(scores.bgPattern)}
       <div class="deco deco-7"></div>
       <div class="page-tag">${esc(scores.tag || '综合评分')}</div>
       <h2 class="pg-title">为 ${esc(cover.product)} <span class="accent">${esc(scores.title)}</span></h2>
@@ -2417,6 +2436,7 @@
       </div>
     </div>`,
         usecases: `<div class="slide" ${sc(usecases, 'bg-white')}>
+      ${renderBgPattern(usecases.bgPattern)}
       <div class="page-tag">${esc(usecases.tag || '场景')}</div>
       <h2 class="pg-title">${esc(usecases.title)}</h2>
       <p class="pg-desc">${esc(usecases.desc)}</p>
@@ -2432,6 +2452,7 @@
           }</div>
     </div>`,
         cta: `<div class="slide cta" ${sc(cta, 'bg-warm')}>
+      ${renderBgPattern(cta.bgPattern)}
       <div class="deco deco-1"></div>
       <div class="deco deco-2"></div>
       <div class="dot-grid"></div>
@@ -2497,6 +2518,95 @@
       d.textContent = s
       return d.innerHTML
     }
+
+    /* ─── Background Pattern Renderer ─── */
+    const BG_PATTERN_TYPES = [
+      { value: 'stripe-h', label: '水平条纹' },
+      { value: 'stripe-v', label: '垂直条纹' },
+      { value: 'stripe-d1', label: '斜纹 /' },
+      { value: 'stripe-d2', label: '斜纹 \\' },
+      { value: 'dots', label: '圆点' },
+      { value: 'grid', label: '网格' },
+      { value: 'cross', label: '十字' },
+      { value: 'checkerboard', label: '棋盘格' },
+      { value: 'zigzag', label: '锯齿' },
+      { value: 'triangle', label: '三角形' },
+      { value: 'waves', label: '波浪' },
+      { value: 'herringbone', label: '鱼骨纹' },
+      { value: 'diagonal-lines', label: '密集斜线' },
+      { value: 'plus', label: '加号' }
+    ]
+
+    function renderBgPatternSettings(prefix, sectionData) {
+      const p = sectionData.bgPattern || { type: 'stripe-h', color: '#000000', opacity: 0.05, size: 20, thickness: 1 }
+      return `<div style="margin-top:6px;padding:10px 12px;background:#fafaf9;border:2px solid #f5f5f4;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:8px;align-items:end">
+        <div class="s-field" style="margin-bottom:0"><label>纹理类型</label><select data-path="${prefix}.bgPattern.type" style="width:100%;padding:5px 8px;border:2px solid #e7e5e4;font-size:12px;font-family:inherit;background:#fff;color:#292524;outline:none">${BG_PATTERN_TYPES.map(o => `<option value="${o.value}"${(p.type || 'stripe-h') === o.value ? ' selected' : ''}>${o.label}</option>`).join('')}</select></div>
+        <div class="s-field" style="margin-bottom:0"><label>纹理颜色</label><input type="color" data-path="${prefix}.bgPattern.color" value="${p.color || '#000000'}" style="width:100%;height:32px;padding:2px;border:2px solid #e7e5e4;cursor:pointer"></div>
+        <div class="s-field" style="margin-bottom:0"><label>明显度</label><div style="display:flex;gap:4px;align-items:center"><input type="range" min="0" max="1" step="0.01" value="${p.opacity != null ? p.opacity : 0.1}" data-path="${prefix}.bgPattern.opacity" oninput="this.nextElementSibling.textContent=this.value" style="flex:1"><span style="font-size:11px;font-weight:700;color:#e11d48;min-width:32px;text-align:center">${p.opacity != null ? p.opacity : 0.1}</span></div></div>
+        <div class="s-field" style="margin-bottom:0"><label>尺寸</label><div style="display:flex;gap:4px;align-items:center"><input type="range" min="4" max="80" step="1" value="${p.size || 20}" data-path="${prefix}.bgPattern.size" oninput="this.nextElementSibling.textContent=this.value" style="flex:1"><span style="font-size:11px;font-weight:700;color:#e11d48;min-width:24px;text-align:center">${p.size || 20}</span></div></div>
+        <div class="s-field" style="margin-bottom:0"><label>粗细</label><div style="display:flex;gap:4px;align-items:center"><input type="range" min="1" max="8" step="1" value="${p.thickness || 1}" data-path="${prefix}.bgPattern.thickness" oninput="this.nextElementSibling.textContent=this.value" style="flex:1"><span style="font-size:11px;font-weight:700;color:#e11d48;min-width:24px;text-align:center">${p.thickness || 1}</span></div></div>
+      </div>`
+    }
+
+    /* ─── SVG Pattern Generator Functions ─── */
+    const BG_PATTERNS = {
+      'stripe-h': (c, s, t) => `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><rect width='${s}' height='${t}' fill='${c}'/></svg>`,
+      'stripe-v': (c, s, t) => `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><rect width='${t}' height='${s}' fill='${c}'/></svg>`,
+      'stripe-d1': (c, s, t) => `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><line x1='0' y1='${s}' x2='${s}' y2='0' stroke='${c}' stroke-width='${t}'/></svg>`,
+      'stripe-d2': (c, s, t) => `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><line x1='0' y1='0' x2='${s}' y2='${s}' stroke='${c}' stroke-width='${t}'/></svg>`,
+      'dots': (c, s, t) => {
+        const r = Math.max(1, Math.round(t * 1.5))
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><circle cx='${Math.round(s / 2)}' cy='${Math.round(s / 2)}' r='${r}' fill='${c}'/></svg>`
+      },
+      'grid': (c, s, t) => `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><line x1='${s}' y1='0' x2='${s}' y2='${s}' stroke='${c}' stroke-width='${t}'/><line x1='0' y1='${s}' x2='${s}' y2='${s}' stroke='${c}' stroke-width='${t}'/></svg>`,
+      'cross': (c, s, t) => {
+        const m = Math.round(s / 2)
+        const h = Math.round(s / 4)
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><rect x='${m - Math.round(t / 2)}' y='${h}' width='${t}' height='${h * 2}' fill='${c}'/><rect x='${h}' y='${m - Math.round(t / 2)}' width='${h * 2}' height='${t}' fill='${c}'/></svg>`
+      },
+      'checkerboard': (c, s, t) => {
+        const h = Math.round(s / 2)
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><rect width='${h}' height='${h}' fill='${c}'/><rect x='${h}' y='${h}' width='${h}' height='${h}' fill='${c}'/></svg>`
+      },
+      'zigzag': (c, s, t) => {
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><polyline points='0,${s} ${Math.round(s / 2)},0 ${s},${s}' fill='none' stroke='${c}' stroke-width='${t}'/></svg>`
+      },
+      'triangle': (c, s, t) => {
+        const h = Math.round(s * 0.866)
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><polygon points='${Math.round(s / 2)},2 ${s - 2},${h - 2} 2,${h - 2}' fill='none' stroke='${c}' stroke-width='${t}'/></svg>`
+      },
+      'waves': (c, s, t) => {
+        const q = Math.round(s / 4)
+        const m = Math.round(s / 2)
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><path d='M0,${m} Q${q},0 ${m},${m} Q${s - q},${s} ${s},${m}' fill='none' stroke='${c}' stroke-width='${t}'/></svg>`
+      },
+      'herringbone': (c, s, t) => {
+        const m = Math.round(s / 2)
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><line x1='0' y1='0' x2='${m}' y2='${m}' stroke='${c}' stroke-width='${t}'/><line x1='${m}' y1='0' x2='${s}' y2='${m}' stroke='${c}' stroke-width='${t}'/><line x1='${m}' y1='${m}' x2='${s}' y2='${s}' stroke='${c}' stroke-width='${t}'/><line x1='0' y1='${m}' x2='${m}' y2='${s}' stroke='${c}' stroke-width='${t}'/></svg>`
+      },
+      'diagonal-lines': (c, s, t) => {
+        const s2 = s * 2
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s2}' height='${s2}'><line x1='0' y1='${s}' x2='${s}' y2='0' stroke='${c}' stroke-width='${t}'/><line x1='${s}' y1='${s2}' x2='${s2}' y2='${s}' stroke='${c}' stroke-width='${t}'/><line x1='${-s}' y1='${s}' x2='0' y2='0' stroke='${c}' stroke-width='${t}'/><line x1='${s2}' y1='${s2}' x2='${s2 + s}' y2='${s}' stroke='${c}' stroke-width='${t}'/></svg>`
+      },
+      'plus': (c, s, t) => {
+        const m = Math.round(s / 2)
+        const arm = Math.max(2, Math.round(s * 0.25))
+        return `<svg xmlns='http://www.w3.org/2000/svg' width='${s}' height='${s}'><rect x='${m - Math.round(t / 2)}' y='${arm}' width='${t}' height='${s - arm * 2}' fill='${c}'/><rect x='${arm}' y='${m - Math.round(t / 2)}' width='${s - arm * 2}' height='${t}' fill='${c}'/></svg>`
+      }
+    }
+
+    function renderBgPattern(pattern) {
+      if (!pattern || !pattern.type || !BG_PATTERNS[pattern.type]) return ''
+      const sz = Math.max(4, Math.round(pattern.size || 20))
+      const th = Math.max(1, Math.round(pattern.thickness || 1))
+      const color = pattern.color || '#000000'
+      const opacity = Math.max(0, Math.min(1, pattern.opacity != null ? pattern.opacity : 0.05))
+      const svgFn = BG_PATTERNS[pattern.type]
+      const svg = svgFn(color, sz, th)
+      const encoded = 'data:image/svg+xml,' + encodeURIComponent(svg).replace(/'/g, '%27')
+      return `<div class="bg-pattern" style="background-image:url('${encoded}');background-repeat:repeat;opacity:${opacity}"></div>`
+    }
+    /* ─── End Background Pattern Renderer ─── */
     function isImagePath(s) {
       return /\.(png|jpg|jpeg|gif|webp|svg|bmp)(\?.*)?$/i.test(s)
     }
@@ -2604,6 +2714,7 @@
       if (page.fg) sc += `color:${esc(page.fg)};`
       const attr = sc ? `style="${sc}"` : 'class="bg-white"'
       return `<div class="slide custom-slide" ${attr}>
+      ${renderBgPattern(page.bgPattern)}
       <div class="cp-header">
         ${page.tag ? `<div class="page-tag">${esc(page.tag)}</div>` : ''}
         ${page.title ? `<h2 class="pg-title">${esc(page.title)}</h2>` : ''}
@@ -2846,6 +2957,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="cover.bg" value="${D.cover.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="cover.fg" value="${D.cover.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('cover', D.cover)}
     <div class="s-field"><label>产品名称</label><input data-path="cover.product" value="${esc(D.cover.product)}"></div>
     <div class="s-field"><label>标题后缀</label><input data-path="cover.questionSuffix" value="${esc(D.cover.questionSuffix || '可以做什么？')}" placeholder="可以做什么？"></div>
     <div class="s-field"><label>副标题</label><input data-path="cover.subtitle" value="${esc(D.cover.subtitle)}"></div>
@@ -2868,6 +2980,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="features.bg" value="${D.features.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="features.fg" value="${D.features.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('features', D.features)}
     <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="features.tag" value="${esc(D.features.tag || '特点')}" placeholder="特点"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="features.title" value="${esc(D.features.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="features.desc" value="${esc(D.features.desc)}"></div>
@@ -2897,6 +3010,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="practices.bg" value="${D.practices.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="practices.fg" value="${D.practices.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('practices', D.practices)}
     <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="practices.tag" value="${esc(D.practices.tag || '测试实践')}" placeholder="测试实践"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="practices.title" value="${esc(D.practices.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="practices.desc" value="${esc(D.practices.desc)}"></div>
@@ -2923,6 +3037,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="impressions.bg" value="${D.impressions.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="impressions.fg" value="${D.impressions.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('impressions', D.impressions)}
     <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="impressions.tag" value="${esc(D.impressions.tag || '使用感想')}" placeholder="使用感想"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="impressions.title" value="${esc(D.impressions.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="impressions.desc" value="${esc(D.impressions.desc)}"></div>
@@ -2948,6 +3063,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="scores.bg" value="${D.scores.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="scores.fg" value="${D.scores.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('scores', D.scores)}
     <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="scores.tag" value="${esc(D.scores.tag || '综合评分')}" placeholder="综合评分"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="scores.title" value="${esc(D.scores.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="scores.desc" value="${esc(D.scores.desc)}"></div>
@@ -2970,6 +3086,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="usecases.bg" value="${D.usecases.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="usecases.fg" value="${D.usecases.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('usecases', D.usecases)}
     <div class="s-field" style="flex:1"><label>页面标签</label><input data-path="usecases.tag" value="${esc(D.usecases.tag || '场景')}" placeholder="场景"></div>
     <div class="s-field" style="flex:1"><label>区域标题</label><input data-path="usecases.title" value="${esc(D.usecases.title)}"></div>
     <div class="s-field" style="flex:1"><label>区域描述</label><input data-path="usecases.desc" value="${esc(D.usecases.desc)}"></div>
@@ -2997,6 +3114,7 @@
       <div class="s-field" style="max-width:80px"><label>背景</label><input type="color" data-path="cta.bg" value="${D.cta.bg || '#fcfbfa'}"></div>
       <div class="s-field" style="max-width:80px"><label>文字</label><input type="color" data-path="cta.fg" value="${D.cta.fg || '#1c1917'}"></div>
     </div>
+    ${renderBgPatternSettings('cta', D.cta)}
     <div class="s-field"><label>标题</label><input data-path="cta.title" value="${esc(D.cta.title)}"></div>
     <div class="s-field"><label>副标题</label><input data-path="cta.subtitle" value="${esc(D.cta.subtitle)}"></div>
     <div class="s-field"><label>按钮文字</label><input data-path="cta.btnText" value="${esc(D.cta.btnText)}"></div>
@@ -3076,6 +3194,7 @@
         <div class="s-field" style="flex:0 0 80px;margin-bottom:0"><label>文字</label><input type="color" data-path="customPages.${ci}.fg" value="${cp.fg || '#1c1917'}"></div>
         <button class="s-del" onclick="deleteCustomPage(${ci})" title="删除此页面">✕</button>
       </div>
+      ${renderBgPatternSettings('customPages.' + ci, cp)}
       <div style="display:flex;gap:10px;margin-bottom:10px">
         <div class="s-field" style="flex:1;margin-bottom:0"><label>页面标签</label><input data-path="customPages.${ci}.tag" value="${esc(cp.tag || '')}" placeholder="自定义标签"></div>
         <div class="s-field" style="flex:2;margin-bottom:0"><label>页面标题</label><input data-path="customPages.${ci}.title" value="${esc(cp.title || '')}"></div>
@@ -3453,7 +3572,7 @@
 
       // Batch all DOM changes — no forced reflow between clear and set
       slideEl.querySelectorAll('.slide > *').forEach(el => {
-        if (el.classList.contains('dot-grid') || el.classList.contains('blob') || el.classList.contains('deco')) return
+        if (el.classList.contains('dot-grid') || el.classList.contains('blob') || el.classList.contains('deco') || el.classList.contains('bg-pattern')) return
         clearEntClasses(el)
         const cards = el.querySelectorAll(CARD_SEL)
         const isWrapper = cards.length >= 2
@@ -3474,7 +3593,7 @@
 
       // Now add animation classes in a second pass — delays are already set
       slideEl.querySelectorAll('.slide > *').forEach(el => {
-        if (el.classList.contains('dot-grid') || el.classList.contains('blob') || el.classList.contains('deco')) return
+        if (el.classList.contains('dot-grid') || el.classList.contains('blob') || el.classList.contains('deco') || el.classList.contains('bg-pattern')) return
         const cards = el.querySelectorAll(CARD_SEL)
         const isWrapper = cards.length >= 2
 
@@ -3490,6 +3609,7 @@
     function resetEntrance(slideEl) {
       if (!slideEl) return
       slideEl.querySelectorAll('.slide > *').forEach(el => {
+        if (el.classList.contains('bg-pattern')) return
         clearEntClasses(el)
         el.querySelectorAll(CARD_SEL).forEach(card => clearEntClasses(card))
       })
